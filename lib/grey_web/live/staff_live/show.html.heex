@@ -1,0 +1,71 @@
+<h1>Show Staff</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.staff_show_path(@socket, :show, @staff)}>
+    <.live_component
+      module={GreyWeb.StaffLive.FormComponent}
+      id={@staff.id}
+      title={@page_title}
+      action={@live_action}
+      staff={@staff}
+      return_to={Routes.staff_show_path(@socket, :show, @staff)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Firstname:</strong>
+    <%= @staff.firstname %>
+  </li>
+
+  <li>
+    <strong>Lastname:</strong>
+    <%= @staff.lastname %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @staff.email %>
+  </li>
+
+  <li>
+    <strong>Phone:</strong>
+    <%= @staff.phone %>
+  </li>
+
+  <li>
+    <strong>Passcode:</strong>
+    <%= @staff.passcode %>
+  </li>
+
+  <li>
+    <strong>Serial:</strong>
+    <%= @staff.serial %>
+  </li>
+
+  <li>
+    <strong>Nationalid:</strong>
+    <%= @staff.nationalid %>
+  </li>
+
+  <li>
+    <strong>Dob:</strong>
+    <%= @staff.dob %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @staff.active %>
+  </li>
+
+  <li>
+    <strong>Decsription:</strong>
+    <%= @staff.decsription %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.staff_show_path(@socket, :edit, @staff), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.staff_index_path(@socket, :index) %></span>

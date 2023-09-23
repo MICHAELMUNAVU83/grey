@@ -1,0 +1,46 @@
+<h1>Show Ware house</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.ware_house_show_path(@socket, :show, @ware_house)}>
+    <.live_component
+      module={GreyWeb.WareHouseLive.FormComponent}
+      id={@ware_house.id}
+      title={@page_title}
+      action={@live_action}
+      ware_house={@ware_house}
+      return_to={Routes.ware_house_show_path(@socket, :show, @ware_house)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @ware_house.name %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @ware_house.location %>
+  </li>
+
+  <li>
+    <strong>Category:</strong>
+    <%= @ware_house.category %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @ware_house.description %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @ware_house.active %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.ware_house_show_path(@socket, :edit, @ware_house), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.ware_house_index_path(@socket, :index) %></span>

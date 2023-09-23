@@ -1,0 +1,47 @@
+<h1>Listing Warehouse</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.ware_house_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.WareHouseLive.FormComponent}
+      id={@ware_house.id || :new}
+      title={@page_title}
+      action={@live_action}
+      ware_house={@ware_house}
+      return_to={Routes.ware_house_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Active</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="warehouse">
+    <%= for ware_house <- @warehouse do %>
+      <tr id={"ware_house-#{ware_house.id}"}>
+        <td><%= ware_house.name %></td>
+        <td><%= ware_house.location %></td>
+        <td><%= ware_house.category %></td>
+        <td><%= ware_house.description %></td>
+        <td><%= ware_house.active %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.ware_house_show_path(@socket, :show, ware_house) %></span>
+          <span><%= live_patch "Edit", to: Routes.ware_house_index_path(@socket, :edit, ware_house) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: ware_house.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Ware house", to: Routes.ware_house_index_path(@socket, :new) %></span>

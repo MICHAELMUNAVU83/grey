@@ -1,0 +1,57 @@
+<h1>Listing Staff</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.staff_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.StaffLive.FormComponent}
+      id={@staff.id || :new}
+      title={@page_title}
+      action={@live_action}
+      staff={@staff}
+      return_to={Routes.staff_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Passcode</th>
+      <th>Serial</th>
+      <th>Nationalid</th>
+      <th>Dob</th>
+      <th>Active</th>
+      <th>Decsription</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="staff">
+    <%= for staff <- @staff_collection do %>
+      <tr id={"staff-#{staff.id}"}>
+        <td><%= staff.firstname %></td>
+        <td><%= staff.lastname %></td>
+        <td><%= staff.email %></td>
+        <td><%= staff.phone %></td>
+        <td><%= staff.passcode %></td>
+        <td><%= staff.serial %></td>
+        <td><%= staff.nationalid %></td>
+        <td><%= staff.dob %></td>
+        <td><%= staff.active %></td>
+        <td><%= staff.decsription %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.staff_show_path(@socket, :show, staff) %></span>
+          <span><%= live_patch "Edit", to: Routes.staff_index_path(@socket, :edit, staff) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: staff.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Staff", to: Routes.staff_index_path(@socket, :new) %></span>
