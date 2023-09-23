@@ -13,6 +13,7 @@ defmodule Grey.Repo.Migrations.CreateStaff do
       add :dob, :string
       add :active, :boolean, default: false, null: false
       add :decsription, :string
+      add :user_id, :integer
 
       timestamps()
     end

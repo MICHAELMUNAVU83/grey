@@ -41,7 +41,11 @@ defmodule GreyWeb.VehicleLive.FormComponent do
   end
 
   defp save_vehicle(socket, :new, vehicle_params) do
-    case Vehicles.create_vehicle(vehicle_params) do
+    new_vehicle_params =
+      vehicle_params
+      |> Map.put("user_id", socket.assigns.user.id)
+
+    case Vehicles.create_vehicle(new_vehicle_params) do
       {:ok, _vehicle} ->
         {:noreply,
          socket

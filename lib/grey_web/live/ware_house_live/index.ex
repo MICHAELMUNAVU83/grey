@@ -3,10 +3,16 @@ defmodule GreyWeb.WareHouseLive.Index do
 
   alias Grey.WareHouses
   alias Grey.WareHouses.WareHouse
+  alias Grey.Users
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :warehouse, list_warehouse())}
+  def mount(_params, session, socket) do
+    user = Users.get_user_by_session_token(session["user_token"])
+
+    {:ok,
+     socket
+     |> assign(:warehouse, list_warehouse())
+     |> assign(:user, user)}
   end
 
   @impl true

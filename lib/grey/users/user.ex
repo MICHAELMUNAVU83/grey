@@ -2,6 +2,9 @@ defmodule Grey.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   use Waffle.Ecto.Schema
+  alias Grey.WareHouses.WareHouse
+  alias Grey.Vehicles.Vehicle
+  alias Grey.Staffs.Staff
 
   schema "users" do
     field :email, :string
@@ -19,6 +22,9 @@ defmodule Grey.Users.User do
     field :verification_code, :string
     field :verified, :boolean, default: false
     field :image, Grey.UserImage.Type
+    has_many :warehouses, WareHouse
+    has_many :Vehicles, Vehicle
+    has_many :staffs, Staff
 
     timestamps()
   end
@@ -40,8 +46,6 @@ defmodule Grey.Users.User do
     |> cast_attachments(attrs, [:image])
     |> validate_email()
     |> validate_password(opts)
-
-
   end
 
   defp validate_email(changeset) do

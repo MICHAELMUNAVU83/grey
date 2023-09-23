@@ -21,31 +21,7 @@ defmodule GreyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    live "/warehouse", WareHouseLive.Index, :index
-    live "/warehouse/new", WareHouseLive.Index, :new
-    live "/warehouse/:id/edit", WareHouseLive.Index, :edit
-
-    live "/warehouse/:id", WareHouseLive.Show, :show
-    live "/warehouse/:id/show/edit", WareHouseLive.Show, :edit
-    live "/staff", StaffLive.Index, :index
-    live "/staff/new", StaffLive.Index, :new
-    live "/staff/:id/edit", StaffLive.Index, :edit
-
-    live "/staff/:id", StaffLive.Show, :show
-    live "/staff/:id/show/edit", StaffLive.Show, :edit
-    live "/device", DeviceLive.Index, :index
-    live "/device/new", DeviceLive.Index, :new
-    live "/device/:id/edit", DeviceLive.Index, :edit
-
-    live "/device/:id", DeviceLive.Show, :show
-    live "/device/:id/show/edit", DeviceLive.Show, :edit
-    live "/vehicle", VehicleLive.Index, :index
-    live "/vehicle/new", VehicleLive.Index, :new
-    live "/vehicle/:id/edit", VehicleLive.Index, :edit
-
-    live "/vehicle/:id", VehicleLive.Show, :show
-    live "/vehicle/:id/show/edit", VehicleLive.Show, :edit
-  end
+   end
 
   # Other scopes may use custom stacks.
   # scope "/api", GreyWeb do
@@ -98,6 +74,30 @@ defmodule GreyWeb.Router do
 
   scope "/", GreyWeb do
     pipe_through [:browser, :require_authenticated_user]
+    live "/warehouse", WareHouseLive.Index, :index
+    live "/warehouse/new", WareHouseLive.Index, :new
+    live "/warehouse/:id/edit", WareHouseLive.Index, :edit
+
+    live "/warehouse/:id", WareHouseLive.Show, :show
+    live "/warehouse/:id/show/edit", WareHouseLive.Show, :edit
+    live "/staff", StaffLive.Index, :index
+    live "/staff/new", StaffLive.Index, :new
+    live "/staff/:id/edit", StaffLive.Index, :edit
+
+    live "/staff/:id", StaffLive.Show, :show
+    live "/staff/:id/show/edit", StaffLive.Show, :edit
+    live "/device", DeviceLive.Index, :index
+    live "/device/new", DeviceLive.Index, :new
+    live "/device/:id/edit", DeviceLive.Index, :edit
+
+    live "/device/:id", DeviceLive.Show, :show
+    live "/device/:id/show/edit", DeviceLive.Show, :edit
+    live "/vehicle", VehicleLive.Index, :index
+    live "/vehicle/new", VehicleLive.Index, :new
+    live "/vehicle/:id/edit", VehicleLive.Index, :edit
+
+    live "/vehicle/:id", VehicleLive.Show, :show
+    live "/vehicle/:id/show/edit", VehicleLive.Show, :edit
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

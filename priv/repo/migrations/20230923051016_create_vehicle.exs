@@ -9,6 +9,8 @@ defmodule Grey.Repo.Migrations.CreateVehicle do
       add :serial, :string
       add :description, :string
       add :active, :boolean, default: false, null: false
+      add :staff_id, :integer
+      add :user_id, :integer
 
       timestamps()
     end

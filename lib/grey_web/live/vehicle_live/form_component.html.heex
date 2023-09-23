@@ -33,6 +33,10 @@
     <%= checkbox(f, :active) %>
     <%= error_tag(f, :active) %>
 
+    <%= label(f, :assigned) %>
+    <%= number_input(f, :staff_id) %>
+    <%= error_tag(f, :staff_id) %>
+
     <div>
       <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
