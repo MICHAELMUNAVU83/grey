@@ -1,0 +1,51 @@
+<h1>Show Return</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.return_show_path(@socket, :show, @return)}>
+    <.live_component
+      module={GreyWeb.ReturnLive.FormComponent}
+      id={@return.id}
+      title={@page_title}
+      action={@live_action}
+      return={@return}
+      return_to={Routes.return_show_path(@socket, :show, @return)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Item:</strong>
+    <%= @return.item %>
+  </li>
+
+  <li>
+    <strong>Quantity:</strong>
+    <%= @return.quantity %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @return.name %>
+  </li>
+
+  <li>
+    <strong>Phone:</strong>
+    <%= @return.phone %>
+  </li>
+
+  <li>
+    <strong>Reason:</strong>
+    <%= @return.reason %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @return.status %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.return_show_path(@socket, :edit, @return), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.return_index_path(@socket, :index) %></span>

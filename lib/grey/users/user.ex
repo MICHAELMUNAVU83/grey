@@ -5,6 +5,9 @@ defmodule Grey.Users.User do
   alias Grey.WareHouses.WareHouse
   alias Grey.Vehicles.Vehicle
   alias Grey.Staffs.Staff
+  alias Grey.Transfers.Transfer
+  alias Grey.Returns.Return
+
 
   schema "users" do
     field :email, :string
@@ -25,6 +28,9 @@ defmodule Grey.Users.User do
     has_many :warehouses, WareHouse
     has_many :Vehicles, Vehicle
     has_many :staffs, Staff
+    has_many :transfers, Transfer
+    has_many :returns, Return
+
 
     timestamps()
   end

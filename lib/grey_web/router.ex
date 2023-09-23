@@ -99,6 +99,20 @@ defmodule GreyWeb.Router do
     live "/vehicle/:id", VehicleLive.Show, :show
     live "/vehicle/:id/show/edit", VehicleLive.Show, :edit
 
+    live "/transfers", TransferLive.Index, :index
+    live "/transfers/new", TransferLive.Index, :new
+    live "/transfers/:id/edit", TransferLive.Index, :edit
+
+    live "/transfers/:id", TransferLive.Show, :show
+    live "/transfers/:id/show/edit", TransferLive.Show, :edit
+
+    live "/returns", ReturnLive.Index, :index
+    live "/returns/new", ReturnLive.Index, :new
+    live "/returns/:id/edit", ReturnLive.Index, :edit
+
+    live "/returns/:id", ReturnLive.Show, :show
+    live "/returns/:id/show/edit", ReturnLive.Show, :edit
+
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
