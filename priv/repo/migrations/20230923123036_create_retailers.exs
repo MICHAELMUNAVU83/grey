@@ -11,5 +11,7 @@ defmodule Grey.Repo.Migrations.CreateRetailers do
 
       timestamps()
     end
+    create index(:retailers, [:user_id])
+
   end
 end

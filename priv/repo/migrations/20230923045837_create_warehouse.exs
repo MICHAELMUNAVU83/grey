@@ -11,5 +11,7 @@ defmodule Grey.Repo.Migrations.CreateWarehouse do
 
       timestamps()
     end
+    create index(:warehouse, [:user_id])
+
   end
 end

@@ -14,5 +14,7 @@ defmodule Grey.Repo.Migrations.CreateVehicle do
 
       timestamps()
     end
+    create index(:vehicle, [:user_id])
+
   end
 end
