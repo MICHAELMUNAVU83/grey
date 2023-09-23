@@ -45,13 +45,24 @@
         <td><%= staff.decsription %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.staff_show_path(@socket, :show, staff) %></span>
-          <span><%= live_patch "Edit", to: Routes.staff_index_path(@socket, :edit, staff) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: staff.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show", to: Routes.staff_show_path(@socket, :show, staff)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.staff_index_path(@socket, :edit, staff)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: staff.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Staff", to: Routes.staff_index_path(@socket, :new) %></span>
+<span><%= live_patch("New Staff", to: Routes.staff_index_path(@socket, :new)) %></span>

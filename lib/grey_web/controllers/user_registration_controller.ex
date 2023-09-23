@@ -5,9 +5,13 @@ defmodule GreyWeb.UserRegistrationController do
   alias Grey.Users.User
   alias GreyWeb.UserAuth
 
+  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, _params) do
     changeset = Users.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
+    todays_date = to_string(Date.utc_today()) |> String.replace("-", "")
+    code = (SecureRandom.uuid() |> String.replace("-", "") |> String.slice(0..9)) <> todays_date
+
+    render(conn, "new.html", changeset: changeset, code: code)
   end
 
   def create(conn, %{"user" => user_params}) do

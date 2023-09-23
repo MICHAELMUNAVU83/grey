@@ -6,6 +6,19 @@ defmodule Grey.Repo.Migrations.CreateUsersAuthTables do
       add :email, :string, null: false, size: 160
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
+      add :firstname, :string
+      add :lastname, :string
+      add :slug, :string
+      add :company, :string
+      add :userlevel, :string
+      add :locationaddress, :string
+      add :image, :string
+
+      add :password_confirmation, :string
+      add :active, :string
+      add :verification_code, :string
+      add :verified, :boolean, default: false
+
       timestamps()
     end
 

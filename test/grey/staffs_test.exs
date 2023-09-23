@@ -8,7 +8,18 @@ defmodule Grey.StaffsTest do
 
     import Grey.StaffsFixtures
 
-    @invalid_attrs %{active: nil, serial: nil, firstname: nil, lastname: nil, email: nil, phone: nil, passcode: nil, nationalid: nil, dob: nil, decsription: nil}
+    @invalid_attrs %{
+      active: nil,
+      serial: nil,
+      firstname: nil,
+      lastname: nil,
+      email: nil,
+      phone: nil,
+      passcode: nil,
+      nationalid: nil,
+      dob: nil,
+      decsription: nil
+    }
 
     test "list_staff/0 returns all staff" do
       staff = staff_fixture()
@@ -21,7 +32,18 @@ defmodule Grey.StaffsTest do
     end
 
     test "create_staff/1 with valid data creates a staff" do
-      valid_attrs = %{active: true, serial: "some serial", firstname: "some firstname", lastname: "some lastname", email: "some email", phone: "some phone", passcode: "some passcode", nationalid: "some nationalid", dob: "some dob", decsription: "some decsription"}
+      valid_attrs = %{
+        active: true,
+        serial: "some serial",
+        firstname: "some firstname",
+        lastname: "some lastname",
+        email: "some email",
+        phone: "some phone",
+        passcode: "some passcode",
+        nationalid: "some nationalid",
+        dob: "some dob",
+        decsription: "some decsription"
+      }
 
       assert {:ok, %Staff{} = staff} = Staffs.create_staff(valid_attrs)
       assert staff.active == true
@@ -42,7 +64,19 @@ defmodule Grey.StaffsTest do
 
     test "update_staff/2 with valid data updates the staff" do
       staff = staff_fixture()
-      update_attrs = %{active: false, serial: "some updated serial", firstname: "some updated firstname", lastname: "some updated lastname", email: "some updated email", phone: "some updated phone", passcode: "some updated passcode", nationalid: "some updated nationalid", dob: "some updated dob", decsription: "some updated decsription"}
+
+      update_attrs = %{
+        active: false,
+        serial: "some updated serial",
+        firstname: "some updated firstname",
+        lastname: "some updated lastname",
+        email: "some updated email",
+        phone: "some updated phone",
+        passcode: "some updated passcode",
+        nationalid: "some updated nationalid",
+        dob: "some updated dob",
+        decsription: "some updated decsription"
+      }
 
       assert {:ok, %Staff{} = staff} = Staffs.update_staff(staff, update_attrs)
       assert staff.active == false

@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :grey, Grey.Repo,
   username: "root",
-  password: "Michael@11",
+  password: "Khohisan@7",
   hostname: "localhost",
   database: "grey_database_dev",
   stacktrace: true,
@@ -74,3 +74,4 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+config :waffle, storage: Waffle.Storage.Local

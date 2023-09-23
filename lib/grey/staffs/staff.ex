@@ -20,7 +20,29 @@ defmodule Grey.Staffs.Staff do
   @doc false
   def changeset(staff, attrs) do
     staff
-    |> cast(attrs, [:firstname, :lastname, :email, :phone, :passcode, :serial, :nationalid, :dob, :active, :decsription])
-    |> validate_required([:firstname, :lastname, :email, :phone, :passcode, :serial, :nationalid, :dob, :active, :decsription])
+    |> cast(attrs, [
+      :firstname,
+      :lastname,
+      :email,
+      :phone,
+      :passcode,
+      :serial,
+      :nationalid,
+      :dob,
+      :active,
+      :decsription
+    ])
+    |> validate_required([
+      :firstname,
+      :lastname,
+      :email,
+      :phone,
+      :passcode,
+      :serial,
+      :nationalid,
+      :dob,
+      :active,
+      :decsription
+    ])
   end
 end

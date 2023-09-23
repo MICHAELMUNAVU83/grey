@@ -4,9 +4,30 @@ defmodule GreyWeb.VehicleLiveTest do
   import Phoenix.LiveViewTest
   import Grey.VehiclesFixtures
 
-  @create_attrs %{active: true, serial: "some serial", type: "some type", description: "some description", makeofcar: "some makeofcar", reg: "some reg"}
-  @update_attrs %{active: false, serial: "some updated serial", type: "some updated type", description: "some updated description", makeofcar: "some updated makeofcar", reg: "some updated reg"}
-  @invalid_attrs %{active: false, serial: nil, type: nil, description: nil, makeofcar: nil, reg: nil}
+  @create_attrs %{
+    active: true,
+    serial: "some serial",
+    type: "some type",
+    description: "some description",
+    makeofcar: "some makeofcar",
+    reg: "some reg"
+  }
+  @update_attrs %{
+    active: false,
+    serial: "some updated serial",
+    type: "some updated type",
+    description: "some updated description",
+    makeofcar: "some updated makeofcar",
+    reg: "some updated reg"
+  }
+  @invalid_attrs %{
+    active: false,
+    serial: nil,
+    type: nil,
+    description: nil,
+    makeofcar: nil,
+    reg: nil
+  }
 
   defp create_vehicle(_) do
     vehicle = vehicle_fixture()

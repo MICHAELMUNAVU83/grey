@@ -37,13 +37,24 @@
         <td><%= vehicle.active %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.vehicle_show_path(@socket, :show, vehicle) %></span>
-          <span><%= live_patch "Edit", to: Routes.vehicle_index_path(@socket, :edit, vehicle) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: vehicle.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show", to: Routes.vehicle_show_path(@socket, :show, vehicle)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.vehicle_index_path(@socket, :edit, vehicle)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: vehicle.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Vehicle", to: Routes.vehicle_index_path(@socket, :new) %></span>
+<span><%= live_patch("New Vehicle", to: Routes.vehicle_index_path(@socket, :new)) %></span>

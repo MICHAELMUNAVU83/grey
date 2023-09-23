@@ -21,7 +21,12 @@ defmodule Grey.DevicesTest do
     end
 
     test "create_device/1 with valid data creates a device" do
-      valid_attrs = %{active: true, name: "some name", description: "some description", imei: "some imei"}
+      valid_attrs = %{
+        active: true,
+        name: "some name",
+        description: "some description",
+        imei: "some imei"
+      }
 
       assert {:ok, %Device{} = device} = Devices.create_device(valid_attrs)
       assert device.active == true
@@ -36,7 +41,13 @@ defmodule Grey.DevicesTest do
 
     test "update_device/2 with valid data updates the device" do
       device = device_fixture()
-      update_attrs = %{active: false, name: "some updated name", description: "some updated description", imei: "some updated imei"}
+
+      update_attrs = %{
+        active: false,
+        name: "some updated name",
+        description: "some updated description",
+        imei: "some updated imei"
+      }
 
       assert {:ok, %Device{} = device} = Devices.update_device(device, update_attrs)
       assert device.active == false

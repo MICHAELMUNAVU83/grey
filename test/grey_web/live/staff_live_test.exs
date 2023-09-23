@@ -4,9 +4,42 @@ defmodule GreyWeb.StaffLiveTest do
   import Phoenix.LiveViewTest
   import Grey.StaffsFixtures
 
-  @create_attrs %{active: true, serial: "some serial", firstname: "some firstname", lastname: "some lastname", email: "some email", phone: "some phone", passcode: "some passcode", nationalid: "some nationalid", dob: "some dob", decsription: "some decsription"}
-  @update_attrs %{active: false, serial: "some updated serial", firstname: "some updated firstname", lastname: "some updated lastname", email: "some updated email", phone: "some updated phone", passcode: "some updated passcode", nationalid: "some updated nationalid", dob: "some updated dob", decsription: "some updated decsription"}
-  @invalid_attrs %{active: false, serial: nil, firstname: nil, lastname: nil, email: nil, phone: nil, passcode: nil, nationalid: nil, dob: nil, decsription: nil}
+  @create_attrs %{
+    active: true,
+    serial: "some serial",
+    firstname: "some firstname",
+    lastname: "some lastname",
+    email: "some email",
+    phone: "some phone",
+    passcode: "some passcode",
+    nationalid: "some nationalid",
+    dob: "some dob",
+    decsription: "some decsription"
+  }
+  @update_attrs %{
+    active: false,
+    serial: "some updated serial",
+    firstname: "some updated firstname",
+    lastname: "some updated lastname",
+    email: "some updated email",
+    phone: "some updated phone",
+    passcode: "some updated passcode",
+    nationalid: "some updated nationalid",
+    dob: "some updated dob",
+    decsription: "some updated decsription"
+  }
+  @invalid_attrs %{
+    active: false,
+    serial: nil,
+    firstname: nil,
+    lastname: nil,
+    email: nil,
+    phone: nil,
+    passcode: nil,
+    nationalid: nil,
+    dob: nil,
+    decsription: nil
+  }
 
   defp create_staff(_) do
     staff = staff_fixture()

@@ -14,7 +14,6 @@
 <% end %>
 
 <ul>
-
   <li>
     <strong>Makeofcar:</strong>
     <%= @vehicle.makeofcar %>
@@ -44,8 +43,9 @@
     <strong>Active:</strong>
     <%= @vehicle.active %>
   </li>
-
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.vehicle_show_path(@socket, :edit, @vehicle), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.vehicle_index_path(@socket, :index) %></span>
+<span>
+  <%= live_patch("Edit", to: Routes.vehicle_show_path(@socket, :edit, @vehicle), class: "button") %>
+</span> |
+<span><%= live_redirect("Back", to: Routes.vehicle_index_path(@socket, :index)) %></span>

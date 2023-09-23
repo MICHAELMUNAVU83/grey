@@ -1,38 +1,47 @@
 defmodule Grey.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
+  use Waffle.Ecto.Schema
 
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :firstname, :string
+    field :lastname, :string
+    field :slug, :string
+    field :company, :string
+    field :userlevel, :string
+    field :locationaddress, :string
+    field :password_confirmation, :string, virtual: true
+    field :active, :string
+    field :verification_code, :string
+    field :verified, :boolean, default: false
+    field :image, Grey.UserImage.Type
 
     timestamps()
   end
 
-  @doc """
-  A user changeset for registration.
-
-  It is important to validate the length of both email and password.
-  Otherwise databases may truncate the email without warnings, which
-  could lead to unpredictable or insecure behaviour. Long passwords may
-  also be very expensive to hash for certain algorithms.
-
-  ## Options
-
-    * `:hash_password` - Hashes the password so it can be stored securely
-      in the database and ensures the password field is cleared to prevent
-      leaks in the logs. If password hashing is not needed and clearing the
-      password field is not desired (like when using this changeset for
-      validations on a LiveView form), this option can be set to `false`.
-      Defaults to `true`.
-  """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [
+      :email,
+      :password,
+      :firstname,
+      :lastname,
+      :company,
+      :slug,
+      :userlevel,
+      :verification_code,
+      :active,
+      :locationaddress
+    ])
+    |> cast_attachments(attrs, [:image])
     |> validate_email()
     |> validate_password(opts)
+
+
   end
 
   defp validate_email(changeset) do
@@ -47,7 +56,7 @@ defmodule Grey.Users.User do
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 72)
+    |> validate_length(:password, min: 6, max: 72)
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
