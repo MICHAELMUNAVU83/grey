@@ -1,0 +1,48 @@
+<h1>Listing Breakbulks</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.breakbulk_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.BreakbulkLive.FormComponent}
+      id={@breakbulk.id || :new}
+      title={@page_title}
+      action={@live_action}
+      breakbulk={@breakbulk}
+      user = {@user}
+      return_to={Routes.breakbulk_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Uom</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="breakbulks">
+    <%= for breakbulk <- @breakbulks do %>
+      <tr id={"breakbulk-#{breakbulk.id}"}>
+        <td><%= breakbulk.code %></td>
+        <td><%= breakbulk.status %></td>
+        <td><%= breakbulk.description %></td>
+        <td><%= breakbulk.quantity %></td>
+        <td><%= breakbulk.uom %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.breakbulk_show_path(@socket, :show, breakbulk) %></span>
+          <span><%= live_patch "Edit", to: Routes.breakbulk_index_path(@socket, :edit, breakbulk) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: breakbulk.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Breakbulk", to: Routes.breakbulk_index_path(@socket, :new) %></span>

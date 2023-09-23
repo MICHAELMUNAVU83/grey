@@ -110,6 +110,14 @@ defmodule GreyWeb.Router do
     live "/returns/new", ReturnLive.Index, :new
     live "/returns/:id/edit", ReturnLive.Index, :edit
 
+    live "/breakbulks", BreakbulkLive.Index, :index
+    live "/breakbulks/new", BreakbulkLive.Index, :new
+    live "/breakbulks/:id/edit", BreakbulkLive.Index, :edit
+
+    live "/breakbulks/:id", BreakbulkLive.Show, :show
+    live "/breakbulks/:id/show/edit", BreakbulkLive.Show, :edit
+
+
     live "/returns/:id", ReturnLive.Show, :show
     live "/returns/:id/show/edit", ReturnLive.Show, :edit
 

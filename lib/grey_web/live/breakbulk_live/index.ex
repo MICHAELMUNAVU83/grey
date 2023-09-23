@@ -1,10 +1,9 @@
-defmodule GreyWeb.DeviceLive.Index do
+defmodule GreyWeb.BreakbulkLive.Index do
   use GreyWeb, :live_view
 
-  alias Grey.Devices
-  alias Grey.Devices.Device
+  alias Grey.Breakbulks
+  alias Grey.Breakbulks.Breakbulk
   alias Grey.Users
-
 
   @impl true
   def mount(_params, session, socket) do
@@ -12,7 +11,7 @@ defmodule GreyWeb.DeviceLive.Index do
 
     {:ok,
     socket
-    |> assign(:device_collection, list_device())
+    |> assign(:breakbulks, list_breakbulks())
     |> assign(:user, user)}
   end
 
@@ -23,31 +22,31 @@ defmodule GreyWeb.DeviceLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Device")
-    |> assign(:device, Devices.get_device!(id))
+    |> assign(:page_title, "Edit Breakbulk")
+    |> assign(:breakbulk, Breakbulks.get_breakbulk!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Device")
-    |> assign(:device, %Device{})
+    |> assign(:page_title, "New Breakbulk")
+    |> assign(:breakbulk, %Breakbulk{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Device")
-    |> assign(:device, nil)
+    |> assign(:page_title, "Listing Breakbulks")
+    |> assign(:breakbulk, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    device = Devices.get_device!(id)
-    {:ok, _} = Devices.delete_device(device)
+    breakbulk = Breakbulks.get_breakbulk!(id)
+    {:ok, _} = Breakbulks.delete_breakbulk(breakbulk)
 
-    {:noreply, assign(socket, :device_collection, list_device())}
+    {:noreply, assign(socket, :breakbulks, list_breakbulks())}
   end
 
-  defp list_device do
-    Devices.list_device()
+  defp list_breakbulks do
+    Breakbulks.list_breakbulks()
   end
 end

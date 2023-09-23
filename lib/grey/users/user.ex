@@ -7,6 +7,8 @@ defmodule Grey.Users.User do
   alias Grey.Staffs.Staff
   alias Grey.Transfers.Transfer
   alias Grey.Returns.Return
+  alias Grey.Breakbulks.Breakbulk
+  alias Grey.Devices.Device
 
 
   schema "users" do
@@ -30,6 +32,8 @@ defmodule Grey.Users.User do
     has_many :staffs, Staff
     has_many :transfers, Transfer
     has_many :returns, Return
+    has_many :breakbulks, Breakbulk
+    has_many :devices,Device
 
 
     timestamps()
