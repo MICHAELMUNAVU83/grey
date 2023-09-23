@@ -11,7 +11,6 @@ defmodule Grey.Breakbulks.Breakbulk do
     field :uom, :string
     belongs_to :user, User, foreign_key: :user_id
 
-
     timestamps()
   end
 

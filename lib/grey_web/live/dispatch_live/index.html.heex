@@ -1,0 +1,68 @@
+<h1>Listing Dispatches</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.dispatch_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.DispatchLive.FormComponent}
+      id={@dispatch.id || :new}
+      title={@page_title}
+      action={@live_action}
+      dispatch={@dispatch}
+      user = {@user}
+      return_to={Routes.dispatch_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gtin</th>
+      <th>Quantity</th>
+      <th>Uom</th>
+      <th>Weight</th>
+      <th>Batch</th>
+      <th>Companies</th>
+      <th>Expiry</th>
+      <th>Production</th>
+      <th>Transporter</th>
+      <th>Transporterid</th>
+      <th>Description</th>
+      <th>Rack</th>
+      <th>Image</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="dispatches">
+    <%= for dispatch <- @dispatches do %>
+      <tr id={"dispatch-#{dispatch.id}"}>
+        <td><%= dispatch.name %></td>
+        <td><%= dispatch.gtin %></td>
+        <td><%= dispatch.quantity %></td>
+        <td><%= dispatch.uom %></td>
+        <td><%= dispatch.weight %></td>
+        <td><%= dispatch.batch %></td>
+        <td><%= dispatch.companies %></td>
+        <td><%= dispatch.expiry %></td>
+        <td><%= dispatch.production %></td>
+        <td><%= dispatch.transporter %></td>
+        <td><%= dispatch.transporterid %></td>
+        <td><%= dispatch.description %></td>
+        <td><%= dispatch.rack %></td>
+        <td><%= dispatch.image %></td>
+        <td><%= dispatch.status %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.dispatch_show_path(@socket, :show, dispatch) %></span>
+          <span><%= live_patch "Edit", to: Routes.dispatch_index_path(@socket, :edit, dispatch) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: dispatch.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Dispatch", to: Routes.dispatch_index_path(@socket, :new) %></span>

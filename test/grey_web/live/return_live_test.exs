@@ -4,8 +4,22 @@ defmodule GreyWeb.ReturnLiveTest do
   import Phoenix.LiveViewTest
   import Grey.ReturnsFixtures
 
-  @create_attrs %{item: "some item", name: "some name", phone: "some phone", quantity: "some quantity", reason: "some reason", status: "some status"}
-  @update_attrs %{item: "some updated item", name: "some updated name", phone: "some updated phone", quantity: "some updated quantity", reason: "some updated reason", status: "some updated status"}
+  @create_attrs %{
+    item: "some item",
+    name: "some name",
+    phone: "some phone",
+    quantity: "some quantity",
+    reason: "some reason",
+    status: "some status"
+  }
+  @update_attrs %{
+    item: "some updated item",
+    name: "some updated name",
+    phone: "some updated phone",
+    quantity: "some updated quantity",
+    reason: "some updated reason",
+    status: "some updated status"
+  }
   @invalid_attrs %{item: nil, name: nil, phone: nil, quantity: nil, reason: nil, status: nil}
 
   defp create_return(_) do

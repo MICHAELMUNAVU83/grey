@@ -21,7 +21,12 @@ defmodule Grey.TransfersTest do
     end
 
     test "create_transfer/1 with valid data creates a transfer" do
-      valid_attrs = %{item: "some item", rack_from: "some rack_from", rack_to: "some rack_to", status: "some status"}
+      valid_attrs = %{
+        item: "some item",
+        rack_from: "some rack_from",
+        rack_to: "some rack_to",
+        status: "some status"
+      }
 
       assert {:ok, %Transfer{} = transfer} = Transfers.create_transfer(valid_attrs)
       assert transfer.item == "some item"
@@ -36,7 +41,13 @@ defmodule Grey.TransfersTest do
 
     test "update_transfer/2 with valid data updates the transfer" do
       transfer = transfer_fixture()
-      update_attrs = %{item: "some updated item", rack_from: "some updated rack_from", rack_to: "some updated rack_to", status: "some updated status"}
+
+      update_attrs = %{
+        item: "some updated item",
+        rack_from: "some updated rack_from",
+        rack_to: "some updated rack_to",
+        status: "some updated status"
+      }
 
       assert {:ok, %Transfer{} = transfer} = Transfers.update_transfer(transfer, update_attrs)
       assert transfer.item == "some updated item"

@@ -14,7 +14,6 @@
 <% end %>
 
 <ul>
-
   <li>
     <strong>Code:</strong>
     <%= @breakbulk.code %>
@@ -39,8 +38,12 @@
     <strong>Uom:</strong>
     <%= @breakbulk.uom %>
   </li>
-
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.breakbulk_show_path(@socket, :edit, @breakbulk), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.breakbulk_index_path(@socket, :index) %></span>
+<span>
+  <%= live_patch("Edit",
+    to: Routes.breakbulk_show_path(@socket, :edit, @breakbulk),
+    class: "button"
+  ) %>
+</span> |
+<span><%= live_redirect("Back", to: Routes.breakbulk_index_path(@socket, :index)) %></span>

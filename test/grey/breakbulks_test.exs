@@ -21,7 +21,13 @@ defmodule Grey.BreakbulksTest do
     end
 
     test "create_breakbulk/1 with valid data creates a breakbulk" do
-      valid_attrs = %{code: "some code", description: "some description", quantity: "some quantity", status: "some status", uom: "some uom"}
+      valid_attrs = %{
+        code: "some code",
+        description: "some description",
+        quantity: "some quantity",
+        status: "some status",
+        uom: "some uom"
+      }
 
       assert {:ok, %Breakbulk{} = breakbulk} = Breakbulks.create_breakbulk(valid_attrs)
       assert breakbulk.code == "some code"
@@ -37,9 +43,18 @@ defmodule Grey.BreakbulksTest do
 
     test "update_breakbulk/2 with valid data updates the breakbulk" do
       breakbulk = breakbulk_fixture()
-      update_attrs = %{code: "some updated code", description: "some updated description", quantity: "some updated quantity", status: "some updated status", uom: "some updated uom"}
 
-      assert {:ok, %Breakbulk{} = breakbulk} = Breakbulks.update_breakbulk(breakbulk, update_attrs)
+      update_attrs = %{
+        code: "some updated code",
+        description: "some updated description",
+        quantity: "some updated quantity",
+        status: "some updated status",
+        uom: "some updated uom"
+      }
+
+      assert {:ok, %Breakbulk{} = breakbulk} =
+               Breakbulks.update_breakbulk(breakbulk, update_attrs)
+
       assert breakbulk.code == "some updated code"
       assert breakbulk.description == "some updated description"
       assert breakbulk.quantity == "some updated quantity"

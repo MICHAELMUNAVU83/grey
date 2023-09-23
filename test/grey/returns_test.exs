@@ -21,7 +21,14 @@ defmodule Grey.ReturnsTest do
     end
 
     test "create_return/1 with valid data creates a return" do
-      valid_attrs = %{item: "some item", name: "some name", phone: "some phone", quantity: "some quantity", reason: "some reason", status: "some status"}
+      valid_attrs = %{
+        item: "some item",
+        name: "some name",
+        phone: "some phone",
+        quantity: "some quantity",
+        reason: "some reason",
+        status: "some status"
+      }
 
       assert {:ok, %Return{} = return} = Returns.create_return(valid_attrs)
       assert return.item == "some item"
@@ -38,7 +45,15 @@ defmodule Grey.ReturnsTest do
 
     test "update_return/2 with valid data updates the return" do
       return = return_fixture()
-      update_attrs = %{item: "some updated item", name: "some updated name", phone: "some updated phone", quantity: "some updated quantity", reason: "some updated reason", status: "some updated status"}
+
+      update_attrs = %{
+        item: "some updated item",
+        name: "some updated name",
+        phone: "some updated phone",
+        quantity: "some updated quantity",
+        reason: "some updated reason",
+        status: "some updated status"
+      }
 
       assert {:ok, %Return{} = return} = Returns.update_return(return, update_attrs)
       assert return.item == "some updated item"

@@ -16,7 +16,7 @@ defmodule Grey.Devices.Device do
   @doc false
   def changeset(device, attrs) do
     device
-    |> cast(attrs, [:name, :imei, :description, :active,:user_id])
-    |> validate_required([:name, :imei, :description, :active,:user_id])
+    |> cast(attrs, [:name, :imei, :description, :active, :user_id])
+    |> validate_required([:name, :imei, :description, :active, :user_id])
   end
 end

@@ -41,9 +41,8 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
   end
 
   defp save_breakbulk(socket, :new, breakbulk_params) do
-
     new_breakbulk =
-    breakbulk_params
+      breakbulk_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Breakbulks.create_breakbulk(new_breakbulk) do

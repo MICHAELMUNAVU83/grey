@@ -8,7 +8,7 @@
       title={@page_title}
       action={@live_action}
       breakbulk={@breakbulk}
-      user = {@user}
+      user={@user}
       return_to={Routes.breakbulk_index_path(@socket, :index)}
     />
   </.modal>
@@ -36,13 +36,24 @@
         <td><%= breakbulk.uom %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.breakbulk_show_path(@socket, :show, breakbulk) %></span>
-          <span><%= live_patch "Edit", to: Routes.breakbulk_index_path(@socket, :edit, breakbulk) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: breakbulk.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show", to: Routes.breakbulk_show_path(@socket, :show, breakbulk)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.breakbulk_index_path(@socket, :edit, breakbulk)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: breakbulk.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Breakbulk", to: Routes.breakbulk_index_path(@socket, :new) %></span>
+<span><%= live_patch("New Breakbulk", to: Routes.breakbulk_index_path(@socket, :new)) %></span>

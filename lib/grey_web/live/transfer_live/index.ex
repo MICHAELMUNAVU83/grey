@@ -6,15 +6,14 @@ defmodule GreyWeb.TransferLive.Index do
   alias Grey.Users
   alias Grey.Users
 
-
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
 
-
-    {:ok ,socket
-  |>assign(:transfers, list_transfers())
-  |>assign(:user, user)}
+    {:ok,
+     socket
+     |> assign(:transfers, list_transfers())
+     |> assign(:user, user)}
   end
 
   @impl true

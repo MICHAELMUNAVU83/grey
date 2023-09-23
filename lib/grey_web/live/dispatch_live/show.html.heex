@@ -1,0 +1,96 @@
+<h1>Show Dispatch</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.dispatch_show_path(@socket, :show, @dispatch)}>
+    <.live_component
+      module={GreyWeb.DispatchLive.FormComponent}
+      id={@dispatch.id}
+      title={@page_title}
+      action={@live_action}
+      dispatch={@dispatch}
+      return_to={Routes.dispatch_show_path(@socket, :show, @dispatch)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @dispatch.name %>
+  </li>
+
+  <li>
+    <strong>Gtin:</strong>
+    <%= @dispatch.gtin %>
+  </li>
+
+  <li>
+    <strong>Quantity:</strong>
+    <%= @dispatch.quantity %>
+  </li>
+
+  <li>
+    <strong>Uom:</strong>
+    <%= @dispatch.uom %>
+  </li>
+
+  <li>
+    <strong>Weight:</strong>
+    <%= @dispatch.weight %>
+  </li>
+
+  <li>
+    <strong>Batch:</strong>
+    <%= @dispatch.batch %>
+  </li>
+
+  <li>
+    <strong>Companies:</strong>
+    <%= @dispatch.companies %>
+  </li>
+
+  <li>
+    <strong>Expiry:</strong>
+    <%= @dispatch.expiry %>
+  </li>
+
+  <li>
+    <strong>Production:</strong>
+    <%= @dispatch.production %>
+  </li>
+
+  <li>
+    <strong>Transporter:</strong>
+    <%= @dispatch.transporter %>
+  </li>
+
+  <li>
+    <strong>Transporterid:</strong>
+    <%= @dispatch.transporterid %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @dispatch.description %>
+  </li>
+
+  <li>
+    <strong>Rack:</strong>
+    <%= @dispatch.rack %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @dispatch.image %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @dispatch.status %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.dispatch_show_path(@socket, :edit, @dispatch), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.dispatch_index_path(@socket, :index) %></span>

@@ -12,7 +12,6 @@ defmodule Grey.Returns.Return do
     field :status, :string
     belongs_to :user, User, foreign_key: :user_id
 
-
     timestamps()
   end
 

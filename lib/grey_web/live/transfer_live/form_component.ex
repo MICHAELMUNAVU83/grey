@@ -42,7 +42,7 @@ defmodule GreyWeb.TransferLive.FormComponent do
 
   defp save_transfer(socket, :new, transfer_params) do
     new_transfer_params =
-    transfer_params
+      transfer_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Transfers.create_transfer(new_transfer_params) do

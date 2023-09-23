@@ -4,8 +4,20 @@ defmodule GreyWeb.BreakbulkLiveTest do
   import Phoenix.LiveViewTest
   import Grey.BreakbulksFixtures
 
-  @create_attrs %{code: "some code", description: "some description", quantity: "some quantity", status: "some status", uom: "some uom"}
-  @update_attrs %{code: "some updated code", description: "some updated description", quantity: "some updated quantity", status: "some updated status", uom: "some updated uom"}
+  @create_attrs %{
+    code: "some code",
+    description: "some description",
+    quantity: "some quantity",
+    status: "some status",
+    uom: "some uom"
+  }
+  @update_attrs %{
+    code: "some updated code",
+    description: "some updated description",
+    quantity: "some updated quantity",
+    status: "some updated status",
+    uom: "some updated uom"
+  }
   @invalid_attrs %{code: nil, description: nil, quantity: nil, status: nil, uom: nil}
 
   defp create_breakbulk(_) do

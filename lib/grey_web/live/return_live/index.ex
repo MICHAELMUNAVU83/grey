@@ -10,9 +10,9 @@ defmodule GreyWeb.ReturnLive.Index do
     user = Users.get_user_by_session_token(session["user_token"])
 
     {:ok,
-    socket
-    |> assign(:returns, list_returns())
-    |> assign(:user, user)}
+     socket
+     |> assign(:returns, list_returns())
+     |> assign(:user, user)}
   end
 
   @impl true

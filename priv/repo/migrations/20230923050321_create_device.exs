@@ -7,7 +7,7 @@ defmodule Grey.Repo.Migrations.CreateDevice do
       add :imei, :integer
       add :description, :string
       add :active, :boolean, default: false, null: false
-      add :user_id,:integer
+      add :user_id, :integer
 
       timestamps()
     end

@@ -7,30 +7,30 @@
     id="breakbulk-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
-    <%= label f, :code %>
-    <%= text_input f, :code %>
-    <%= error_tag f, :code %>
-  
-    <%= label f, :status %>
-    <%= text_input f, :status %>
-    <%= error_tag f, :status %>
-  
-    <%= label f, :description %>
-    <%= text_input f, :description %>
-    <%= error_tag f, :description %>
-  
-    <%= label f, :quantity %>
-    <%= text_input f, :quantity %>
-    <%= error_tag f, :quantity %>
-  
-    <%= label f, :uom %>
-    <%= text_input f, :uom %>
-    <%= error_tag f, :uom %>
-  
+    phx-submit="save"
+  >
+    <%= label(f, :code) %>
+    <%= text_input(f, :code) %>
+    <%= error_tag(f, :code) %>
+
+    <%= label(f, :status) %>
+    <%= text_input(f, :status) %>
+    <%= error_tag(f, :status) %>
+
+    <%= label(f, :description) %>
+    <%= text_input(f, :description) %>
+    <%= error_tag(f, :description) %>
+
+    <%= label(f, :quantity) %>
+    <%= text_input(f, :quantity) %>
+    <%= error_tag(f, :quantity) %>
+
+    <%= label(f, :uom) %>
+    <%= text_input(f, :uom) %>
+    <%= error_tag(f, :uom) %>
+
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
   </.form>
 </div>

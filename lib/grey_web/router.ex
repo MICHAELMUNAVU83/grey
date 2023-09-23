@@ -21,7 +21,7 @@ defmodule GreyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-   end
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", GreyWeb do
@@ -117,9 +117,14 @@ defmodule GreyWeb.Router do
     live "/breakbulks/:id", BreakbulkLive.Show, :show
     live "/breakbulks/:id/show/edit", BreakbulkLive.Show, :edit
 
-
     live "/returns/:id", ReturnLive.Show, :show
     live "/returns/:id/show/edit", ReturnLive.Show, :edit
+    live "/dispatches", DispatchLive.Index, :index
+    live "/dispatches/new", DispatchLive.Index, :new
+    live "/dispatches/:id/edit", DispatchLive.Index, :edit
+
+    live "/dispatches/:id", DispatchLive.Show, :show
+    live "/dispatches/:id/show/edit", DispatchLive.Show, :edit
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

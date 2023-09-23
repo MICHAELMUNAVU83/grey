@@ -42,7 +42,7 @@ defmodule GreyWeb.ReturnLive.FormComponent do
 
   defp save_return(socket, :new, return_params) do
     new_return_params =
-    return_params
+      return_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Returns.create_return(new_return_params) do

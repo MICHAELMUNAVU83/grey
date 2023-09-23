@@ -4,8 +4,18 @@ defmodule GreyWeb.TransferLiveTest do
   import Phoenix.LiveViewTest
   import Grey.TransfersFixtures
 
-  @create_attrs %{item: "some item", rack_from: "some rack_from", rack_to: "some rack_to", status: "some status"}
-  @update_attrs %{item: "some updated item", rack_from: "some updated rack_from", rack_to: "some updated rack_to", status: "some updated status"}
+  @create_attrs %{
+    item: "some item",
+    rack_from: "some rack_from",
+    rack_to: "some rack_to",
+    status: "some status"
+  }
+  @update_attrs %{
+    item: "some updated item",
+    rack_from: "some updated rack_from",
+    rack_to: "some updated rack_to",
+    status: "some updated status"
+  }
   @invalid_attrs %{item: nil, rack_from: nil, rack_to: nil, status: nil}
 
   defp create_transfer(_) do

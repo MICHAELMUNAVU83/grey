@@ -42,7 +42,7 @@ defmodule GreyWeb.DeviceLive.FormComponent do
 
   defp save_device(socket, :new, device_params) do
     new_device_params =
-    device_params
+      device_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Devices.create_device(new_device_params) do

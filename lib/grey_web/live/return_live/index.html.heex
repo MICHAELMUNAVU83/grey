@@ -8,7 +8,7 @@
       title={@page_title}
       action={@live_action}
       return={@return}
-      user = {@user}
+      user={@user}
       return_to={Routes.return_index_path(@socket, :index)}
     />
   </.modal>
@@ -38,13 +38,24 @@
         <td><%= return.status %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.return_show_path(@socket, :show, return) %></span>
-          <span><%= live_patch "Edit", to: Routes.return_index_path(@socket, :edit, return) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: return.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show", to: Routes.return_show_path(@socket, :show, return)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.return_index_path(@socket, :edit, return)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: return.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Return", to: Routes.return_index_path(@socket, :new) %></span>
+<span><%= live_patch("New Return", to: Routes.return_index_path(@socket, :new)) %></span>

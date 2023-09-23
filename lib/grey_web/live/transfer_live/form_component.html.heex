@@ -7,26 +7,26 @@
     id="transfer-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
-    <%= label f, :rack_from %>
-    <%= text_input f, :rack_from %>
-    <%= error_tag f, :rack_from %>
-  
-    <%= label f, :item %>
-    <%= text_input f, :item %>
-    <%= error_tag f, :item %>
-  
-    <%= label f, :rack_to %>
-    <%= text_input f, :rack_to %>
-    <%= error_tag f, :rack_to %>
-  
-    <%= label f, :status %>
-    <%= text_input f, :status %>
-    <%= error_tag f, :status %>
-  
+    phx-submit="save"
+  >
+    <%= label(f, :rack_from) %>
+    <%= text_input(f, :rack_from) %>
+    <%= error_tag(f, :rack_from) %>
+
+    <%= label(f, :item) %>
+    <%= text_input(f, :item) %>
+    <%= error_tag(f, :item) %>
+
+    <%= label(f, :rack_to) %>
+    <%= text_input(f, :rack_to) %>
+    <%= error_tag(f, :rack_to) %>
+
+    <%= label(f, :status) %>
+    <%= text_input(f, :status) %>
+    <%= error_tag(f, :status) %>
+
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
   </.form>
 </div>

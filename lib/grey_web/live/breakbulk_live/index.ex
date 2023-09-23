@@ -10,9 +10,9 @@ defmodule GreyWeb.BreakbulkLive.Index do
     user = Users.get_user_by_session_token(session["user_token"])
 
     {:ok,
-    socket
-    |> assign(:breakbulks, list_breakbulks())
-    |> assign(:user, user)}
+     socket
+     |> assign(:breakbulks, list_breakbulks())
+     |> assign(:user, user)}
   end
 
   @impl true
