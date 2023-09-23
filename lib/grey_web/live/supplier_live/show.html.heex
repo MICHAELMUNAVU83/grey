@@ -1,0 +1,36 @@
+<h1>Show Supplier</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.supplier_show_path(@socket, :show, @supplier)}>
+    <.live_component
+      module={GreyWeb.SupplierLive.FormComponent}
+      id={@supplier.id}
+      title={@page_title}
+      action={@live_action}
+      supplier={@supplier}
+      return_to={Routes.supplier_show_path(@socket, :show, @supplier)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @supplier.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @supplier.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @supplier.status %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.supplier_show_path(@socket, :edit, @supplier), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.supplier_index_path(@socket, :index) %></span>

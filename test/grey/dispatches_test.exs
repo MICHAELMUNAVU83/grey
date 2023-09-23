@@ -8,7 +8,23 @@ defmodule Grey.DispatchesTest do
 
     import Grey.DispatchesFixtures
 
-    @invalid_attrs %{batch: nil, companies: nil, description: nil, expiry: nil, gtin: nil, image: nil, name: nil, production: nil, quantity: nil, rack: nil, status: nil, transporter: nil, transporterid: nil, uom: nil, weight: nil}
+    @invalid_attrs %{
+      batch: nil,
+      companies: nil,
+      description: nil,
+      expiry: nil,
+      gtin: nil,
+      image: nil,
+      name: nil,
+      production: nil,
+      quantity: nil,
+      rack: nil,
+      status: nil,
+      transporter: nil,
+      transporterid: nil,
+      uom: nil,
+      weight: nil
+    }
 
     test "list_dispatches/0 returns all dispatches" do
       dispatch = dispatch_fixture()
@@ -21,7 +37,23 @@ defmodule Grey.DispatchesTest do
     end
 
     test "create_dispatch/1 with valid data creates a dispatch" do
-      valid_attrs = %{batch: "some batch", companies: "some companies", description: "some description", expiry: "some expiry", gtin: "some gtin", image: "some image", name: "some name", production: "some production", quantity: "some quantity", rack: "some rack", status: "some status", transporter: "some transporter", transporterid: "some transporterid", uom: "some uom", weight: "some weight"}
+      valid_attrs = %{
+        batch: "some batch",
+        companies: "some companies",
+        description: "some description",
+        expiry: "some expiry",
+        gtin: "some gtin",
+        image: "some image",
+        name: "some name",
+        production: "some production",
+        quantity: "some quantity",
+        rack: "some rack",
+        status: "some status",
+        transporter: "some transporter",
+        transporterid: "some transporterid",
+        uom: "some uom",
+        weight: "some weight"
+      }
 
       assert {:ok, %Dispatch{} = dispatch} = Dispatches.create_dispatch(valid_attrs)
       assert dispatch.batch == "some batch"
@@ -47,7 +79,24 @@ defmodule Grey.DispatchesTest do
 
     test "update_dispatch/2 with valid data updates the dispatch" do
       dispatch = dispatch_fixture()
-      update_attrs = %{batch: "some updated batch", companies: "some updated companies", description: "some updated description", expiry: "some updated expiry", gtin: "some updated gtin", image: "some updated image", name: "some updated name", production: "some updated production", quantity: "some updated quantity", rack: "some updated rack", status: "some updated status", transporter: "some updated transporter", transporterid: "some updated transporterid", uom: "some updated uom", weight: "some updated weight"}
+
+      update_attrs = %{
+        batch: "some updated batch",
+        companies: "some updated companies",
+        description: "some updated description",
+        expiry: "some updated expiry",
+        gtin: "some updated gtin",
+        image: "some updated image",
+        name: "some updated name",
+        production: "some updated production",
+        quantity: "some updated quantity",
+        rack: "some updated rack",
+        status: "some updated status",
+        transporter: "some updated transporter",
+        transporterid: "some updated transporterid",
+        uom: "some updated uom",
+        weight: "some updated weight"
+      }
 
       assert {:ok, %Dispatch{} = dispatch} = Dispatches.update_dispatch(dispatch, update_attrs)
       assert dispatch.batch == "some updated batch"

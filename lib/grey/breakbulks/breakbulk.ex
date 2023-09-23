@@ -1,7 +1,7 @@
 defmodule Grey.Breakbulks.Breakbulk do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Grey.Users.Use
+  alias Grey.Users.User
 
   schema "breakbulks" do
     field :code, :string

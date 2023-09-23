@@ -5,14 +5,14 @@ defmodule GreyWeb.DispatchLive.Index do
   alias Grey.Dispatches.Dispatch
   alias Grey.Users
 
-
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
+
     {:ok,
-    socket
-    |> assign(:dispatches, list_dispatches())
-    |> assign(:user, user)}
+     socket
+     |> assign(:dispatches, list_dispatches())
+     |> assign(:user, user)}
   end
 
   @impl true

@@ -7,70 +7,70 @@
     id="dispatch-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
-  
-    <%= label f, :gtin %>
-    <%= text_input f, :gtin %>
-    <%= error_tag f, :gtin %>
-  
-    <%= label f, :quantity %>
-    <%= text_input f, :quantity %>
-    <%= error_tag f, :quantity %>
-  
-    <%= label f, :uom %>
-    <%= text_input f, :uom %>
-    <%= error_tag f, :uom %>
-  
-    <%= label f, :weight %>
-    <%= text_input f, :weight %>
-    <%= error_tag f, :weight %>
-  
-    <%= label f, :batch %>
-    <%= text_input f, :batch %>
-    <%= error_tag f, :batch %>
-  
-    <%= label f, :companies %>
-    <%= text_input f, :companies %>
-    <%= error_tag f, :companies %>
-  
-    <%= label f, :expiry %>
-    <%= text_input f, :expiry %>
-    <%= error_tag f, :expiry %>
-  
-    <%= label f, :production %>
-    <%= text_input f, :production %>
-    <%= error_tag f, :production %>
-  
-    <%= label f, :transporter %>
-    <%= text_input f, :transporter %>
-    <%= error_tag f, :transporter %>
-  
-    <%= label f, :transporterid %>
-    <%= text_input f, :transporterid %>
-    <%= error_tag f, :transporterid %>
-  
-    <%= label f, :description %>
-    <%= text_input f, :description %>
-    <%= error_tag f, :description %>
-  
-    <%= label f, :rack %>
-    <%= text_input f, :rack %>
-    <%= error_tag f, :rack %>
-  
-    <%= label f, :image %>
-    <%= text_input f, :image %>
-    <%= error_tag f, :image %>
-  
-    <%= label f, :status %>
-    <%= text_input f, :status %>
-    <%= error_tag f, :status %>
-  
+    phx-submit="save"
+  >
+    <%= label(f, :name) %>
+    <%= text_input(f, :name) %>
+    <%= error_tag(f, :name) %>
+
+    <%= label(f, :gtin) %>
+    <%= text_input(f, :gtin) %>
+    <%= error_tag(f, :gtin) %>
+
+    <%= label(f, :quantity) %>
+    <%= text_input(f, :quantity) %>
+    <%= error_tag(f, :quantity) %>
+
+    <%= label(f, :uom) %>
+    <%= text_input(f, :uom) %>
+    <%= error_tag(f, :uom) %>
+
+    <%= label(f, :weight) %>
+    <%= text_input(f, :weight) %>
+    <%= error_tag(f, :weight) %>
+
+    <%= label(f, :batch) %>
+    <%= text_input(f, :batch) %>
+    <%= error_tag(f, :batch) %>
+
+    <%= label(f, :companies) %>
+    <%= text_input(f, :companies) %>
+    <%= error_tag(f, :companies) %>
+
+    <%= label(f, :expiry) %>
+    <%= text_input(f, :expiry) %>
+    <%= error_tag(f, :expiry) %>
+
+    <%= label(f, :production) %>
+    <%= text_input(f, :production) %>
+    <%= error_tag(f, :production) %>
+
+    <%= label(f, :transporter) %>
+    <%= text_input(f, :transporter) %>
+    <%= error_tag(f, :transporter) %>
+
+    <%= label(f, :transporterid) %>
+    <%= text_input(f, :transporterid) %>
+    <%= error_tag(f, :transporterid) %>
+
+    <%= label(f, :description) %>
+    <%= text_input(f, :description) %>
+    <%= error_tag(f, :description) %>
+
+    <%= label(f, :rack) %>
+    <%= text_input(f, :rack) %>
+    <%= error_tag(f, :rack) %>
+
+    <%= label(f, :image) %>
+    <%= text_input(f, :image) %>
+    <%= error_tag(f, :image) %>
+
+    <%= label(f, :status) %>
+    <%= text_input(f, :status) %>
+    <%= error_tag(f, :status) %>
+
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
   </.form>
 </div>

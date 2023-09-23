@@ -3,7 +3,6 @@ defmodule Grey.Dispatches.Dispatch do
   import Ecto.Changeset
   alias Grey.Users
 
-
   schema "dispatches" do
     field :batch, :string
     field :companies, :string
@@ -22,14 +21,47 @@ defmodule Grey.Dispatches.Dispatch do
     field :weight, :string
     belongs_to :user, User, foreign_key: :user_id
 
-
     timestamps()
   end
 
   @doc false
   def changeset(dispatch, attrs) do
     dispatch
-    |> cast(attrs, [:name, :gtin, :quantity, :uom, :weight, :batch, :companies, :expiry, :production, :transporter, :transporterid, :description, :rack, :image, :status, :user_id])
-    |> validate_required([:name, :gtin, :quantity, :uom, :weight, :batch, :companies, :expiry, :production, :transporter, :transporterid, :description, :rack, :image, :status, :user_id])
+    |> cast(attrs, [
+      :name,
+      :gtin,
+      :quantity,
+      :uom,
+      :weight,
+      :batch,
+      :companies,
+      :expiry,
+      :production,
+      :transporter,
+      :transporterid,
+      :description,
+      :rack,
+      :image,
+      :status,
+      :user_id
+    ])
+    |> validate_required([
+      :name,
+      :gtin,
+      :quantity,
+      :uom,
+      :weight,
+      :batch,
+      :companies,
+      :expiry,
+      :production,
+      :transporter,
+      :transporterid,
+      :description,
+      :rack,
+      :image,
+      :status,
+      :user_id
+    ])
   end
 end

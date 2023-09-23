@@ -42,7 +42,7 @@ defmodule GreyWeb.DispatchLive.FormComponent do
 
   defp save_dispatch(socket, :new, dispatch_params) do
     new_dispatch_params =
-    dispatch_params
+      dispatch_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Dispatches.create_dispatch(new_dispatch_params) do

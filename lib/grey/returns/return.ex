@@ -1,7 +1,7 @@
 defmodule Grey.Returns.Return do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Grey.Users
+  alias Grey.Users.User
 
   schema "returns" do
     field :item, :string

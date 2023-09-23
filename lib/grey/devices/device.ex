@@ -1,7 +1,7 @@
 defmodule Grey.Devices.Device do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Grey.Users
+  alias Grey.Users.User
 
   schema "device" do
     field :active, :boolean, default: false

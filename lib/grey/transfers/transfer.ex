@@ -1,7 +1,7 @@
 defmodule Grey.Transfers.Transfer do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Grey.Users
+  alias Grey.Users.User
 
   schema "transfers" do
     field :item, :string

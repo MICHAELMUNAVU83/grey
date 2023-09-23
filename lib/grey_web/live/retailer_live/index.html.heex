@@ -1,0 +1,46 @@
+<h1>Listing Retailers</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.retailer_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.RetailerLive.FormComponent}
+      id={@retailer.id || :new}
+      title={@page_title}
+      action={@live_action}
+      retailer={@retailer}
+      user= {@user}
+      return_to={Routes.retailer_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="retailers">
+    <%= for retailer <- @retailers do %>
+      <tr id={"retailer-#{retailer.id}"}>
+        <td><%= retailer.name %></td>
+        <td><%= retailer.location %></td>
+        <td><%= retailer.description %></td>
+        <td><%= retailer.status %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.retailer_show_path(@socket, :show, retailer) %></span>
+          <span><%= live_patch "Edit", to: Routes.retailer_index_path(@socket, :edit, retailer) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: retailer.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Retailer", to: Routes.retailer_index_path(@socket, :new) %></span>
