@@ -41,8 +41,8 @@ defmodule GreyWeb.SupplierLive.FormComponent do
   end
 
   defp save_supplier(socket, :new, supplier_params) do
-    new_supplier_params=
-    supplier_params
+    new_supplier_params =
+      supplier_params
       |> Map.put("user_id", socket.assigns.user.id)
 
     case Suppliers.create_supplier(new_supplier_params) do

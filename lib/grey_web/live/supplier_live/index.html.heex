@@ -8,7 +8,7 @@
       title={@page_title}
       action={@live_action}
       supplier={@supplier}
-      user = {@user}
+      user={@user}
       return_to={Routes.supplier_index_path(@socket, :index)}
     />
   </.modal>
@@ -32,13 +32,24 @@
         <td><%= supplier.status %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.supplier_show_path(@socket, :show, supplier) %></span>
-          <span><%= live_patch "Edit", to: Routes.supplier_index_path(@socket, :edit, supplier) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: supplier.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show", to: Routes.supplier_show_path(@socket, :show, supplier)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.supplier_index_path(@socket, :edit, supplier)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: supplier.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Supplier", to: Routes.supplier_index_path(@socket, :new) %></span>
+<span><%= live_patch("New Supplier", to: Routes.supplier_index_path(@socket, :new)) %></span>

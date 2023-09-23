@@ -5,7 +5,11 @@ defmodule GreyWeb.SupplierLiveTest do
   import Grey.SuppliersFixtures
 
   @create_attrs %{description: "some description", name: "some name", status: "some status"}
-  @update_attrs %{description: "some updated description", name: "some updated name", status: "some updated status"}
+  @update_attrs %{
+    description: "some updated description",
+    name: "some updated name",
+    status: "some updated status"
+  }
   @invalid_attrs %{description: nil, name: nil, status: nil}
 
   defp create_supplier(_) do

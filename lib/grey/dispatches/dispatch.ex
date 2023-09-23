@@ -1,7 +1,7 @@
 defmodule Grey.Dispatches.Dispatch do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Grey.Users
+  alias Grey.Users.User
 
   schema "dispatches" do
     field :batch, :string

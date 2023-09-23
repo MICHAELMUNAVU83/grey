@@ -1,8 +1,8 @@
-defmodule GreyWeb.SupplierLive.Index do
+defmodule GreyWeb.PutawayLive.Index do
   use GreyWeb, :live_view
 
-  alias Grey.Suppliers
-  alias Grey.Suppliers.Supplier
+  alias Grey.Putaways
+  alias Grey.Putaways.Putaway
   alias Grey.Users
 
   @impl true
@@ -11,7 +11,7 @@ defmodule GreyWeb.SupplierLive.Index do
 
     {:ok,
      socket
-     |> assign(:suppliers, list_suppliers())
+     |> assign(:putaways, list_putaways())
      |> assign(:user, user)}
   end
 
@@ -22,31 +22,31 @@ defmodule GreyWeb.SupplierLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Supplier")
-    |> assign(:supplier, Suppliers.get_supplier!(id))
+    |> assign(:page_title, "Edit Putaway")
+    |> assign(:putaway, Putaways.get_putaway!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Supplier")
-    |> assign(:supplier, %Supplier{})
+    |> assign(:page_title, "New Putaway")
+    |> assign(:putaway, %Putaway{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Suppliers")
-    |> assign(:supplier, nil)
+    |> assign(:page_title, "Listing Putaways")
+    |> assign(:putaway, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    supplier = Suppliers.get_supplier!(id)
-    {:ok, _} = Suppliers.delete_supplier(supplier)
+    putaway = Putaways.get_putaway!(id)
+    {:ok, _} = Putaways.delete_putaway(putaway)
 
-    {:noreply, assign(socket, :suppliers, list_suppliers())}
+    {:noreply, assign(socket, :putaways, list_putaways())}
   end
 
-  defp list_suppliers do
-    Suppliers.list_suppliers()
+  defp list_putaways do
+    Putaways.list_putaways()
   end
 end

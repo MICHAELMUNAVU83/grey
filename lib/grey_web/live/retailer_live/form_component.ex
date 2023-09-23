@@ -42,9 +42,10 @@ defmodule GreyWeb.RetailerLive.FormComponent do
 
   defp save_retailer(socket, :new, retailer_params) do
     new_retailer_params =
-    retailer_params
+      retailer_params
       |> Map.put("user_id", socket.assigns.user.id)
-      IO.inspect(new_retailer_params)
+
+    IO.inspect(new_retailer_params)
 
     case Retailers.create_retailer(new_retailer_params) do
       {:ok, _retailer} ->

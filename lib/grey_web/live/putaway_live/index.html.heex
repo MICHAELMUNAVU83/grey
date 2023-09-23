@@ -1,0 +1,55 @@
+<h1>Listing Putaways</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.putaway_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.PutawayLive.FormComponent}
+      id={@putaway.id || :new}
+      title={@page_title}
+      action={@live_action}
+      putaway={@putaway}
+      user={@user}
+      return_to={Routes.putaway_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rack</th>
+      <th>Item</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="putaways">
+    <%= for putaway <- @putaways do %>
+      <tr id={"putaway-#{putaway.id}"}>
+        <td><%= putaway.rack %></td>
+        <td><%= putaway.item %></td>
+        <td><%= putaway.status %></td>
+
+        <td>
+          <span>
+            <%= live_redirect("Show", to: Routes.putaway_show_path(@socket, :show, putaway)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.putaway_index_path(@socket, :edit, putaway)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: putaway.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch("New Putaway", to: Routes.putaway_index_path(@socket, :new)) %></span>

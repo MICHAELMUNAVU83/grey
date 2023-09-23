@@ -136,10 +136,15 @@ defmodule GreyWeb.Router do
     live "/suppliers/:id", SupplierLive.Show, :show
     live "/suppliers/:id/show/edit", SupplierLive.Show, :edit
 
+    live "/putaways", PutawayLive.Index, :index
+    live "/putaways/new", PutawayLive.Index, :new
+    live "/putaways/:id/edit", PutawayLive.Index, :edit
+
+    live "/putaways/:id", PutawayLive.Show, :show
+    live "/putaways/:id/show/edit", PutawayLive.Show, :edit
 
     live "/retailers/:id", RetailerLive.Show, :show
     live "/retailers/:id/show/edit", RetailerLive.Show, :edit
-
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

@@ -4,18 +4,18 @@
   <.form
     let={f}
     for={@changeset}
-    id="supplier-form"
+    id="putaway-form"
     phx-target={@myself}
     phx-change="validate"
     phx-submit="save"
   >
-    <%= label(f, :name) %>
-    <%= text_input(f, :name) %>
-    <%= error_tag(f, :name) %>
+    <%= label(f, :rack) %>
+    <%= text_input(f, :rack) %>
+    <%= error_tag(f, :rack) %>
 
-    <%= label(f, :description) %>
-    <%= text_input(f, :description) %>
-    <%= error_tag(f, :description) %>
+    <%= label(f, :item) %>
+    <%= text_input(f, :item) %>
+    <%= error_tag(f, :item) %>
 
     <%= label(f, :status) %>
     <%= text_input(f, :status) %>

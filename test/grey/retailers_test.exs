@@ -21,7 +21,12 @@ defmodule Grey.RetailersTest do
     end
 
     test "create_retailer/1 with valid data creates a retailer" do
-      valid_attrs = %{description: "some description", location: "some location", name: "some name", status: "some status"}
+      valid_attrs = %{
+        description: "some description",
+        location: "some location",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Retailer{} = retailer} = Retailers.create_retailer(valid_attrs)
       assert retailer.description == "some description"
@@ -36,7 +41,13 @@ defmodule Grey.RetailersTest do
 
     test "update_retailer/2 with valid data updates the retailer" do
       retailer = retailer_fixture()
-      update_attrs = %{description: "some updated description", location: "some updated location", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        description: "some updated description",
+        location: "some updated location",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Retailer{} = retailer} = Retailers.update_retailer(retailer, update_attrs)
       assert retailer.description == "some updated description"

@@ -4,8 +4,18 @@ defmodule GreyWeb.RetailerLiveTest do
   import Phoenix.LiveViewTest
   import Grey.RetailersFixtures
 
-  @create_attrs %{description: "some description", location: "some location", name: "some name", status: "some status"}
-  @update_attrs %{description: "some updated description", location: "some updated location", name: "some updated name", status: "some updated status"}
+  @create_attrs %{
+    description: "some description",
+    location: "some location",
+    name: "some name",
+    status: "some status"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    location: "some updated location",
+    name: "some updated name",
+    status: "some updated status"
+  }
   @invalid_attrs %{description: nil, location: nil, name: nil, status: nil}
 
   defp create_retailer(_) do

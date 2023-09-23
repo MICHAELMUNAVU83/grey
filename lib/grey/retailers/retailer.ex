@@ -8,8 +8,7 @@ defmodule Grey.Retailers.Retailer do
     field :location, :string
     field :name, :string
     field :status, :string
-     belongs_to :user, User, foreign_key: :user_id
-
+    belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
   end

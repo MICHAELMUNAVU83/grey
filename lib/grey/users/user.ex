@@ -12,6 +12,7 @@ defmodule Grey.Users.User do
   alias Grey.Dispatches.Dispatch
   alias Grey.Retailers.Retailer
   alias Grey.Suppliers.Supplier
+  alias Grey.Putaways.Putaway
 
   schema "users" do
     field :email, :string
@@ -37,9 +38,9 @@ defmodule Grey.Users.User do
     has_many :breakbulks, Breakbulk
     has_many :devices, Device
     has_many :dispatches, Dispatch
-    has_many :retailers , Retailer
-    has_many :suppliers , Supplier
-
+    has_many :retailers, Retailer
+    has_many :suppliers, Supplier
+    has_many :putaways, Putaway
 
     timestamps()
   end

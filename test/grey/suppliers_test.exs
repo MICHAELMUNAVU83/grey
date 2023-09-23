@@ -35,7 +35,12 @@ defmodule Grey.SuppliersTest do
 
     test "update_supplier/2 with valid data updates the supplier" do
       supplier = supplier_fixture()
-      update_attrs = %{description: "some updated description", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Supplier{} = supplier} = Suppliers.update_supplier(supplier, update_attrs)
       assert supplier.description == "some updated description"
