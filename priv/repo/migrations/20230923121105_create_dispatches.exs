@@ -22,7 +22,7 @@ defmodule Grey.Repo.Migrations.CreateDispatches do
 
       timestamps()
     end
-    create index(:dispatches, [:user_id])
 
+    create index(:dispatches, [:user_id])
   end
 end

@@ -13,7 +13,7 @@ defmodule Grey.Repo.Migrations.CreateReturns do
 
       timestamps()
     end
-    create index(:returns, [:user_id])
 
+    create index(:returns, [:user_id])
   end
 end

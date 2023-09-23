@@ -17,7 +17,7 @@ defmodule Grey.Repo.Migrations.CreateStaff do
 
       timestamps()
     end
-    create index(:staff, [:user_id])
 
+    create index(:staff, [:user_id])
   end
 end

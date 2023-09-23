@@ -10,7 +10,7 @@ defmodule Grey.Repo.Migrations.CreatePutaways do
 
       timestamps()
     end
-    create index(:putaways, [:user_id])
 
+    create index(:putaways, [:user_id])
   end
 end

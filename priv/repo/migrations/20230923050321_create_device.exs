@@ -11,7 +11,7 @@ defmodule Grey.Repo.Migrations.CreateDevice do
 
       timestamps()
     end
-    create index(:device, [:user_id])
 
+    create index(:device, [:user_id])
   end
 end

@@ -10,7 +10,7 @@ defmodule Grey.Repo.Migrations.CreateSuppliers do
 
       timestamps()
     end
-    create index(:suppliers, [:user_id])
 
+    create index(:suppliers, [:user_id])
   end
 end

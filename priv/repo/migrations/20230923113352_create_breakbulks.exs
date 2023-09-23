@@ -12,7 +12,7 @@ defmodule Grey.Repo.Migrations.CreateBreakbulks do
 
       timestamps()
     end
-    create index(:breakbulks, [:user_id])
 
+    create index(:breakbulks, [:user_id])
   end
 end

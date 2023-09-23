@@ -11,7 +11,7 @@ defmodule Grey.Repo.Migrations.CreateTransfers do
 
       timestamps()
     end
-    create index(:transfers, [:user_id])
 
+    create index(:transfers, [:user_id])
   end
 end
