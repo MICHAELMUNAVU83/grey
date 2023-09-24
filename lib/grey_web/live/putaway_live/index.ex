@@ -1,5 +1,5 @@
 defmodule GreyWeb.PutawayLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Putaways
   alias Grey.Putaways.Putaway
@@ -11,6 +11,8 @@ defmodule GreyWeb.PutawayLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Putaways")
+     |> assign(:subheading, "This is a list of all your putaways")
      |> assign(:putaways, list_putaways())
      |> assign(:user, user)}
   end

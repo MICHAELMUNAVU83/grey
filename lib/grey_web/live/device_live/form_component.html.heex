@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,24 +9,45 @@
     phx-change="validate"
     phx-submit="save"
   >
-    <%= label(f, :name) %>
-    <%= text_input(f, :name) %>
-    <%= error_tag(f, :name) %>
+    <div class="flex flex-col w-[100%] gap-2">
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :name, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :name,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :name) %>
+        </div>
 
-    <%= label(f, :imei) %>
-    <%= number_input(f, :imei) %>
-    <%= error_tag(f, :imei) %>
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :imei, class: "text-xl text-[#0F52BA] ") %>
+          <%= number_input(f, :imei,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :imei) %>
+        </div>
+      </div>
+      <div class="w-[100%] flex flex-col gap-2">
+        <%= label(f, :description, class: "text-xl text-[#0F52BA]") %>
+        <%= textarea(f, :description,
+          class:
+            "w-[100%] h-[90px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        ) %>
+        <%= error_tag(f, :description) %>
+      </div>
+      <div class="w-[100%] flex flex-row items-center gap-2">
+        <%= label(f, :active, class: "text-xl text-[#0F52BA]") %>
+        <%= checkbox(f, :active) %>
+      </div>
 
-    <%= label(f, :description) %>
-    <%= text_input(f, :description) %>
-    <%= error_tag(f, :description) %>
-
-    <%= label(f, :active) %>
-    <%= checkbox(f, :active) %>
-    <%= error_tag(f, :active) %>
-
-    <div>
-      <%= submit("Save", phx_disable_with: "Saving...") %>
+      <div class="flex flex-col w-[100%] justify-center items-center">
+        <%= submit("Add Device",
+          phx_disable_with: "Saving...",
+          class: "bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+        ) %>
+      </div>
     </div>
   </.form>
 </div>

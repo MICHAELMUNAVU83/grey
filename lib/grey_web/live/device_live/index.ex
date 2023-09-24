@@ -1,5 +1,5 @@
 defmodule GreyWeb.DeviceLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Devices
   alias Grey.Devices.Device
@@ -11,6 +11,8 @@ defmodule GreyWeb.DeviceLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Devices")
+     |> assign(:subheading, "This is a list of all your devices")
      |> assign(:device_collection, list_device())
      |> assign(:user, user)}
   end
