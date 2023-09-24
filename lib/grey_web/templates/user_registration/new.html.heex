@@ -1,54 +1,114 @@
-<h1>Register</h1>
+<div class="bg-gray-100 h-[100vh] flex flex-col justify-center items-center">
+  <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
 
-<%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <div class="w-[800px] flex flex-col justify-center gap-4 items-center bg-white py-8 min-h-[500px]">
+      <p class="text-2xl font-bold text-center text-[#0F52BA] ">
+        Signup
+      </p>
+
+      <div class="flex justify-between w-[700px]">
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :firstname, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :firstname,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :firstname) %>
+        </div>
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :lastname) %>
+          <%= text_input(f, :lastname,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :lastname) %>
+        </div>
+      </div>
+
+      <div class="flex justify-between w-[700px]">
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :location, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :locationaddress,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :locationaddress) %>
+        </div>
+
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :company, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :company,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :company) %>
+        </div>
+      </div>
+
+      <div class="flex flex-col  w-[700px] gap-2">
+        <%= label(f, :email, class: "text-xl text-[#0F52BA] ") %>
+        <%= email_input(f, :email,
+          required: true,
+          class:
+            "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        ) %>
+        <%= error_tag(f, :email) %>
+      </div>
+
+      <div class="flex justify-between w-[700px]">
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :password, class: "text-xl text-[#0F52BA] ") %>
+          <%= password_input(f, :password,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :password) %>
+        </div>
+
+        <div class="flex flex-col  w-[48%] gap-2">
+          <%= label(f, :password_confirmation, class: "text-xl text-[#0F52BA] ") %>
+          <%= password_input(f, :password_confirmation,
+            required: true,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :password_confirmation) %>
+        </div>
+      </div>
+      <div class="flex flex-col  w-[700px] gap-2">
+        <%= label(f, :image, class: "text-xl text-[#0F52BA] ") %>
+        <%= file_input(f, :image,
+          required: true,
+          class:
+            "w-[100%] h-[50px] bg-white p-2 border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        ) %>
+        <%= error_tag(f, :image) %>
+      </div>
+
+      <%= text_input(f, :verification_code, value: @code, type: "hidden") %>
+      <%= error_tag(f, :verification_code) %>
+
+      <div class="flex flex-col w-[100%] justify-center items-center">
+        <%= submit("Register",
+          class: "bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+        ) %>
+      </div>
+      <p>
+        <%= link("Log in", to: Routes.user_session_path(@conn, :new)) %> | <%= link(
+          "Forgot your password?",
+          to: Routes.user_reset_password_path(@conn, :new)
+        ) %>
+      </p>
     </div>
   <% end %>
-
-  <%= label(f, :firstname) %>
-  <%= text_input(f, :firstname, required: true) %>
-  <%= error_tag(f, :firstname) %>
-
-  <%= label(f, :lastname) %>
-  <%= text_input(f, :lastname, required: true) %>
-  <%= error_tag(f, :lastname) %>
-
-  <%= label(f, :email) %>
-  <%= email_input(f, :email, required: true) %>
-  <%= error_tag(f, :email) %>
-
-  <%= label(f, :company) %>
-  <%= text_input(f, :company, required: true) %>
-  <%= error_tag(f, :company) %>
-
-  <%= label(f, :location) %>
-  <%= text_input(f, :locationaddress, required: true) %>
-  <%= error_tag(f, :locationaddress) %>
-
-  <%= label(f, :image) %>
-  <%= file_input(f, :image, required: true) %>
-  <%= error_tag(f, :image) %>
-
-  <%= label(f, :password) %>
-  <%= password_input(f, :password, required: true) %>
-  <%= error_tag(f, :password) %>
-
-  <%= label(f, :password_confirmation) %>
-  <%= password_input(f, :password_confirmation, required: true) %>
-  <%= error_tag(f, :password_confirmation) %>
-
-  <%= text_input(f, :verification_code, value: @code, type: "hidden") %>
-  <%= error_tag(f, :verification_code) %>
-
-  <div>
-    <%= submit("Register") %>
-  </div>
-<% end %>
-<p>
-  <%= link("Log in", to: Routes.user_session_path(@conn, :new)) %> | <%= link(
-    "Forgot your password?",
-    to: Routes.user_reset_password_path(@conn, :new)
-  ) %>
-</p>
+</div>
