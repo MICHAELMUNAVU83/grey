@@ -40,8 +40,6 @@ defmodule GreyWeb.Router do
 
     scope "/" do
       pipe_through :browser
-
-      live_dashboard "/dashboard", metrics: GreyWeb.Telemetry
     end
   end
 
@@ -74,6 +72,7 @@ defmodule GreyWeb.Router do
 
   scope "/", GreyWeb do
     pipe_through [:browser, :require_authenticated_user]
+    live "/dashboard", DashboardLive.Index, :index
     live "/warehouse", WareHouseLive.Index, :index
     live "/warehouse/new", WareHouseLive.Index, :new
     live "/warehouse/:id/edit", WareHouseLive.Index, :edit
