@@ -1,5 +1,5 @@
 defmodule GreyWeb.StaffLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Staffs
   alias Grey.Staffs.Staff
@@ -12,6 +12,8 @@ defmodule GreyWeb.StaffLive.Index do
     {:ok,
      socket
      |> assign(:staff_collection, list_staff())
+     |> assign(:heading, "Vehicles")
+     |> assign(:subheading, "This is a list of all your staff members")
      |> assign(:user, user)}
   end
 

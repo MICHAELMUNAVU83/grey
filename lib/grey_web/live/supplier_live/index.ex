@@ -1,5 +1,5 @@
 defmodule GreyWeb.SupplierLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Suppliers
   alias Grey.Suppliers.Supplier
@@ -12,6 +12,8 @@ defmodule GreyWeb.SupplierLive.Index do
     {:ok,
      socket
      |> assign(:suppliers, list_suppliers())
+     |> assign(:heading, "Suppliers")
+     |> assign(:subheading, "This is a list of all your suppliers")
      |> assign(:user, user)}
   end
 

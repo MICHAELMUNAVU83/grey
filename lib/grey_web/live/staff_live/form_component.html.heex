@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,48 +9,104 @@
     phx-change="validate"
     phx-submit="save"
   >
-    <%= label(f, :firstname) %>
-    <%= text_input(f, :firstname) %>
-    <%= error_tag(f, :firstname) %>
+    <div class="flex flex-col w-[100%] gap-2">
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :firstname, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :firstname,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :firstname) %>
+        </div>
 
-    <%= label(f, :lastname) %>
-    <%= text_input(f, :lastname) %>
-    <%= error_tag(f, :lastname) %>
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :lastname, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :lastname,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :lastname) %>
+        </div>
+      </div>
 
-    <%= label(f, :email) %>
-    <%= text_input(f, :email) %>
-    <%= error_tag(f, :email) %>
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :email, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :email,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :email) %>
+        </div>
 
-    <%= label(f, :phone) %>
-    <%= text_input(f, :phone) %>
-    <%= error_tag(f, :phone) %>
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :phone, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :phone,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :phone) %>
+        </div>
+      </div>
 
-    <%= label(f, :passcode) %>
-    <%= text_input(f, :passcode) %>
-    <%= error_tag(f, :passcode) %>
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :pass_code, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :passcode,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :passcode) %>
+        </div>
 
-    <%= label(f, :serial) %>
-    <%= text_input(f, :serial) %>
-    <%= error_tag(f, :serial) %>
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :serial, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :serial,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :serial) %>
+        </div>
+      </div>
 
-    <%= label(f, :nationalid) %>
-    <%= text_input(f, :nationalid) %>
-    <%= error_tag(f, :nationalid) %>
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :national_id, class: "text-xl text-[#0F52BA] ") %>
+          <%= text_input(f, :nationalid,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :nationalid) %>
+        </div>
+        <div class="w-[48%] flex flex-col gap-2">
+          <%= label(f, :date_of_birth, class: "text-xl text-[#0F52BA] ") %>
+          <%= date_input(f, :dob,
+            class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          ) %>
+          <%= error_tag(f, :dob) %>
+        </div>
+      </div>
 
-    <%= label(f, :dob) %>
-    <%= text_input(f, :dob) %>
-    <%= error_tag(f, :dob) %>
-
-    <%= label(f, :active) %>
-    <%= checkbox(f, :active) %>
-    <%= error_tag(f, :active) %>
-
-    <%= label(f, :decsription) %>
-    <%= text_input(f, :decsription) %>
-    <%= error_tag(f, :decsription) %>
-
-    <div>
-      <%= submit("Save", phx_disable_with: "Saving...") %>
+      <div class="w-[100%] flex flex-col gap-2">
+        <%= label(f, :description, class: "text-xl text-[#0F52BA]") %>
+        <%= textarea(f, :description,
+          class:
+            "w-[100%] h-[90px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        ) %>
+        <%= error_tag(f, :description) %>
+      </div>
+      <div class="w-[100%] flex flex-row items-center gap-2">
+        <%= label(f, :active, class: "text-xl text-[#0F52BA]") %>
+        <%= checkbox(f, :active) %>
+      </div>
+      <div class="flex flex-col w-[100%] justify-center items-center">
+        <%= submit("Add Staff Member",
+          phx_disable_with: "Saving...",
+          class: "bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+        ) %>
+      </div>
     </div>
   </.form>
 </div>
