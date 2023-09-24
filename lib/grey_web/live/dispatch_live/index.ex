@@ -1,5 +1,5 @@
 defmodule GreyWeb.DispatchLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Dispatches
   alias Grey.Dispatches.Dispatch
@@ -11,6 +11,8 @@ defmodule GreyWeb.DispatchLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Dispatches")
+     |> assign(:subheading, "This is a list of all your dispatches")
      |> assign(:dispatches, list_dispatches())
      |> assign(:user, user)}
   end

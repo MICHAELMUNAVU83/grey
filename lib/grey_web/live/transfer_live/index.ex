@@ -1,5 +1,5 @@
 defmodule GreyWeb.TransferLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Transfers
   alias Grey.Transfers.Transfer
@@ -12,6 +12,8 @@ defmodule GreyWeb.TransferLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Transfers")
+     |> assign(:subheading, "This is a list of all your transfers")
      |> assign(:transfers, list_transfers())
      |> assign(:user, user)}
   end
