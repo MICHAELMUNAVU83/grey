@@ -14,7 +14,6 @@
 <% end %>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @ware_house.name %>
@@ -39,8 +38,13 @@
     <strong>Active:</strong>
     <%= @ware_house.active %>
   </li>
-
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.ware_house_show_path(@socket, :edit, @ware_house), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.ware_house_index_path(@socket, :index) %></span>
+<span>
+  <%= live_patch("Edit",
+    to: Routes.ware_house_show_path(@socket, :edit, @ware_house),
+    class: "button"
+  ) %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.ware_house_index_path(@socket, :index)) %></span>

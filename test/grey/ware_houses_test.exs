@@ -21,7 +21,13 @@ defmodule Grey.WareHousesTest do
     end
 
     test "create_ware_house/1 with valid data creates a ware_house" do
-      valid_attrs = %{active: true, name: "some name", description: "some description", location: "some location", category: "some category"}
+      valid_attrs = %{
+        active: true,
+        name: "some name",
+        description: "some description",
+        location: "some location",
+        category: "some category"
+      }
 
       assert {:ok, %WareHouse{} = ware_house} = WareHouses.create_ware_house(valid_attrs)
       assert ware_house.active == true
@@ -37,9 +43,18 @@ defmodule Grey.WareHousesTest do
 
     test "update_ware_house/2 with valid data updates the ware_house" do
       ware_house = ware_house_fixture()
-      update_attrs = %{active: false, name: "some updated name", description: "some updated description", location: "some updated location", category: "some updated category"}
 
-      assert {:ok, %WareHouse{} = ware_house} = WareHouses.update_ware_house(ware_house, update_attrs)
+      update_attrs = %{
+        active: false,
+        name: "some updated name",
+        description: "some updated description",
+        location: "some updated location",
+        category: "some updated category"
+      }
+
+      assert {:ok, %WareHouse{} = ware_house} =
+               WareHouses.update_ware_house(ware_house, update_attrs)
+
       assert ware_house.active == false
       assert ware_house.name == "some updated name"
       assert ware_house.description == "some updated description"
@@ -49,7 +64,10 @@ defmodule Grey.WareHousesTest do
 
     test "update_ware_house/2 with invalid data returns error changeset" do
       ware_house = ware_house_fixture()
-      assert {:error, %Ecto.Changeset{}} = WareHouses.update_ware_house(ware_house, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               WareHouses.update_ware_house(ware_house, @invalid_attrs)
+
       assert ware_house == WareHouses.get_ware_house!(ware_house.id)
     end
 

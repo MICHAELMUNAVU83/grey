@@ -1,0 +1,50 @@
+<h1>Show Breakbulk</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.breakbulk_show_path(@socket, :show, @breakbulk)}>
+    <.live_component
+      module={GreyWeb.BreakbulkLive.FormComponent}
+      id={@breakbulk.id}
+      title={@page_title}
+      action={@live_action}
+      breakbulk={@breakbulk}
+      return_to={Routes.breakbulk_show_path(@socket, :show, @breakbulk)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Code:</strong>
+    <%= @breakbulk.code %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @breakbulk.status %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @breakbulk.description %>
+  </li>
+
+  <li>
+    <strong>Quantity:</strong>
+    <%= @breakbulk.quantity %>
+  </li>
+
+  <li>
+    <strong>Uom:</strong>
+    <%= @breakbulk.uom %>
+  </li>
+</ul>
+
+<span>
+  <%= live_patch("Edit",
+    to: Routes.breakbulk_show_path(@socket, :edit, @breakbulk),
+    class: "button"
+  ) %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.breakbulk_index_path(@socket, :index)) %></span>

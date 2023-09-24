@@ -1,0 +1,61 @@
+<h1>Listing Returns</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.return_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.ReturnLive.FormComponent}
+      id={@return.id || :new}
+      title={@page_title}
+      action={@live_action}
+      return={@return}
+      user={@user}
+      return_to={Routes.return_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Reason</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="returns">
+    <%= for return <- @returns do %>
+      <tr id={"return-#{return.id}"}>
+        <td><%= return.item %></td>
+        <td><%= return.quantity %></td>
+        <td><%= return.name %></td>
+        <td><%= return.phone %></td>
+        <td><%= return.reason %></td>
+        <td><%= return.status %></td>
+
+        <td>
+          <span>
+            <%= live_redirect("Show", to: Routes.return_show_path(@socket, :show, return)) %>
+          </span>
+          <span>
+            <%= live_patch("Edit", to: Routes.return_index_path(@socket, :edit, return)) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: return.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch("New Return", to: Routes.return_index_path(@socket, :new)) %></span>

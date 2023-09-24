@@ -41,7 +41,11 @@ defmodule GreyWeb.WareHouseLive.FormComponent do
   end
 
   defp save_ware_house(socket, :new, ware_house_params) do
-    case WareHouses.create_ware_house(ware_house_params) do
+    warehouse_params =
+      ware_house_params
+      |> Map.put("user_id", socket.assigns.user.id)
+
+    case WareHouses.create_ware_house(warehouse_params) do
       {:ok, _ware_house} ->
         {:noreply,
          socket

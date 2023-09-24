@@ -1,0 +1,37 @@
+<h1>Show Putaway</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.putaway_show_path(@socket, :show, @putaway)}>
+    <.live_component
+      module={GreyWeb.PutawayLive.FormComponent}
+      id={@putaway.id}
+      title={@page_title}
+      action={@live_action}
+      putaway={@putaway}
+      return_to={Routes.putaway_show_path(@socket, :show, @putaway)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Rack:</strong>
+    <%= @putaway.rack %>
+  </li>
+
+  <li>
+    <strong>Item:</strong>
+    <%= @putaway.item %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @putaway.status %>
+  </li>
+</ul>
+
+<span>
+  <%= live_patch("Edit", to: Routes.putaway_show_path(@socket, :edit, @putaway), class: "button") %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.putaway_index_path(@socket, :index)) %></span>

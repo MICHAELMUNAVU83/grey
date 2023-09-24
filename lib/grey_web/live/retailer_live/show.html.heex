@@ -1,0 +1,42 @@
+<h1>Show Retailer</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.retailer_show_path(@socket, :show, @retailer)}>
+    <.live_component
+      module={GreyWeb.RetailerLive.FormComponent}
+      id={@retailer.id}
+      title={@page_title}
+      action={@live_action}
+      retailer={@retailer}
+      return_to={Routes.retailer_show_path(@socket, :show, @retailer)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @retailer.name %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @retailer.location %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @retailer.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @retailer.status %>
+  </li>
+</ul>
+
+<span>
+  <%= live_patch("Edit", to: Routes.retailer_show_path(@socket, :edit, @retailer), class: "button") %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.retailer_index_path(@socket, :index)) %></span>

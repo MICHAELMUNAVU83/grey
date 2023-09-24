@@ -41,7 +41,11 @@ defmodule GreyWeb.StaffLive.FormComponent do
   end
 
   defp save_staff(socket, :new, staff_params) do
-    case Staffs.create_staff(staff_params) do
+    new_staff_params =
+      staff_params
+      |> Map.put("user_id", socket.assigns.user.id)
+
+    case Staffs.create_staff(new_staff_params) do
       {:ok, _staff} ->
         {:noreply,
          socket

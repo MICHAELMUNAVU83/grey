@@ -7,26 +7,26 @@
     id="device-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
-  
-    <%= label f, :imei %>
-    <%= text_input f, :imei %>
-    <%= error_tag f, :imei %>
-  
-    <%= label f, :description %>
-    <%= text_input f, :description %>
-    <%= error_tag f, :description %>
-  
-    <%= label f, :active %>
-    <%= checkbox f, :active %>
-    <%= error_tag f, :active %>
-  
+    phx-submit="save"
+  >
+    <%= label(f, :name) %>
+    <%= text_input(f, :name) %>
+    <%= error_tag(f, :name) %>
+
+    <%= label(f, :imei) %>
+    <%= number_input(f, :imei) %>
+    <%= error_tag(f, :imei) %>
+
+    <%= label(f, :description) %>
+    <%= text_input(f, :description) %>
+    <%= error_tag(f, :description) %>
+
+    <%= label(f, :active) %>
+    <%= checkbox(f, :active) %>
+    <%= error_tag(f, :active) %>
+
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
   </.form>
 </div>

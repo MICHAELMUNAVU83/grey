@@ -4,8 +4,20 @@ defmodule GreyWeb.WareHouseLiveTest do
   import Phoenix.LiveViewTest
   import Grey.WareHousesFixtures
 
-  @create_attrs %{active: true, name: "some name", description: "some description", location: "some location", category: "some category"}
-  @update_attrs %{active: false, name: "some updated name", description: "some updated description", location: "some updated location", category: "some updated category"}
+  @create_attrs %{
+    active: true,
+    name: "some name",
+    description: "some description",
+    location: "some location",
+    category: "some category"
+  }
+  @update_attrs %{
+    active: false,
+    name: "some updated name",
+    description: "some updated description",
+    location: "some updated location",
+    category: "some updated category"
+  }
   @invalid_attrs %{active: false, name: nil, description: nil, location: nil, category: nil}
 
   defp create_ware_house(_) do

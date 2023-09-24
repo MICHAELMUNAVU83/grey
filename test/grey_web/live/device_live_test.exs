@@ -4,8 +4,18 @@ defmodule GreyWeb.DeviceLiveTest do
   import Phoenix.LiveViewTest
   import Grey.DevicesFixtures
 
-  @create_attrs %{active: true, name: "some name", description: "some description", imei: "some imei"}
-  @update_attrs %{active: false, name: "some updated name", description: "some updated description", imei: "some updated imei"}
+  @create_attrs %{
+    active: true,
+    name: "some name",
+    description: "some description",
+    imei: "some imei"
+  }
+  @update_attrs %{
+    active: false,
+    name: "some updated name",
+    description: "some updated description",
+    imei: "some updated imei"
+  }
   @invalid_attrs %{active: false, name: nil, description: nil, imei: nil}
 
   defp create_device(_) do

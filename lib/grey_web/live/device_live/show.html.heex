@@ -14,7 +14,6 @@
 <% end %>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @device.name %>
@@ -34,8 +33,10 @@
     <strong>Active:</strong>
     <%= @device.active %>
   </li>
-
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.device_show_path(@socket, :edit, @device), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.device_index_path(@socket, :index) %></span>
+<span>
+  <%= live_patch("Edit", to: Routes.device_show_path(@socket, :edit, @device), class: "button") %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.device_index_path(@socket, :index)) %></span>

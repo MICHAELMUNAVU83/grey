@@ -7,50 +7,50 @@
     id="staff-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
-    <%= label f, :firstname %>
-    <%= text_input f, :firstname %>
-    <%= error_tag f, :firstname %>
-  
-    <%= label f, :lastname %>
-    <%= text_input f, :lastname %>
-    <%= error_tag f, :lastname %>
-  
-    <%= label f, :email %>
-    <%= text_input f, :email %>
-    <%= error_tag f, :email %>
-  
-    <%= label f, :phone %>
-    <%= text_input f, :phone %>
-    <%= error_tag f, :phone %>
-  
-    <%= label f, :passcode %>
-    <%= text_input f, :passcode %>
-    <%= error_tag f, :passcode %>
-  
-    <%= label f, :serial %>
-    <%= text_input f, :serial %>
-    <%= error_tag f, :serial %>
-  
-    <%= label f, :nationalid %>
-    <%= text_input f, :nationalid %>
-    <%= error_tag f, :nationalid %>
-  
-    <%= label f, :dob %>
-    <%= text_input f, :dob %>
-    <%= error_tag f, :dob %>
-  
-    <%= label f, :active %>
-    <%= checkbox f, :active %>
-    <%= error_tag f, :active %>
-  
-    <%= label f, :decsription %>
-    <%= text_input f, :decsription %>
-    <%= error_tag f, :decsription %>
-  
+    phx-submit="save"
+  >
+    <%= label(f, :firstname) %>
+    <%= text_input(f, :firstname) %>
+    <%= error_tag(f, :firstname) %>
+
+    <%= label(f, :lastname) %>
+    <%= text_input(f, :lastname) %>
+    <%= error_tag(f, :lastname) %>
+
+    <%= label(f, :email) %>
+    <%= text_input(f, :email) %>
+    <%= error_tag(f, :email) %>
+
+    <%= label(f, :phone) %>
+    <%= text_input(f, :phone) %>
+    <%= error_tag(f, :phone) %>
+
+    <%= label(f, :passcode) %>
+    <%= text_input(f, :passcode) %>
+    <%= error_tag(f, :passcode) %>
+
+    <%= label(f, :serial) %>
+    <%= text_input(f, :serial) %>
+    <%= error_tag(f, :serial) %>
+
+    <%= label(f, :nationalid) %>
+    <%= text_input(f, :nationalid) %>
+    <%= error_tag(f, :nationalid) %>
+
+    <%= label(f, :dob) %>
+    <%= text_input(f, :dob) %>
+    <%= error_tag(f, :dob) %>
+
+    <%= label(f, :active) %>
+    <%= checkbox(f, :active) %>
+    <%= error_tag(f, :active) %>
+
+    <%= label(f, :decsription) %>
+    <%= text_input(f, :decsription) %>
+    <%= error_tag(f, :decsription) %>
+
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit("Save", phx_disable_with: "Saving...") %>
     </div>
   </.form>
 </div>

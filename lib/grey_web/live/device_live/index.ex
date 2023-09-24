@@ -3,10 +3,16 @@ defmodule GreyWeb.DeviceLive.Index do
 
   alias Grey.Devices
   alias Grey.Devices.Device
+  alias Grey.Users
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :device_collection, list_device())}
+  def mount(_params, session, socket) do
+    user = Users.get_user_by_session_token(session["user_token"])
+
+    {:ok,
+     socket
+     |> assign(:device_collection, list_device())
+     |> assign(:user, user)}
   end
 
   @impl true

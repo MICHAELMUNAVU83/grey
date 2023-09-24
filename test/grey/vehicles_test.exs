@@ -8,7 +8,14 @@ defmodule Grey.VehiclesTest do
 
     import Grey.VehiclesFixtures
 
-    @invalid_attrs %{active: nil, serial: nil, type: nil, description: nil, makeofcar: nil, reg: nil}
+    @invalid_attrs %{
+      active: nil,
+      serial: nil,
+      type: nil,
+      description: nil,
+      makeofcar: nil,
+      reg: nil
+    }
 
     test "list_vehicle/0 returns all vehicle" do
       vehicle = vehicle_fixture()
@@ -21,7 +28,14 @@ defmodule Grey.VehiclesTest do
     end
 
     test "create_vehicle/1 with valid data creates a vehicle" do
-      valid_attrs = %{active: true, serial: "some serial", type: "some type", description: "some description", makeofcar: "some makeofcar", reg: "some reg"}
+      valid_attrs = %{
+        active: true,
+        serial: "some serial",
+        type: "some type",
+        description: "some description",
+        makeofcar: "some makeofcar",
+        reg: "some reg"
+      }
 
       assert {:ok, %Vehicle{} = vehicle} = Vehicles.create_vehicle(valid_attrs)
       assert vehicle.active == true
@@ -38,7 +52,15 @@ defmodule Grey.VehiclesTest do
 
     test "update_vehicle/2 with valid data updates the vehicle" do
       vehicle = vehicle_fixture()
-      update_attrs = %{active: false, serial: "some updated serial", type: "some updated type", description: "some updated description", makeofcar: "some updated makeofcar", reg: "some updated reg"}
+
+      update_attrs = %{
+        active: false,
+        serial: "some updated serial",
+        type: "some updated type",
+        description: "some updated description",
+        makeofcar: "some updated makeofcar",
+        reg: "some updated reg"
+      }
 
       assert {:ok, %Vehicle{} = vehicle} = Vehicles.update_vehicle(vehicle, update_attrs)
       assert vehicle.active == false

@@ -1,6 +1,8 @@
 defmodule Grey.Staffs.Staff do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Grey.Vehicles.Vehicle
+  alias Grey.Users.User
 
   schema "staff" do
     field :active, :boolean, default: false
@@ -13,6 +15,8 @@ defmodule Grey.Staffs.Staff do
     field :nationalid, :string
     field :dob, :string
     field :decsription, :string
+    has_many :vehicles, Vehicle
+    belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
   end
@@ -20,7 +24,31 @@ defmodule Grey.Staffs.Staff do
   @doc false
   def changeset(staff, attrs) do
     staff
-    |> cast(attrs, [:firstname, :lastname, :email, :phone, :passcode, :serial, :nationalid, :dob, :active, :decsription])
-    |> validate_required([:firstname, :lastname, :email, :phone, :passcode, :serial, :nationalid, :dob, :active, :decsription])
+    |> cast(attrs, [
+      :firstname,
+      :lastname,
+      :email,
+      :phone,
+      :passcode,
+      :serial,
+      :nationalid,
+      :dob,
+      :active,
+      :decsription,
+      :user_id
+    ])
+    |> validate_required([
+      :firstname,
+      :lastname,
+      :email,
+      :phone,
+      :passcode,
+      :serial,
+      :nationalid,
+      :dob,
+      :active,
+      :decsription,
+      :user_id
+    ])
   end
 end
