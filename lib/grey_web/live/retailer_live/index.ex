@@ -1,5 +1,5 @@
 defmodule GreyWeb.RetailerLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Retailers
   alias Grey.Retailers.Retailer
@@ -12,6 +12,8 @@ defmodule GreyWeb.RetailerLive.Index do
     {:ok,
      socket
      |> assign(:retailers, list_retailers())
+     |> assign(:heading, "Retailers")
+     |> assign(:subheading, "This is a list of all your retailers")
      |> assign(:user, user)}
   end
 
