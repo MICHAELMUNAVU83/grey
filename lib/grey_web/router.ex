@@ -145,6 +145,13 @@ defmodule GreyWeb.Router do
     live "/retailers/:id", RetailerLive.Show, :show
     live "/retailers/:id/show/edit", RetailerLive.Show, :edit
 
+    live "/storages", StorageLive.Index, :index
+    live "/storages/new", StorageLive.Index, :new
+    live "/storages/:id/edit", StorageLive.Index, :edit
+
+    live "/storages/:id", StorageLive.Show, :show
+    live "/storages/:id/show/edit", StorageLive.Show, :edit
+
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

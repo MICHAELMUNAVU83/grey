@@ -1,0 +1,47 @@
+<h1>Show Storage</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.storage_show_path(@socket, :show, @storage)}>
+    <.live_component
+      module={GreyWeb.StorageLive.FormComponent}
+      id={@storage.id}
+      title={@page_title}
+      action={@live_action}
+      storage={@storage}
+      return_to={Routes.storage_show_path(@socket, :show, @storage)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @storage.name %>
+  </li>
+
+  <li>
+    <strong>Item:</strong>
+    <%= @storage.item %>
+  </li>
+
+  <li>
+    <strong>Gln:</strong>
+    <%= @storage.gln %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @storage.description %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @storage.active %>
+  </li>
+</ul>
+
+<span>
+  <%= live_patch("Edit", to: Routes.storage_show_path(@socket, :edit, @storage), class: "button") %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.storage_index_path(@socket, :index)) %></span>
