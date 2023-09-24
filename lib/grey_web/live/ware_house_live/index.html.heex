@@ -20,7 +20,7 @@
 <p class="bg-gradient-to-r from-[#259BFF] to-[#0F52BA] w-[100%] h-[1px]" />
 
 <table class="w-[100%] p-2">
-  <thead  class="text-[#0F52BA]">
+  <thead class="text-[#0F52BA]">
     <tr>
       <th>Name</th>
       <th>Location</th>
@@ -33,7 +33,7 @@
   </thead>
   <tbody class="text-center" id="warehouse">
     <%= for ware_house <- @warehouse do %>
-      <tr  class="border-b-[1px] border-gray-400" id={"ware_house-#{ware_house.id}"}>
+      <tr class="border-b-[1px] border-gray-400" id={"ware_house-#{ware_house.id}"}>
         <td><%= ware_house.name %></td>
         <td><%= ware_house.location %></td>
         <td><%= ware_house.category %></td>
