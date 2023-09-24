@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :grey, Grey.Repo,
   username: "root",
-  password: "Khohisan@7",
+  password: "Michael@11",
   hostname: "localhost",
   database: "grey_database_dev",
   stacktrace: true,

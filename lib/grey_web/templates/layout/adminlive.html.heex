@@ -1,0 +1,53 @@
+<main>
+  <%= if @flash["info"] do %>
+    <p class="alert alert-info" role="alert" phx-click="lv:clear-flash" phx-value-key="info">
+      <%= live_flash(@flash, :info) %>
+    </p>
+  <% end %>
+
+  <%= if @flash["error"] do %>
+    <p class="alert alert-danger" role="alert" phx-click="lv:clear-flash" phx-value-key="error">
+      <%= live_flash(@flash, :error) %>
+    </p>
+  <% end %>
+
+  <div class="w-[100%] fixed text-white z-10  shadow-sm shadow-gray-400 bg-[#259BFF] py-4 px-2  top-0">
+    <div class="w-[100%]  flex justify-between items-center">
+      <div class="w-[240px] flex  text-2xl items-center justify-between">
+        <p>
+          Grey WMS
+        </p>
+      </div>
+
+      <div class="flex gap-3 items-center">
+        <i class="fa fa-bell " style="font-size: 24px" aria-hidden="true"></i>
+        <i class="fa fa-envelope " style="font-size: 24px" aria-hidden="true"></i>
+        <div class="w-[40px] h-[40px] rounded-full bg-white"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex w-[250px] p-4 z-0 pt-24 fixed h-[100vh] bg-white shadow-xl shadow-gray-400">
+    yghunim
+  </div>
+
+  <div class="ml-[250px]  pt-24 p-4 h-[100vh]">
+    <div class="w-[100%]">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xl font-semibold">
+            <%= @heading %>
+          </p>
+
+          <p>
+            <%= @subheading %>
+          </p>
+        </div>
+
+        <div class="h-[80vh] overflow-scroll  w-[100%] bg-white rounded-md shadow-gray-300 shadow-md ">
+          <%= @inner_content %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

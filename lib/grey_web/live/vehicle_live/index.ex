@@ -1,5 +1,5 @@
 defmodule GreyWeb.VehicleLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Vehicles
   alias Grey.Vehicles.Vehicle
@@ -11,6 +11,8 @@ defmodule GreyWeb.VehicleLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Vehicles")
+     |> assign(:subheading, "This is a list of all your vehicles")
      |> assign(:vehicle_collection, list_vehicle())
      |> assign(:user, user)}
   end

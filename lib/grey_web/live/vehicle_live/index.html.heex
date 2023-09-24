@@ -1,5 +1,3 @@
-<h1>Listing Vehicle</h1>
-
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.vehicle_index_path(@socket, :index)}>
     <.live_component
@@ -14,22 +12,30 @@
   </.modal>
 <% end %>
 
-<table>
-  <thead>
+<div class="flex justify-start w-[100%] p-4">
+  <%= live_patch(to: Routes.vehicle_index_path(@socket, :new) , class: "bg-[#259BFF] text-white flex items-center gap-2 rounded-md px-2 py-4") do %>
+    Add A Vehicle <i class="fa fa-plus " style="font-size: 20px" aria-hidden="true"></i>
+  <% end %>
+</div>
+
+<p class="bg-gradient-to-r from-[#259BFF] to-[#0F52BA] w-[100%] h-[1px]" />
+
+<table class="w-[100%] p-2">
+  <thead class="text-[#0F52BA]">
     <tr>
-      <th>Makeofcar</th>
+      <th>Make of car</th>
       <th>Type</th>
-      <th>Reg</th>
+      <th>Registration Number</th>
       <th>Serial</th>
       <th>Description</th>
       <th>Active</th>
 
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
-  <tbody id="vehicle">
+  <tbody class="text-center" id="vehicle">
     <%= for vehicle <- @vehicle_collection do %>
-      <tr id={"vehicle-#{vehicle.id}"}>
+      <tr class="border-b-[1px] border-gray-400" id={"vehicle-#{vehicle.id}"}>
         <td><%= vehicle.makeofcar %></td>
         <td><%= vehicle.type %></td>
         <td><%= vehicle.reg %></td>
@@ -37,25 +43,36 @@
         <td><%= vehicle.description %></td>
         <td><%= vehicle.active %></td>
 
-        <td>
-          <span>
-            <%= live_redirect("Show", to: Routes.vehicle_show_path(@socket, :show, vehicle)) %>
-          </span>
-          <span>
-            <%= live_patch("Edit", to: Routes.vehicle_index_path(@socket, :edit, vehicle)) %>
-          </span>
-          <span>
-            <%= link("Delete",
-              to: "#",
-              phx_click: "delete",
-              phx_value_id: vehicle.id,
-              data: [confirm: "Are you sure?"]
-            ) %>
-          </span>
+        <td class="p-2">
+          <div class="flex flex-row gap-2 justify-center items-center">
+            <div>
+              <%= live_redirect(to: Routes.vehicle_show_path(@socket, :show, vehicle)) do %>
+                <i class="fa fa-eye text-green-500" style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+
+            <div>
+              <%= live_patch(to: Routes.vehicle_index_path(@socket, :edit, vehicle)) do %>
+                <i class="fa fa-pencil text-blue-500" style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+
+            <div>
+              <%= link(
+                    to: "#",
+                    phx_click: "delete",
+                    phx_value_id: vehicle.id,
+                    data: [confirm: "Are you sure?"]
+                  )  do %>
+                <i class="fa fa-trash text-red-500 " style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+          </div>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<span><%= live_patch("New Vehicle", to: Routes.vehicle_index_path(@socket, :new)) %></span>
