@@ -1,5 +1,5 @@
 defmodule GreyWeb.BreakbulkLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Breakbulks
   alias Grey.Breakbulks.Breakbulk
@@ -11,6 +11,8 @@ defmodule GreyWeb.BreakbulkLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "BreakBulks")
+     |> assign(:subheading, "This is a list of all your breakbulks")
      |> assign(:breakbulks, list_breakbulks())
      |> assign(:user, user)}
   end

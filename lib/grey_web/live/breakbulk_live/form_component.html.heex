@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,28 +9,58 @@
     phx-change="validate"
     phx-submit="save"
   >
-    <%= label(f, :code) %>
-    <%= text_input(f, :code) %>
+   <div class="flex flex-col w-[100%] gap-2">
+   <div class="w-[100%] flex justify-between">
+   <div class="w-[48%] flex flex-col gap-2">
+    <%= label(f, :code, class: "text-xl text-[#0F52BA] ") %>
+    <%= text_input(f, :code, class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent") %>
     <%= error_tag(f, :code) %>
+    </div>
 
-    <%= label(f, :status) %>
-    <%= checkbox(f, :status) %>
-    <%= error_tag(f, :status) %>
 
-    <%= label(f, :description) %>
-    <%= text_input(f, :description) %>
-    <%= error_tag(f, :description) %>
+    <div class="w-[48%] flex flex-col gap-2">
 
-    <%= label(f, :quantity) %>
-    <%= text_input(f, :quantity) %>
+  
+
+
+    <%= label(f, :quantity, class: "text-xl text-[#0F52BA] ") %>
+    <%= text_input(f, :quantity, class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent") %>
     <%= error_tag(f, :quantity) %>
+    </div>
+    </div>
 
-    <%= label(f, :uom) %>
-    <%= text_input(f, :uom) %>
+    <%= label(f, :unit_of_measurement, class: "text-xl text-[#0F52BA] ") %>
+    <%= select(f, :uom,   ["Carton", "Pallet", "Container", "Box", "Bag", "Drum", "Piece", "Roll", "Bundle", "Other"], class:
+              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent" ,
+           
+              prompt: "Select UOM"
+
+              
+              
+              ) %>
     <%= error_tag(f, :uom) %>
 
-    <div>
-      <%= submit("Save", phx_disable_with: "Saving...") %>
+    <div class="w-[100%] flex flex-col gap-2">
+        <%= label(f, :description, class: "text-xl text-[#0F52BA]") %>
+        <%= textarea(f, :description,
+          class:
+            "w-[100%] h-[90px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        ) %>
+        <%= error_tag(f, :description) %>
+      </div>
+      <div class="w-[100%] flex flex-row items-center gap-2">
+        <%= label(f, :status, class: "text-xl text-[#0F52BA]") %>
+        <%= checkbox(f, :status) %>
+      </div>
+
+       <div class="flex flex-col w-[100%] justify-center items-center">
+        <%= submit("Add Retailer",
+          phx_disable_with: "Saving...",
+          class: "bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+        ) %>
+      </div>
     </div>
   </.form>
 </div>
