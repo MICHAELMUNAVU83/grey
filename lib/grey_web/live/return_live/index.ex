@@ -1,5 +1,5 @@
 defmodule GreyWeb.ReturnLive.Index do
-  use GreyWeb, :live_view
+  use GreyWeb, :admin_live_view
 
   alias Grey.Returns
   alias Grey.Returns.Return
@@ -11,6 +11,8 @@ defmodule GreyWeb.ReturnLive.Index do
 
     {:ok,
      socket
+     |> assign(:heading, "Returns")
+     |> assign(:subheading, "This is a list of all your returns")
      |> assign(:returns, list_returns())
      |> assign(:user, user)}
   end
