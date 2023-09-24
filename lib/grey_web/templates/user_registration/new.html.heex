@@ -1,4 +1,4 @@
-<div class="bg-gray-100 h-[100vh] flex flex-col justify-center items-center">
+<div class="bg-gray-100 min-h-[100vh] flex flex-col justify-center items-center">
   <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
     <%= if @changeset.action do %>
       <div class="alert alert-danger">
@@ -17,7 +17,7 @@
           <%= text_input(f, :firstname,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :firstname) %>
         </div>
@@ -26,7 +26,7 @@
           <%= text_input(f, :lastname,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :lastname) %>
         </div>
@@ -38,7 +38,7 @@
           <%= text_input(f, :locationaddress,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :locationaddress) %>
         </div>
@@ -48,7 +48,7 @@
           <%= text_input(f, :company,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :company) %>
         </div>
@@ -59,7 +59,7 @@
         <%= email_input(f, :email,
           required: true,
           class:
-            "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+            "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
         ) %>
         <%= error_tag(f, :email) %>
       </div>
@@ -70,7 +70,7 @@
           <%= password_input(f, :password,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :password) %>
         </div>
@@ -80,7 +80,7 @@
           <%= password_input(f, :password_confirmation,
             required: true,
             class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              "w-[100%] h-[45px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
           ) %>
           <%= error_tag(f, :password_confirmation) %>
         </div>
@@ -90,7 +90,7 @@
         <%= file_input(f, :image,
           required: true,
           class:
-            "w-[100%] h-[50px] bg-white p-2 border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+            "w-[100%] h-[45px] bg-white p-2 border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
         ) %>
         <%= error_tag(f, :image) %>
       </div>
