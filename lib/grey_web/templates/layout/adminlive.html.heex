@@ -22,7 +22,13 @@
       <div class="flex gap-3 items-center">
         <i class="fa fa-bell " style="font-size: 24px" aria-hidden="true"></i>
         <i class="fa fa-envelope " style="font-size: 24px" aria-hidden="true"></i>
-        <div class="w-[40px] h-[40px] rounded-full bg-white"></div>
+
+        <%= img_tag(
+          Grey.UserImage.url({@user.image, {@user}},
+            signed: true
+          ),
+          class: "w-[30px] h-[30px] rounded-full object-cover"
+        ) %>
       </div>
     </div>
   </div>
@@ -30,98 +36,116 @@
   <div class="flex w-[250px] p-4 z-0 pt-24 flex-col gap-2 fixed h-[100vh] bg-white shadow-xl shadow-gray-400">
     <img src="/images/gs1logo.png" class="w-[70px] h-[70px] object-contain" />
 
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Dashboard",
+    <%= live_redirect(
         to: Routes.dashboard_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Dashboard <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Returns",
+    <%= live_redirect(
         to: Routes.return_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Return <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("BreakBulk",
+    <%= live_redirect(
         to: Routes.breakbulk_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Breakbulk <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Dispatch",
+    <%= live_redirect(
         to: Routes.dispatch_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
-
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Retailers",
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Dispatches <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
+    <%= live_redirect(
         to: Routes.retailer_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Retailers <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Suppliers",
+    <%= live_redirect(
         to: Routes.supplier_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
-
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Putaways",
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Suppliers <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
+    <%= live_redirect(
         to: Routes.putaway_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
-
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Warehouse",
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Putaways <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
+    <%= live_redirect(
         to: Routes.ware_house_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
-
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Staff",
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Warehouses <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
+    <%= live_redirect(
         to: Routes.staff_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Staff Members
+        <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
-
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Vehicle",
+    <%= live_redirect(
         to: Routes.vehicle_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Vehicles <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
+    <%= live_redirect(
+        to: Routes.storage_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Storages <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-    <div class="flex justify-between items-center">
-      <%= live_redirect("Devices",
+    <%= live_redirect(
         to: Routes.device_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
-      ) %>
+      )  do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Devices <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
 
-      <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-    </div>
+    <%= link(to: Routes.user_session_path(@socket, :delete), method: :delete , class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100") do %>
+      <div class="flex justify-between w-[100%] items-center">
+        Logout <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+      </div>
+    <% end %>
   </div>
 
   <div class="ml-[250px] bg-[#FAFCFD]  pt-24 p-4 h-[100vh]">
