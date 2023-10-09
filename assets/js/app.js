@@ -28,7 +28,6 @@ import topbar from "../vendor/topbar";
 let Hooks = {};
 Hooks.SideBarCollapse = {
   mounted() {
-    alert("mounted");
     const menu = document.querySelector(".menu-content");
     const menuItems = document.querySelectorAll(".submenu-item");
     const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
