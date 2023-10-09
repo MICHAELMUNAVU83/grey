@@ -11,7 +11,7 @@
     </p>
   <% end %>
 
-  <div class="w-[100%] fixed text-white z-10  shadow-sm shadow-gray-400 bg-[#259BFF] py-4 px-2  top-0">
+  <%!-- <div class="w-[100%] fixed text-white z-10  shadow-sm shadow-gray-400 bg-[#259BFF] py-4 px-2  top-0">
     <div class="w-[100%]  flex justify-between items-center">
       <div class="w-[240px] flex  text-2xl items-center justify-between">
         <p>
@@ -62,6 +62,29 @@
         Breakbulk <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
       </div>
     <% end %>
+    <div class="menu-content">
+      <li class="item">
+        <div class="submenu-item">
+          <span>First submenu</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <ul class="menu-items submenu">
+          <div class="menu-title">
+            <i class="fa-solid fa-chevron-left"></i> Your submenu title
+          </div>
+          <li class="item">
+            <a href="#">First sublink</a>
+          </li>
+          <li class="item">
+            <a href="#">First sublink</a>
+          </li>
+          <li class="item">
+            <a href="#">First sublink</a>
+          </li>
+        </ul>
+      </li>
+    </div>
 
     <%= live_redirect(
         to: Routes.dispatch_index_path(@socket, :index),
@@ -146,7 +169,46 @@
         Logout <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
       </div>
     <% end %>
-  </div>
+  </div> --%>
+  <nav id="test" phx-hook="SideBarCollapse" class="sidebar">
+    <a href="#" class="logo">CodingLab</a>
+
+    <div class="menu-content">
+      <ul class="menu-items">
+        <div class="menu-title">Your menu title</div>
+
+        <li class="item">
+          <a href="#">Your first link</a>
+        </li>
+
+        <li class="item">
+          <div class="submenu-item">
+            <span>First submenu</span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+          <ul class="menu-items submenu">
+            <div class="menu-title">
+              <i class="fa-solid fa-chevron-left"></i> Your submenu title
+            </div>
+            <li class="item">
+              <a href="#">First sublink</a>
+            </li>
+            <li class="item">
+              <a href="#">First sublink</a>
+            </li>
+            <li class="item">
+              <a href="#">First sublink</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="item">
+          <a href="#">Your third link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="ml-[250px] bg-[#FAFCFD]  pt-24 p-4 h-[100vh]">
     <div class="w-[100%]">
