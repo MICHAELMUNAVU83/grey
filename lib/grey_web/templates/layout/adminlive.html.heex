@@ -11,7 +11,7 @@
     </p>
   <% end %>
 
-  <%!-- <div class="w-[100%] fixed text-white z-10  shadow-sm shadow-gray-400 bg-[#259BFF] py-4 px-2  top-0">
+  <div class="w-[100%] fixed text-white z-10  shadow-sm shadow-gray-400 bg-[#259BFF] py-4 px-2  top-0">
     <div class="w-[100%]  flex justify-between items-center">
       <div class="w-[240px] flex  text-2xl items-center justify-between">
         <p>
@@ -31,43 +31,184 @@
         ) %>
       </div>
     </div>
-  </div> --%>
+  </div>
 
   <nav id="test" phx-hook="SideBarCollapse" class="sidebar pt-24">
     <a href="#" class="logo">CodingLab</a>
 
     <div class="menu-content">
       <ul class="menu-items">
-        <div class="menu-title">Your menu title</div>
-
         <li class="item">
-          <a href="#">Your first link</a>
+          <%= live_redirect(
+        to: Routes.dashboard_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Dashboard
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
         </li>
 
         <li class="item">
           <div class="submenu-item">
-            <span>First submenu</span>
-            <i class="fa-solid fa-chevron-right"></i>
+            <span>Setup</span>
+            <i class="fa fa-chevron-right"></i>
           </div>
 
           <ul class="menu-items submenu">
             <div class="menu-title">
-              <i class="fa-solid fa-chevron-left"></i> Your submenu title
+              <i class="fa fa-chevron-left" class="rotate-180"></i> Setup
             </div>
             <li class="item">
-              <a href="#">First sublink</a>
+              <%= live_redirect(
+        to: Routes.ware_house_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Warehouses
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
             </li>
             <li class="item">
-              <a href="#">First sublink</a>
+              <%= live_redirect(
+        to: Routes.vehicle_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Vehicles
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
             </li>
             <li class="item">
-              <a href="#">First sublink</a>
+              <%= live_redirect(
+        to: Routes.staff_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Staff Members
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
+            </li>
+            <li class="item">
+              <%= live_redirect(
+        to: Routes.device_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Devices
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
+            </li>
+
+            <li class="item">
+              <%= live_redirect(
+        to: Routes.storage_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Storages
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
             </li>
           </ul>
         </li>
 
         <li class="item">
-          <a href="#">Your third link</a>
+          <%= live_redirect(
+        to: Routes.putaway_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Putaways
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
+        </li>
+        <li class="item">
+          <%= live_redirect(
+        to: Routes.return_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Return
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
+        </li>
+
+        <li class="item">
+          <%= live_redirect(
+        to: Routes.breakbulk_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Breakbulk
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
+        </li>
+
+        <li class="item">
+          <%= live_redirect(
+        to: Routes.dispatch_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Dispatches
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
+        </li>
+        <li class="item">
+          <div class="submenu-item">
+            <span>Users</span>
+            <i class="fa fa-chevron-right"></i>
+          </div>
+
+          <ul class="menu-items submenu">
+            <div class="menu-title">
+              <i class="fa fa-chevron-left"></i> Users
+            </div>
+
+            <li class="item">
+              <%= live_redirect(
+        to: Routes.retailer_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Retailers
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
+            </li>
+
+            <li class="item">
+              <%= live_redirect(
+        to: Routes.supplier_index_path(@socket, :index),
+        class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+      )  do %>
+                <div class="flex justify-between w-[100%] items-center">
+                  Suppliers
+                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="item">
+          <%= link(to: Routes.user_session_path(@socket, :delete), method: :delete , class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100") do %>
+            <div class="flex justify-between w-[100%] items-center">
+              Logout
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
         </li>
       </ul>
     </div>
