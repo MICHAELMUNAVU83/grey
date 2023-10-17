@@ -40,6 +40,14 @@ defmodule GreyWeb.BreakbulkLive.Index do
     |> assign(:breakbulk, nil)
   end
 
+  def handle_event("change_status", %{"id" => id}, socket) do
+    breakbulk = Breakbulks.get_breakbulk!(id)
+
+    {:ok, _} = Breakbulks.update_breakbulk(breakbulk, %{status: !breakbulk.status})
+
+    {:noreply, assign(socket, :breakbulks, list_breakbulks())}
+  end
+
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     breakbulk = Breakbulks.get_breakbulk!(id)

@@ -7,7 +7,7 @@ defmodule Grey.Breakbulks.Breakbulk do
     field :code, :string
     field :description, :string
     field :quantity, :string
-    field :status, :string
+    field :status, :boolean
     field :uom, :string
     belongs_to :user, User, foreign_key: :user_id
 
