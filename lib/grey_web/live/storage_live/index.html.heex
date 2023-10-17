@@ -39,7 +39,17 @@
         <td><%= storage.item %></td>
         <td><%= storage.gln %></td>
         <td><%= storage.description %></td>
-        <td><%= storage.active %></td>
+         <td>
+          <%= if storage.active == true do %>
+            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+              active
+            </div>
+          <% else %>
+            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+              inactive
+            </div>
+          <% end %>
+        </td>
 
         <td class="p-2">
           <div class="flex flex-row gap-2 justify-center items-center">

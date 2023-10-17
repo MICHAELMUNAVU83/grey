@@ -36,7 +36,17 @@
         <td><%= transfer.rack_from %></td>
         <td><%= transfer.item %></td>
         <td><%= transfer.rack_to %></td>
-        <td><%= transfer.status %></td>
+       <td>
+          <%= if transfer.status == true do %>
+            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+              active
+            </div>
+          <% else %>
+            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+              inactive
+            </div>
+          <% end %>
+        </td>
 
         <td class="p-2">
           <div class="flex flex-row gap-2 justify-center items-center">

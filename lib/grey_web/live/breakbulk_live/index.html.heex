@@ -35,7 +35,17 @@
     <%= for breakbulk <- @breakbulks do %>
       <tr id={"breakbulk-#{breakbulk.id}"}>
         <td><%= breakbulk.code %></td>
-        <td><%= breakbulk.status %></td>
+        <td>
+          <%= if breakbulk.status == true do %>
+            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+              active
+            </div>
+          <% else %>
+            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+              inactive
+            </div>
+          <% end %>
+        </td>
         <td><%= breakbulk.description %></td>
         <td><%= breakbulk.quantity %></td>
         <td><%= breakbulk.uom %></td>
