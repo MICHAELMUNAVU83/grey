@@ -40,13 +40,23 @@
         <td><%= ware_house.description %></td>
         <td>
           <%= if ware_house.active == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={ware_house.id}
+              phx-value-schema="WareHouse"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={ware_house.id}
+              phx-value-schema="WareHouse"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
         <td class="p-2">

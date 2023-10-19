@@ -4,6 +4,7 @@ defmodule GreyWeb.WareHouseLive.Index do
   alias Grey.WareHouses
   alias Grey.WareHouses.WareHouse
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -38,6 +39,13 @@ defmodule GreyWeb.WareHouseLive.Index do
     socket
     |> assign(:page_title, "Listing Warehouse")
     |> assign(:ware_house, nil)
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
+
+    {:noreply, assign(socket, :warehouse, list_warehouse())}
   end
 
   @impl true
