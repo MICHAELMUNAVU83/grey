@@ -28,7 +28,7 @@
       <th>Registration Number</th>
       <th>Serial</th>
       <th>Description</th>
-      <th>Active</th>
+      <th>Status</th>
 
       <th>Actions</th>
     </tr>
@@ -43,13 +43,23 @@
         <td><%= vehicle.description %></td>
         <td>
           <%= if vehicle.active == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={vehicle.id}
+              phx-value-schema="Vehicle"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={vehicle.id}
+              phx-value-schema="Vehicle"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
 

@@ -4,6 +4,7 @@ defmodule GreyWeb.VehicleLive.Index do
   alias Grey.Vehicles
   alias Grey.Vehicles.Vehicle
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -44,6 +45,13 @@ defmodule GreyWeb.VehicleLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     vehicle = Vehicles.get_vehicle!(id)
     {:ok, _} = Vehicles.delete_vehicle(vehicle)
+
+    {:noreply, assign(socket, :vehicle_collection, list_vehicle())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :vehicle_collection, list_vehicle())}
   end

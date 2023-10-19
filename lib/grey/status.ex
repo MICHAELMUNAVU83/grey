@@ -14,13 +14,19 @@ defmodule Grey.Status do
   alias Grey.Putaways.Putaway
 
   alias Grey.WareHouses
+  alias Grey.Vehicles
 
   def change_status(id, schema) do
     case schema do
       "WareHouse" ->
-        IO.write("im here ")
+        IO.write("im at warehouse")
         items = Repo.one(from x in WareHouse, where: x.id == ^id)
         update_status(items, "WareHouse")
+
+      "Vehicle" ->
+        IO.write("im at vehicle")
+        items = Repo.one(from x in Vehicle, where: x.id == ^id)
+        update_status(items, "Vehicle")
 
       _ ->
         "nothing to update"
@@ -28,10 +34,23 @@ defmodule Grey.Status do
   end
 
   defp update_status(context, schema) do
-    cond do
-      schema ->
-        "WareHouse"
-        WareHouses.update_ware_house(context, %{"active" => false})
+    case schema do
+      "WareHouse" ->
+        IO.inspect(schema)
+        IO.write("im at warehouse again")
+
+        if context.active == true do
+          WareHouses.update_ware_house(context, %{"active" => false})
+        else
+          WareHouses.update_ware_house(context, %{"active" => true})
+        end
+
+      "Vehicle" ->
+        if context.active == true do
+          Vehicles.update_vehicle(context, %{"active" => false})
+        else
+          Vehicles.update_vehicle(context, %{"active" => true})
+        end
     end
   end
 end
