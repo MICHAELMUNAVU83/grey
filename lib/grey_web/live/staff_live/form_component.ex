@@ -41,9 +41,13 @@ defmodule GreyWeb.StaffLive.FormComponent do
   end
 
   defp save_staff(socket, :new, staff_params) do
+    IO.inspect(staff_params)
+
     new_staff_params =
       staff_params
       |> Map.put("user_id", socket.assigns.user.id)
+
+    IO.inspect(new_staff_params)
 
     case Staffs.create_staff(new_staff_params) do
       {:ok, _staff} ->
@@ -53,6 +57,8 @@ defmodule GreyWeb.StaffLive.FormComponent do
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        errors = changeset.errors
+        IO.inspect(errors)
         {:noreply, assign(socket, changeset: changeset)}
     end
   end

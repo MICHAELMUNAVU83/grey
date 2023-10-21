@@ -13,8 +13,8 @@ defmodule Grey.Staffs.Staff do
     field :phone, :string
     field :passcode, :string
     field :nationalid, :string
-    field :dob, :string
-    field :decsription, :string
+    field :dob, :date
+    field :description, :string
     has_many :vehicles, Vehicle
     belongs_to :user, User, foreign_key: :user_id
 
@@ -34,7 +34,7 @@ defmodule Grey.Staffs.Staff do
       :nationalid,
       :dob,
       :active,
-      :decsription,
+      :description,
       :user_id
     ])
     |> validate_required([
@@ -47,7 +47,7 @@ defmodule Grey.Staffs.Staff do
       :nationalid,
       :dob,
       :active,
-      :decsription,
+      :description,
       :user_id
     ])
   end

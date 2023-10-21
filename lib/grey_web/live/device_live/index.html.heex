@@ -39,13 +39,23 @@
         <td><%= device.description %></td>
         <td>
           <%= if device.active == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={device.id}
+              phx-value-schema="device"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={device.id}
+              phx-value-schema="device"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
 

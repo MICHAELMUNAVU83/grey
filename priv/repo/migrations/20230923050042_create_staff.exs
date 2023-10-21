@@ -10,9 +10,9 @@ defmodule Grey.Repo.Migrations.CreateStaff do
       add :passcode, :string
       add :serial, :string
       add :nationalid, :string
-      add :dob, :string
+      add :dob, :date
       add :active, :boolean, default: false, null: false
-      add :decsription, :string
+      add :description, :string
       add :user_id, :integer
 
       timestamps()

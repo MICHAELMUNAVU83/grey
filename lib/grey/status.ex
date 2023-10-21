@@ -15,6 +15,8 @@ defmodule Grey.Status do
 
   alias Grey.WareHouses
   alias Grey.Vehicles
+  alias Grey.Staffs
+  alias Grey.Devices
 
   def change_status(id, schema) do
     case schema do
@@ -28,6 +30,16 @@ defmodule Grey.Status do
         items = Repo.one(from x in Vehicle, where: x.id == ^id)
         update_status(items, "Vehicle")
 
+      "staff" ->
+        IO.write("im at staff")
+        items = Repo.one(from x in Staff, where: x.id == ^id)
+        update_status(items, "staff")
+
+      "device" ->
+        IO.write("im at device")
+        items = Repo.one(from x in Device, where: x.id == ^id)
+        update_status(items, "device")
+
       _ ->
         "nothing to update"
     end
@@ -36,9 +48,6 @@ defmodule Grey.Status do
   defp update_status(context, schema) do
     case schema do
       "WareHouse" ->
-        IO.inspect(schema)
-        IO.write("im at warehouse again")
-
         if context.active == true do
           WareHouses.update_ware_house(context, %{"active" => false})
         else
@@ -50,6 +59,20 @@ defmodule Grey.Status do
           Vehicles.update_vehicle(context, %{"active" => false})
         else
           Vehicles.update_vehicle(context, %{"active" => true})
+        end
+
+      "staff" ->
+        if context.active == true do
+          Staffs.update_staff(context, %{"active" => false})
+        else
+          Staffs.update_staff(context, %{"active" => true})
+        end
+
+      "device" ->
+        if context.active == true do
+          Devices.update_device(context, %{"active" => false})
+        else
+          Devices.update_device(context, %{"active" => true})
         end
     end
   end

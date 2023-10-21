@@ -50,16 +50,27 @@
         <td><%= staff.dob %></td>
         <td>
           <%= if staff.active == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={staff.id}
+              phx-value-schema="staff"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={staff.id}
+              phx-value-schema="staff"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
-        <td><%= staff.decsription %></td>
+
+        <td><%= staff.description %></td>
         <td class="p-2">
           <div class="flex flex-row gap-2 justify-center items-center">
             <div>

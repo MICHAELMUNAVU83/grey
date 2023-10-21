@@ -4,6 +4,7 @@ defmodule GreyWeb.StaffLive.Index do
   alias Grey.Staffs
   alias Grey.Staffs.Staff
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -12,7 +13,7 @@ defmodule GreyWeb.StaffLive.Index do
     {:ok,
      socket
      |> assign(:staff_collection, list_staff())
-     |> assign(:heading, "Vehicles")
+     |> assign(:heading, "Staff")
      |> assign(:subheading, "This is a list of all your staff members")
      |> assign(:user, user)}
   end
@@ -44,6 +45,13 @@ defmodule GreyWeb.StaffLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     staff = Staffs.get_staff!(id)
     {:ok, _} = Staffs.delete_staff(staff)
+
+    {:noreply, assign(socket, :staff_collection, list_staff())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :staff_collection, list_staff())}
   end

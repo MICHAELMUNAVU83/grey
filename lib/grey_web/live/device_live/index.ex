@@ -4,6 +4,7 @@ defmodule GreyWeb.DeviceLive.Index do
   alias Grey.Devices
   alias Grey.Devices.Device
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -44,6 +45,13 @@ defmodule GreyWeb.DeviceLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     device = Devices.get_device!(id)
     {:ok, _} = Devices.delete_device(device)
+
+    {:noreply, assign(socket, :device_collection, list_device())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :device_collection, list_device())}
   end
