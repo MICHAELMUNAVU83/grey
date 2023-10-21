@@ -3,7 +3,7 @@ defmodule Grey.Storages.Storage do
   import Ecto.Changeset
 
   schema "storages" do
-    field :active, :string
+    field :active, :boolean, default: false
     field :name, :string
     field :description, :string
     field :item, :string

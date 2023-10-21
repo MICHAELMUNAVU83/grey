@@ -41,13 +41,23 @@
         <td><%= storage.description %></td>
         <td>
           <%= if storage.active == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={storage.id}
+              phx-value-schema="storage"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={storage.id}
+              phx-value-schema="storage"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
 

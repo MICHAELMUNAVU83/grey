@@ -7,7 +7,7 @@ defmodule Grey.Repo.Migrations.CreateStorages do
       add :item, :string
       add :gln, :string
       add :description, :string
-      add :active, :string
+      add :active, :boolean, default: false, null: false
       add :user_id, :integer
 
       timestamps()

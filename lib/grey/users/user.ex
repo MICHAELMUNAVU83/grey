@@ -13,6 +13,7 @@ defmodule Grey.Users.User do
   alias Grey.Retailers.Retailer
   alias Grey.Suppliers.Supplier
   alias Grey.Putaways.Putaway
+  alias Grey.Storages.Storage
 
   schema "users" do
     field :email, :string
@@ -41,6 +42,7 @@ defmodule Grey.Users.User do
     has_many :retailers, Retailer
     has_many :suppliers, Supplier
     has_many :putaways, Putaway
+    has_many :storages, Storage
 
     timestamps()
   end

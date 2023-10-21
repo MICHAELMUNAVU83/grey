@@ -41,11 +41,11 @@ defmodule GreyWeb.StorageLive.FormComponent do
   end
 
   defp save_storage(socket, :new, storage_params) do
-    newstorage_params =
+    new_storage_params =
       storage_params
       |> Map.put("user_id", socket.assigns.user.id)
 
-    case Storages.create_storage(storage_params) do
+    case Storages.create_storage(new_storage_params) do
       {:ok, _storage} ->
         {:noreply,
          socket
