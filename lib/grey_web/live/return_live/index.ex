@@ -48,8 +48,9 @@ defmodule GreyWeb.ReturnLive.Index do
 
     {:noreply, assign(socket, :returns, list_returns())}
   end
-   @impl true
-def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
     Status.change_status(id, schema)
 
     {:noreply, assign(socket, :returns, list_returns())}

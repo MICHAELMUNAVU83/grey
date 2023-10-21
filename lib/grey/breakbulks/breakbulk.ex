@@ -7,7 +7,7 @@ defmodule Grey.Breakbulks.Breakbulk do
     field :code, :string
     field :description, :string
     field :quantity, :string
-    field :status, :boolean
+    field :active, :boolean, default: false
     field :uom, :string
     belongs_to :user, User, foreign_key: :user_id
 
@@ -17,7 +17,7 @@ defmodule Grey.Breakbulks.Breakbulk do
   @doc false
   def changeset(breakbulk, attrs) do
     breakbulk
-    |> cast(attrs, [:code, :status, :description, :quantity, :uom, :user_id])
-    |> validate_required([:code, :status, :description, :quantity, :uom, :user_id])
+    |> cast(attrs, [:code, :active, :description, :quantity, :uom, :user_id])
+    |> validate_required([:code, :active, :description, :quantity, :uom, :user_id])
   end
 end

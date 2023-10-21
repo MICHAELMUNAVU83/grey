@@ -4,7 +4,7 @@ defmodule Grey.Repo.Migrations.CreateBreakbulks do
   def change do
     create table(:breakbulks) do
       add :code, :string
-      add :status, :boolean
+      add :active, :boolean, default: false, null: false
       add :description, :string
       add :quantity, :string
       add :uom, :string

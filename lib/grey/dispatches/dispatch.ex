@@ -14,7 +14,7 @@ defmodule Grey.Dispatches.Dispatch do
     field :production, :string
     field :quantity, :string
     field :rack, :string
-    field :status, :string
+    field :active, :boolean, default: false
     field :transporter, :string
     field :transporterid, :string
     field :uom, :string
@@ -42,7 +42,7 @@ defmodule Grey.Dispatches.Dispatch do
       :description,
       :rack,
       :image,
-      :status,
+      :active,
       :user_id
     ])
     |> validate_required([
@@ -60,7 +60,7 @@ defmodule Grey.Dispatches.Dispatch do
       :description,
       :rack,
       :image,
-      :status,
+      :active,
       :user_id
     ])
   end

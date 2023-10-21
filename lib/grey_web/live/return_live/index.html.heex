@@ -43,10 +43,7 @@
         <td><%= return.reason %></td>
         <td>
           <%= if return.active == true do %>
-           
-
-
-           <button
+            <button
               phx-click="change_status"
               phx-value-id={return.id}
               phx-value-schema="return"
@@ -63,7 +60,7 @@
             >
               inactive
             </button>
-            <%end %>
+          <% end %>
         </td>
 
         <td class="p-2">

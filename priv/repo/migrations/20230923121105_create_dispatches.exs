@@ -17,7 +17,7 @@ defmodule Grey.Repo.Migrations.CreateDispatches do
       add :description, :string
       add :rack, :string
       add :image, :string
-      add :status, :string
+      add :active, :boolean, default: false, null: false
       add :user_id, :integer
 
       timestamps()

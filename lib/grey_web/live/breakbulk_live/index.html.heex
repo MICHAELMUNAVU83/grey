@@ -27,7 +27,6 @@
       <th>Description</th>
       <th>Quantity</th>
       <th>Uom</th>
-      <th>Status Change</th>
 
       <th>Active</th>
     </tr>
@@ -37,27 +36,29 @@
       <tr id={"breakbulk-#{breakbulk.id}"}>
         <td><%= breakbulk.code %></td>
         <td>
-          <%= if breakbulk.status == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+          <%= if breakbulk.active == true do %>
+            <button
+              phx-click="change_status"
+              phx-value-id={breakbulk.id}
+              phx-value-schema="breakbulk"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={breakbulk.id}
+              phx-value-schema="breakbulk"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
         <td><%= breakbulk.description %></td>
         <td><%= breakbulk.quantity %></td>
         <td><%= breakbulk.uom %></td>
-
-        <td>
-          <div phx-value-id={breakbulk.id} phx-click="change_status">
-            <p class="bg-blue-400 cursor-pointer w-[70%] mx-auto p-3 text-white">
-              Change Status
-            </p>
-          </div>
-        </td>
 
         <td class="p-2">
           <div class="flex flex-row gap-2 justify-center items-center">

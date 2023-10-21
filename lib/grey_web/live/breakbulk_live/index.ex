@@ -4,6 +4,7 @@ defmodule GreyWeb.BreakbulkLive.Index do
   alias Grey.Breakbulks
   alias Grey.Breakbulks.Breakbulk
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -40,10 +41,9 @@ defmodule GreyWeb.BreakbulkLive.Index do
     |> assign(:breakbulk, nil)
   end
 
-  def handle_event("change_status", %{"id" => id}, socket) do
-    breakbulk = Breakbulks.get_breakbulk!(id)
-
-    {:ok, _} = Breakbulks.update_breakbulk(breakbulk, %{status: !breakbulk.status})
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :breakbulks, list_breakbulks())}
   end

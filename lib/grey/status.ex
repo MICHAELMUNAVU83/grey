@@ -20,6 +20,8 @@ defmodule Grey.Status do
   alias Grey.Devices
   alias Grey.Storages
   alias Grey.Returns
+  alias Grey.Breakbulks
+  alias Grey.Dispatches
 
   def change_status(id, schema) do
     case schema do
@@ -47,11 +49,21 @@ defmodule Grey.Status do
         items = Repo.one(from x in Storage, where: x.id == ^id)
 
         update_status(items, "storage")
-        "return" ->
-          items = Repo.one(from x in Return, where: x.id == ^id)
 
-          update_status(items, "return")
+      "return" ->
+        items = Repo.one(from x in Return, where: x.id == ^id)
 
+        update_status(items, "return")
+
+      "breakbulk" ->
+        items = Repo.one(from x in Breakbulk, where: x.id == ^id)
+
+        update_status(items, "breakbulk")
+
+      "dispatch" ->
+        items = Repo.one(from x in Dispatch, where: x.id == ^id)
+
+        update_status(items, "dispatch")
 
       _ ->
         "nothing to update"
@@ -94,12 +106,27 @@ defmodule Grey.Status do
         else
           Storages.update_storage(context, %{"active" => true})
         end
-        "return" ->
-          if context.active == true do
-            Returns.update_return(context, %{"active" => false})
-          else
-            Returns.update_return(context, %{"active" => true})
-          end
+
+      "return" ->
+        if context.active == true do
+          Returns.update_return(context, %{"active" => false})
+        else
+          Returns.update_return(context, %{"active" => true})
+        end
+
+      "breakbulk" ->
+        if context.active == true do
+          Breakbulks.update_breakbulk(context, %{"active" => false})
+        else
+          Breakbulks.update_breakbulk(context, %{"active" => true})
+        end
+
+      "dispatch" ->
+        if context.active == true do
+          Dispatches.update_dispatch(context, %{"active" => false})
+        else
+          Dispatches.update_dispatch(context, %{"active" => true})
+        end
     end
   end
 end

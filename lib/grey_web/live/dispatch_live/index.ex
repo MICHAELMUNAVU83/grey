@@ -4,6 +4,7 @@ defmodule GreyWeb.DispatchLive.Index do
   alias Grey.Dispatches
   alias Grey.Dispatches.Dispatch
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -44,6 +45,13 @@ defmodule GreyWeb.DispatchLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     dispatch = Dispatches.get_dispatch!(id)
     {:ok, _} = Dispatches.delete_dispatch(dispatch)
+
+    {:noreply, assign(socket, :dispatches, list_dispatches())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :dispatches, list_dispatches())}
   end
