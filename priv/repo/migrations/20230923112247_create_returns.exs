@@ -8,7 +8,7 @@ defmodule Grey.Repo.Migrations.CreateReturns do
       add :name, :string
       add :phone, :string
       add :reason, :string
-      add :status, :string
+      add :active, :boolean, default: false, null: false
       add :user_id, :integer
 
       timestamps()

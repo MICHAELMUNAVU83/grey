@@ -9,7 +9,7 @@ defmodule Grey.Returns.Return do
     field :phone, :string
     field :quantity, :integer
     field :reason, :string
-    field :status, :string
+    field :active, :boolean, default: false
     belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
@@ -18,7 +18,7 @@ defmodule Grey.Returns.Return do
   @doc false
   def changeset(return, attrs) do
     return
-    |> cast(attrs, [:item, :quantity, :name, :phone, :reason, :status, :user_id])
-    |> validate_required([:item, :quantity, :name, :phone, :reason, :status, :user_id])
+    |> cast(attrs, [:item, :quantity, :name, :phone, :reason, :active, :user_id])
+    |> validate_required([:item, :quantity, :name, :phone, :reason, :active, :user_id])
   end
 end

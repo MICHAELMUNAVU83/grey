@@ -19,6 +19,7 @@ defmodule Grey.Status do
   alias Grey.Staffs
   alias Grey.Devices
   alias Grey.Storages
+  alias Grey.Returns
 
   def change_status(id, schema) do
     case schema do
@@ -46,6 +47,11 @@ defmodule Grey.Status do
         items = Repo.one(from x in Storage, where: x.id == ^id)
 
         update_status(items, "storage")
+        "return" ->
+          items = Repo.one(from x in Return, where: x.id == ^id)
+
+          update_status(items, "return")
+
 
       _ ->
         "nothing to update"
@@ -88,6 +94,12 @@ defmodule Grey.Status do
         else
           Storages.update_storage(context, %{"active" => true})
         end
+        "return" ->
+          if context.active == true do
+            Returns.update_return(context, %{"active" => false})
+          else
+            Returns.update_return(context, %{"active" => true})
+          end
     end
   end
 end

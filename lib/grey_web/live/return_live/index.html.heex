@@ -42,15 +42,28 @@
         <td><%= return.phone %></td>
         <td><%= return.reason %></td>
         <td>
-          <%= if return.status == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+          <%= if return.active == true do %>
+           
+
+
+           <button
+              phx-click="change_status"
+              phx-value-id={return.id}
+              phx-value-schema="return"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={return.id}
+              phx-value-schema="return"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
-          <% end %>
+            </button>
+            <%end %>
         </td>
 
         <td class="p-2">
