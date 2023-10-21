@@ -7,7 +7,7 @@ defmodule Grey.Retailers.Retailer do
     field :description, :string
     field :location, :string
     field :name, :string
-    field :status, :string
+    field :active, :boolean, default: false
     belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
@@ -16,7 +16,7 @@ defmodule Grey.Retailers.Retailer do
   @doc false
   def changeset(retailer, attrs) do
     retailer
-    |> cast(attrs, [:name, :location, :description, :status, :user_id])
-    |> validate_required([:name, :location, :description, :status, :user_id])
+    |> cast(attrs, [:name, :location, :description, :active, :user_id])
+    |> validate_required([:name, :location, :description, :active, :user_id])
   end
 end

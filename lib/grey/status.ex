@@ -22,6 +22,8 @@ defmodule Grey.Status do
   alias Grey.Returns
   alias Grey.Breakbulks
   alias Grey.Dispatches
+  alias Grey.Retailers
+  alias Grey.Suppliers
 
   def change_status(id, schema) do
     case schema do
@@ -64,6 +66,21 @@ defmodule Grey.Status do
         items = Repo.one(from x in Dispatch, where: x.id == ^id)
 
         update_status(items, "dispatch")
+
+      "retailer" ->
+        items = Repo.one(from x in Retailer, where: x.id == ^id)
+
+        update_status(items, "retailer")
+
+      "supplier" ->
+        items = Repo.one(from x in Supplier, where: x.id == ^id)
+
+        update_status(items, "supplier")
+
+      "putaway" ->
+        items = Repo.one(from x in Putaway, where: x.id == ^id)
+
+        update_status(items, "putaway")
 
       _ ->
         "nothing to update"
@@ -126,6 +143,27 @@ defmodule Grey.Status do
           Dispatches.update_dispatch(context, %{"active" => false})
         else
           Dispatches.update_dispatch(context, %{"active" => true})
+        end
+
+      "retailer" ->
+        if context.active == true do
+          Retailers.update_retailer(context, %{"active" => false})
+        else
+          Retailers.update_retailer(context, %{"active" => true})
+        end
+
+      "supplier" ->
+        if context.active == true do
+          Suppliers.update_supplier(context, %{"active" => false})
+        else
+          Suppliers.update_supplier(context, %{"active" => true})
+        end
+
+      "putaway" ->
+        if context.active == true do
+          Putaways.update_putaway(context, %{"active" => false})
+        else
+          Putaways.update_putaway(context, %{"active" => true})
         end
     end
   end

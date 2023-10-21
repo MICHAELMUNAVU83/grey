@@ -4,6 +4,7 @@ defmodule GreyWeb.RetailerLive.Index do
   alias Grey.Retailers
   alias Grey.Retailers.Retailer
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -44,6 +45,13 @@ defmodule GreyWeb.RetailerLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     retailer = Retailers.get_retailer!(id)
     {:ok, _} = Retailers.delete_retailer(retailer)
+
+    {:noreply, assign(socket, :retailers, list_retailers())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :retailers, list_retailers())}
   end

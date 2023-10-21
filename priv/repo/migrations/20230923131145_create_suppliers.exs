@@ -5,7 +5,7 @@ defmodule Grey.Repo.Migrations.CreateSuppliers do
     create table(:suppliers) do
       add :name, :string
       add :description, :string
-      add :status, :string
+      add :active, :boolean, default: false, null: false
       add :user_id, :integer
 
       timestamps()

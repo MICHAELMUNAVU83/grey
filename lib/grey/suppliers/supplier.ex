@@ -6,7 +6,7 @@ defmodule Grey.Suppliers.Supplier do
   schema "suppliers" do
     field :description, :string
     field :name, :string
-    field :status, :string
+    field :active, :boolean, default: false
     belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
@@ -15,7 +15,7 @@ defmodule Grey.Suppliers.Supplier do
   @doc false
   def changeset(supplier, attrs) do
     supplier
-    |> cast(attrs, [:name, :description, :status, :user_id])
-    |> validate_required([:name, :description, :status, :user_id])
+    |> cast(attrs, [:name, :description, :active, :user_id])
+    |> validate_required([:name, :description, :active, :user_id])
   end
 end

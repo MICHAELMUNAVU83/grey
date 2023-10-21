@@ -4,6 +4,7 @@ defmodule GreyWeb.SupplierLive.Index do
   alias Grey.Suppliers
   alias Grey.Suppliers.Supplier
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -44,6 +45,13 @@ defmodule GreyWeb.SupplierLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     supplier = Suppliers.get_supplier!(id)
     {:ok, _} = Suppliers.delete_supplier(supplier)
+
+    {:noreply, assign(socket, :suppliers, list_suppliers())}
+  end
+
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :suppliers, list_suppliers())}
   end

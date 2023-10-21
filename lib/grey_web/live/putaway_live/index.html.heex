@@ -36,14 +36,24 @@
         <td><%= putaway.rack %></td>
         <td><%= putaway.item %></td>
         <td>
-          <%= if putaway.status == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+          <%= if putaway.active == true do %>
+            <button
+              phx-click="change_status"
+              phx-value-id={putaway.id}
+              phx-value-schema="putaway"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={putaway.id}
+              phx-value-schema="putaway"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
 
