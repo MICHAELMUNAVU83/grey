@@ -24,6 +24,7 @@ defmodule Grey.Status do
   alias Grey.Dispatches
   alias Grey.Retailers
   alias Grey.Suppliers
+  alias Grey.Putaways
 
   def change_status(id, schema) do
     case schema do

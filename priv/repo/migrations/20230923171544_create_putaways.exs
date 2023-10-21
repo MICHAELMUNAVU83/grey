@@ -5,7 +5,7 @@ defmodule Grey.Repo.Migrations.CreatePutaways do
     create table(:putaways) do
       add :rack, :string
       add :item, :string
-      field(:active, :boolean, default: false)
+      add :active, :boolean, default: false
       add :user_id, :integer
 
       timestamps()
