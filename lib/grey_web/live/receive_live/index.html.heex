@@ -1,21 +1,19 @@
 <%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.vehicle_index_path(@socket, :index)}>
+  <.modal return_to={Routes.receive_index_path(@socket, :index)}>
     <.live_component
-      module={GreyWeb.VehicleLive.FormComponent}
-      id={@vehicle.id || :new}
+      module={GreyWeb.ReceiveLive.FormComponent}
+      id={@receive.id || :new}
       title={@page_title}
       action={@live_action}
-      vehicle={@vehicle}
+      receive={@receive}
       user={@user}
-      staff = {@staff}
-      return_to={Routes.vehicle_index_path(@socket, :index)}
+      return_to={Routes.receive_index_path(@socket, :index)}
     />
   </.modal>
 <% end %>
-
 <div class="flex justify-start w-[100%] p-4">
-  <%= live_patch(to: Routes.vehicle_index_path(@socket, :new) , class: "bg-[#259BFF] text-white flex items-center gap-2 rounded-md px-2 py-4") do %>
-    Add A Vehicle <i class="fa fa-plus " style="font-size: 20px" aria-hidden="true"></i>
+  <%= live_patch(to: Routes.receive_index_path(@socket, :new), class: "bg-[#259BFF] text-white flex items-center gap-2 rounded-md px-2 py-4") do %>
+    Add A Receive <i class="fa fa-plus " style="font-size: 20px" aria-hidden="true"></i>
   <% end %>
 </div>
 
@@ -24,30 +22,41 @@
 <table class="w-[100%] p-2">
   <thead class="text-[#0F52BA]">
     <tr>
-      <th>Make of car</th>
-      <th>Type</th>
-      <th>Registration Number</th>
-      <th>Serial</th>
+      <th>Name</th>
+      <th>Gtin</th>
+      <th>Qty</th>
+      <th>Uom</th>
+      <th>Weight</th>
+      <th>Batch</th>
       <th>Description</th>
-      <th>Status</th>
-
+      <th>Active</th>
+      <th>Production</th>
+      <th>Expiry</th>
       <th>Actions</th>
+
+      <th></th>
     </tr>
   </thead>
-  <tbody class="text-center" id="vehicle">
-    <%= for vehicle <- @vehicle_collection do %>
-      <tr class="border-b-[1px] border-gray-400" id={"vehicle-#{vehicle.id}"}>
-        <td><%= vehicle.makeofcar %></td>
-        <td><%= vehicle.type %></td>
-        <td><%= vehicle.reg %></td>
-        <td><%= vehicle.serial %></td>
-        <td><%= vehicle.description %></td>
+  <tbody class="text-center" id="dispatches">
+    <%= for receive <- @receives do %>
+      <tr id={"receive-#{receive.id}"}>
+        <td><%= receive.name %></td>
+        <td><%= receive.gtin %></td>
+        <td><%= receive.qty %></td>
+        <td><%= receive.uom %></td>
+        <td><%= receive.weight %></td>
+        <td><%= receive.batch %></td>
+        <td><%= receive.description %></td>
+
+        <td><%= receive.production %></td>
+        <td><%= receive.expiry %></td>
+
         <td>
-          <%= if vehicle.active == true do %>
+          <%= if receive.active == true do %>
             <button
               phx-click="change_status"
-              phx-value-id={vehicle.id}
-              phx-value-schema="Vehicle"
+              phx-value-id={receive.id}
+              phx-value-schema="receive"
               class="bg-green-500 text-white rounded-md px-1 py-1"
             >
               active
@@ -55,8 +64,8 @@
           <% else %>
             <button
               phx-click="change_status"
-              phx-value-id={vehicle.id}
-              phx-value-schema="Vehicle"
+              phx-value-id={receive.id}
+              phx-value-schema="receive"
               class="bg-red-500 text-white rounded-md px-1 py-1"
             >
               inactive
@@ -67,14 +76,14 @@
         <td class="p-2">
           <div class="flex flex-row gap-2 justify-center items-center">
             <div>
-              <%= live_redirect(to: Routes.vehicle_show_path(@socket, :show, vehicle)) do %>
+              <%= live_redirect(to: Routes.receive_show_path(@socket, :show, receive)) do %>
                 <i class="fa fa-eye text-green-500" style="font-size: 20px" aria-hidden="true">
                 </i>
               <% end %>
             </div>
 
             <div>
-              <%= live_patch(to: Routes.vehicle_index_path(@socket, :edit, vehicle)) do %>
+              <%= live_patch(to:  Routes.receive_index_path(@socket, :edit, receive)) do %>
                 <i class="fa fa-pencil text-blue-500" style="font-size: 20px" aria-hidden="true">
                 </i>
               <% end %>
@@ -84,7 +93,7 @@
               <%= link(
                     to: "#",
                     phx_click: "delete",
-                    phx_value_id: vehicle.id,
+                    phx_value_id: receive.id,
                     data: [confirm: "Are you sure?"]
                   )  do %>
                 <i class="fa fa-trash text-red-500 " style="font-size: 20px" aria-hidden="true">

@@ -13,7 +13,8 @@ defmodule Grey.Status do
   alias Grey.Suppliers.Supplier
   alias Grey.Putaways.Putaway
   alias Grey.Storages.Storage
-
+  alias Grey.Receives.Receive
+  alias Grey.Receives
   alias Grey.WareHouses
   alias Grey.Vehicles
   alias Grey.Staffs
@@ -26,7 +27,6 @@ defmodule Grey.Status do
   alias Grey.Suppliers
   alias Grey.Putaways
   alias Grey.Transfers
-
 
   def change_status(id, schema) do
     case schema do
@@ -84,10 +84,16 @@ defmodule Grey.Status do
         items = Repo.one(from x in Putaway, where: x.id == ^id)
 
         update_status(items, "putaway")
-        "transfer" ->
-          IO.write("im at transfer")
-          items = Repo.one(from x in Transfer, where: x.id == ^id)
-          update_status(items, "transfer")
+
+      "transfer" ->
+        IO.write("im at transfer")
+        items = Repo.one(from x in Transfer, where: x.id == ^id)
+        update_status(items, "transfer")
+
+      "recieve" ->
+        IO.write("im at recieve")
+        items = Repo.one(from x in Recieve, where: x.id == ^id)
+        update_status(items, "recieve")
 
       _ ->
         "nothing to update"
@@ -172,12 +178,20 @@ defmodule Grey.Status do
         else
           Putaways.update_putaway(context, %{"active" => true})
         end
-        "transfer" ->
-          if context.active == true do
-            Transfers.update_transfer(context, %{"active" => false})
-          else
-            Transfers.update_transfer(context, %{"active" => true})
-          end
+
+      "transfer" ->
+        if context.active == true do
+          Transfers.update_transfer(context, %{"active" => false})
+        else
+          Transfers.update_transfer(context, %{"active" => true})
+        end
+
+      "receive" ->
+        if context.active == true do
+          Recieves.update_receive(context, %{"active" => false})
+        else
+          Recieves.update_receive(context, %{"active" => true})
+        end
     end
   end
 end

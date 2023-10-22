@@ -82,7 +82,7 @@
                 </div>
               <% end %>
             </li>
-            
+
             <li class="item">
               <%= live_redirect(
         to: Routes.staff_index_path(@socket, :index),
@@ -167,16 +167,16 @@
           <% end %>
         </li>
         <li class="item">
-              <%= live_redirect(
+          <%= live_redirect(
         to: Routes.transfer_index_path(@socket, :index),
         class: "flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
       )  do %>
-                <div class="flex justify-between w-[100%] items-center">
-                  Transfers
-                  <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
-                </div>
-              <% end %>
-            </li>
+            <div class="flex justify-between w-[100%] items-center">
+              Transfers
+              <i class="fa fa-chevron-right" style="font-size: 12px" aria-hidden="true"></i>
+            </div>
+          <% end %>
+        </li>
         <li class="item">
           <div class="submenu-item">
             <span>Users</span>

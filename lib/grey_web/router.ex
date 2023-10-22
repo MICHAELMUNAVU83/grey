@@ -83,6 +83,13 @@ defmodule GreyWeb.Router do
     live "/staff/new", StaffLive.Index, :new
     live "/staff/:id/edit", StaffLive.Index, :edit
 
+    live "/receives", ReceiveLive.Index, :index
+    live "/receives/new", ReceiveLive.Index, :new
+    live "/receives/:id/edit", ReceiveLive.Index, :edit
+
+    live "/receives/:id", ReceiveLive.Show, :show
+    live "/receives/:id/show/edit", ReceiveLive.Show, :edit
+
     live "/staff/:id", StaffLive.Show, :show
     live "/staff/:id/show/edit", StaffLive.Show, :edit
     live "/device", DeviceLive.Index, :index

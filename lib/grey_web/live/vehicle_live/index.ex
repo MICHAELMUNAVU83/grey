@@ -5,17 +5,20 @@ defmodule GreyWeb.VehicleLive.Index do
   alias Grey.Vehicles.Vehicle
   alias Grey.Users
   alias Grey.Status
+  alias Grey.Staffs
 
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
+    staff = Staffs.list_staff!()
 
     {:ok,
      socket
      |> assign(:heading, "Vehicles")
      |> assign(:subheading, "This is a list of all your vehicles")
      |> assign(:vehicle_collection, list_vehicle())
-     |> assign(:user, user)}
+     |> assign(:user, user)
+    |>assign(:staff, staff)}
   end
 
   @impl true

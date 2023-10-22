@@ -38,7 +38,7 @@
         <td><%= transfer.rack_to %></td>
         <td>
           <%= if transfer.active == true do %>
-           <button
+            <button
               phx-click="change_status"
               phx-value-id={transfer.id}
               phx-value-schema="transfer"

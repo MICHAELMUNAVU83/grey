@@ -1,0 +1,71 @@
+<h1>Show Receive</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.receive_show_path(@socket, :show, @receive)}>
+    <.live_component
+      module={GreyWeb.ReceiveLive.FormComponent}
+      id={@receive.id}
+      title={@page_title}
+      action={@live_action}
+      receive={@receive}
+      return_to={Routes.receive_show_path(@socket, :show, @receive)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @receive.name %>
+  </li>
+
+  <li>
+    <strong>Gtin:</strong>
+    <%= @receive.gtin %>
+  </li>
+
+  <li>
+    <strong>Qty:</strong>
+    <%= @receive.qty %>
+  </li>
+
+  <li>
+    <strong>Uom:</strong>
+    <%= @receive.uom %>
+  </li>
+
+  <li>
+    <strong>Weight:</strong>
+    <%= @receive.weight %>
+  </li>
+
+  <li>
+    <strong>Batch:</strong>
+    <%= @receive.batch %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @receive.description %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @receive.active %>
+  </li>
+
+  <li>
+    <strong>Production:</strong>
+    <%= @receive.production %>
+  </li>
+
+  <li>
+    <strong>Expiry:</strong>
+    <%= @receive.expiry %>
+  </li>
+</ul>
+
+<span>
+  <%= live_patch("Edit", to: Routes.receive_show_path(@socket, :edit, @receive), class: "button") %>
+</span> |
+<span><%= live_redirect("Back", to: Routes.receive_index_path(@socket, :index)) %></span>

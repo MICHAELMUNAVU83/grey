@@ -1,9 +1,8 @@
-defmodule GreyWeb.TransferLive.Index do
+defmodule GreyWeb.ReceiveLive.Index do
   use GreyWeb, :admin_live_view
 
-  alias Grey.Transfers
-  alias Grey.Transfers.Transfer
-  alias Grey.Users
+  alias Grey.Receives
+  alias Grey.Receives.Receive
   alias Grey.Users
   alias Grey.Status
 
@@ -13,9 +12,9 @@ defmodule GreyWeb.TransferLive.Index do
 
     {:ok,
      socket
-     |> assign(:heading, "Transfers")
-     |> assign(:subheading, "This is a list of all your transfers")
-     |> assign(:transfers, list_transfers())
+     |> assign(:heading, "Recieves")
+     |> assign(:subheading, "This is a list of all your recieved items")
+     |> assign(:receives, list_receives())
      |> assign(:user, user)}
   end
 
@@ -26,38 +25,38 @@ defmodule GreyWeb.TransferLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Transfer")
-    |> assign(:transfer, Transfers.get_transfer!(id))
+    |> assign(:page_title, "Edit Receive")
+    |> assign(:receive, Receives.get_receive!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Transfer")
-    |> assign(:transfer, %Transfer{})
+    |> assign(:page_title, "New Receive")
+    |> assign(:receive, %Receive{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Transfers")
-    |> assign(:transfer, nil)
+    |> assign(:page_title, "Listing Receives")
+    |> assign(:receive, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    transfer = Transfers.get_transfer!(id)
-    {:ok, _} = Transfers.delete_transfer(transfer)
+    receive = Receives.get_receive!(id)
+    {:ok, _} = Receives.delete_receive(receive)
 
-    {:noreply, assign(socket, :transfers, list_transfers())}
+    {:noreply, assign(socket, :receives, list_receives())}
   end
 
   @impl true
   def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
     Status.change_status(id, schema)
 
-    {:noreply, assign(socket, :transfers, list_transfers())}
+    {:noreply, assign(socket, :receives, list_receives())}
   end
 
-  defp list_transfers do
-    Transfers.list_transfers()
+  defp list_receives do
+    Receives.list_receives()
   end
 end
