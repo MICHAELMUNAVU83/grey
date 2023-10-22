@@ -37,14 +37,24 @@
         <td><%= transfer.item %></td>
         <td><%= transfer.rack_to %></td>
         <td>
-          <%= if transfer.status == true do %>
-            <div class="bg-green-500 text-white rounded-md px-1 py-1">
+          <%= if transfer.active == true do %>
+           <button
+              phx-click="change_status"
+              phx-value-id={transfer.id}
+              phx-value-schema="transfer"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
               active
-            </div>
+            </button>
           <% else %>
-            <div class="bg-red-500 text-white rounded-md px-1 py-1">
+            <button
+              phx-click="change_status"
+              phx-value-id={transfer.id}
+              phx-value-schema="transfer"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
               inactive
-            </div>
+            </button>
           <% end %>
         </td>
 

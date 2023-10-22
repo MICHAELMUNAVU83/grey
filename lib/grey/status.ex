@@ -25,6 +25,8 @@ defmodule Grey.Status do
   alias Grey.Retailers
   alias Grey.Suppliers
   alias Grey.Putaways
+  alias Grey.Transfers
+
 
   def change_status(id, schema) do
     case schema do
@@ -82,6 +84,10 @@ defmodule Grey.Status do
         items = Repo.one(from x in Putaway, where: x.id == ^id)
 
         update_status(items, "putaway")
+        "transfer" ->
+          IO.write("im at transfer")
+          items = Repo.one(from x in Transfer, where: x.id == ^id)
+          update_status(items, "transfer")
 
       _ ->
         "nothing to update"
@@ -166,6 +172,12 @@ defmodule Grey.Status do
         else
           Putaways.update_putaway(context, %{"active" => true})
         end
+        "transfer" ->
+          if context.active == true do
+            Transfers.update_transfer(context, %{"active" => false})
+          else
+            Transfers.update_transfer(context, %{"active" => true})
+          end
     end
   end
 end

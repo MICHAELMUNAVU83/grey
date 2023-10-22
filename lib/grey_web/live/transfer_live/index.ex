@@ -5,6 +5,7 @@ defmodule GreyWeb.TransferLive.Index do
   alias Grey.Transfers.Transfer
   alias Grey.Users
   alias Grey.Users
+  alias Grey.Status
 
   @impl true
   def mount(_params, session, socket) do
@@ -45,6 +46,12 @@ defmodule GreyWeb.TransferLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     transfer = Transfers.get_transfer!(id)
     {:ok, _} = Transfers.delete_transfer(transfer)
+
+    {:noreply, assign(socket, :transfers, list_transfers())}
+  end
+  @impl true
+  def handle_event("change_status", %{"id" => id, "schema" => schema}, socket) do
+    Status.change_status(id, schema)
 
     {:noreply, assign(socket, :transfers, list_transfers())}
   end

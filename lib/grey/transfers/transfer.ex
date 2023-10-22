@@ -7,7 +7,7 @@ defmodule Grey.Transfers.Transfer do
     field :item, :string
     field :rack_from, :string
     field :rack_to, :string
-    field :status, :string
+    field :active, :boolean, default: false
     belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
@@ -16,7 +16,7 @@ defmodule Grey.Transfers.Transfer do
   @doc false
   def changeset(transfer, attrs) do
     transfer
-    |> cast(attrs, [:rack_from, :item, :rack_to, :status, :user_id])
-    |> validate_required([:rack_from, :item, :rack_to, :status, :user_id])
+    |> cast(attrs, [:rack_from, :item, :rack_to, :active, :user_id])
+    |> validate_required([:rack_from, :item, :rack_to, :active, :user_id])
   end
 end

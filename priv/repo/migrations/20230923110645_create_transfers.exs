@@ -6,7 +6,7 @@ defmodule Grey.Repo.Migrations.CreateTransfers do
       add :rack_from, :string
       add :item, :string
       add :rack_to, :string
-      add :status, :string
+      add :active, :boolean, default: false, null: false
       add :user_id, :integer
 
       timestamps()
