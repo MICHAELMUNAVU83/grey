@@ -89,11 +89,11 @@ defmodule Grey.Staffs do
     Repo.delete(staff)
   end
 
-
   def list_staff!() do
-    Repo.all(from(s in Staff,  select: {fragment("concat(?, ' ',  ?  )", s.firstname, s.lastname), s.id}))
+    Repo.all(
+      from(s in Staff, select: {fragment("concat(?, ' ',  ?  )", s.firstname, s.lastname), s.id})
+    )
   end
-
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking staff changes.

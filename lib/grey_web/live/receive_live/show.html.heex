@@ -67,5 +67,6 @@
 
 <span>
   <%= live_patch("Edit", to: Routes.receive_show_path(@socket, :edit, @receive), class: "button") %>
-</span> |
+</span>
+|
 <span><%= live_redirect("Back", to: Routes.receive_index_path(@socket, :index)) %></span>

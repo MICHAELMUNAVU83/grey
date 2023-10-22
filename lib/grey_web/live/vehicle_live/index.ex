@@ -18,7 +18,7 @@ defmodule GreyWeb.VehicleLive.Index do
      |> assign(:subheading, "This is a list of all your vehicles")
      |> assign(:vehicle_collection, list_vehicle())
      |> assign(:user, user)
-    |>assign(:staff, staff)}
+     |> assign(:staff, staff)}
   end
 
   @impl true
