@@ -5,17 +5,20 @@ defmodule GreyWeb.ReturnLive.Index do
   alias Grey.Returns.Return
   alias Grey.Users
   alias Grey.Status
+  alias Grey.Receives
 
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
+    receives = Receives.list_receives()
 
     {:ok,
      socket
      |> assign(:heading, "Returns")
      |> assign(:subheading, "This is a list of all your returns")
      |> assign(:returns, list_returns())
-     |> assign(:user, user)}
+     |> assign(:user, user)
+     |> assign(:receives, receives)}
   end
 
   @impl true
