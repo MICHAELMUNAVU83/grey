@@ -1,76 +1,67 @@
 <div>
   <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
+  <%= if @form_count != 0 do %>
+    <form phx-submit="saver" phx-target={@myself} phx-change="validate_form" id="formdiv">
+      <%= for _ <- 1..@form_count do %>
+        <div class="flex flex-col w-[100%] gap-2">
+          <div class="w-[100%] flex justify-between">
+            <div class="w-[48%] flex flex-col gap-2">
+              <label for="code" class="text-xl text-[#0F52BA]">Code</label>
+              <input
+                type="text"
+                name="code[]"
+                id="code"
+                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              />
+              <!-- error_tag(f, :code) %> -->
+            </div>
 
-  <.form
-    let={f}
-    for={@changeset}
-    id="breakbulk-form"
-    phx-target={@myself}
-    phx-change="validate"
-    phx-submit="save"
-  >
-    <div class="flex flex-col w-[100%] gap-2">
-      <div class="w-[100%] flex justify-between">
-        <div class="w-[48%] flex flex-col gap-2">
-          <%= label(f, :code, class: "text-xl text-[#0F52BA] ") %>
-          <%= text_input(f, :code,
-            class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-          ) %>
-          <%= error_tag(f, :code) %>
+            <div class="w-[48%] flex flex-col gap-2">
+              <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
+              <input
+                type="text"
+                name="quantity[]"
+                id="quantity"
+                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              />
+              <!-- error_tag(f, :quantity) %> -->
+            </div>
+          </div>
+
+          <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
+          <select
+            name="uom[]"
+            id="uom"
+            class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          >
+            <option value="" disabled selected>Select UOM</option>
+            <option value="Carton">Carton</option>
+            <option value="Pallet">Pallet</option>
+            <option value="Container">Container</option>
+            <option value="Box">Box</option>
+            <option value="Bag">Bag</option>
+            <option value="Drum">Drum</option>
+            <option value="Piece">Piece</option>
+            <option value="Roll">Roll</option>
+            <option value="Bundle">Bundle</option>
+            <option value="Other">Other</option>
+          </select>
+          <!-- error_tag(f, :uom) %> -->
+          <div class="w-[100%] flex flex-row items-center gap-2">
+            <label for="status" class="text-xl text-[#0F52BA]">Status</label>
+            <input type="checkbox" name="status[]" id="status" />
+          </div>
         </div>
-
-        <div class="w-[48%] flex flex-col gap-2">
-          <%= label(f, :quantity, class: "text-xl text-[#0F52BA] ") %>
-          <%= text_input(f, :quantity,
-            class:
-              "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-          ) %>
-          <%= error_tag(f, :quantity) %>
-        </div>
-      </div>
-
-      <%= label(f, :unit_of_measurement, class: "text-xl text-[#0F52BA] ") %>
-      <%= select(
-        f,
-        :uom,
-        [
-          "Carton",
-          "Pallet",
-          "Container",
-          "Box",
-          "Bag",
-          "Drum",
-          "Piece",
-          "Roll",
-          "Bundle",
-          "Other"
-        ],
-        class:
-          "w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent",
-        prompt: "Select UOM"
-      ) %>
-      <%= error_tag(f, :uom) %>
-
-      <div class="w-[100%] flex flex-col gap-2">
-        <%= label(f, :description, class: "text-xl text-[#0F52BA]") %>
-        <%= textarea(f, :description,
-          class:
-            "w-[100%] h-[90px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-        ) %>
-        <%= error_tag(f, :description) %>
-      </div>
-      <div class="w-[100%] flex flex-row items-center gap-2">
-        <%= label(f, :status, class: "text-xl text-[#0F52BA]") %>
-        <%= checkbox(f, :status) %>
-      </div>
-
+      <% end %>
       <div class="flex flex-col w-[100%] justify-center items-center">
-        <%= submit("Add Breakbulk",
-          phx_disable_with: "Saving...",
-          class: "bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
-        ) %>
+        <input
+          type="submit"
+          value="Add Breakbulk"
+          class="bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+        />
       </div>
-    </div>
-  </.form>
+    </form>
+  <% end %>
+
+  <button phx-click="add_form" phx-target={@myself}>add</button>
 </div>

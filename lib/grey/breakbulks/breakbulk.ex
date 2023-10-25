@@ -18,6 +18,6 @@ defmodule Grey.Breakbulks.Breakbulk do
   def changeset(breakbulk, attrs) do
     breakbulk
     |> cast(attrs, [:code, :active, :description, :quantity, :uom, :user_id])
-    |> validate_required([:code, :active, :description, :quantity, :uom, :user_id])
+    |> validate_required([:code, :active, :quantity, :uom, :user_id])
   end
 end

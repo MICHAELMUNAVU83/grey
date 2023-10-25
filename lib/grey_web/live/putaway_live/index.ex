@@ -5,17 +5,19 @@ defmodule GreyWeb.PutawayLive.Index do
   alias Grey.Putaways.Putaway
   alias Grey.Users
   alias Grey.Status
-
+  alias Grey.Receives
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
+    receives = Receives.list_receives()
 
     {:ok,
      socket
      |> assign(:heading, "Putaways")
      |> assign(:subheading, "This is a list of all your putaways")
      |> assign(:putaways, list_putaways())
-     |> assign(:user, user)}
+     |> assign(:user, user)
+     |> assign(:receives, receives)}
   end
 
   @impl true
