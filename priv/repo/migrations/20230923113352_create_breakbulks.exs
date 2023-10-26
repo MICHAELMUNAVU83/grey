@@ -9,6 +9,7 @@ defmodule Grey.Repo.Migrations.CreateBreakbulks do
       add :quantity, :string
       add :uom, :string
       add :user_id, :integer
+      add :items, :string
 
       timestamps()
     end

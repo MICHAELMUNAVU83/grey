@@ -92,7 +92,7 @@ defmodule Grey.Status do
 
       "recieve" ->
         IO.write("im at recieve")
-        items = Repo.one(from x in Recieve, where: x.id == ^id)
+        items = Repo.one(from x in Receive, where: x.id == ^id)
         update_status(items, "recieve")
 
       _ ->
@@ -188,9 +188,9 @@ defmodule Grey.Status do
 
       "receive" ->
         if context.active == true do
-          Recieves.update_receive(context, %{"active" => false})
+          Receives.update_receive(context, %{"active" => false})
         else
-          Recieves.update_receive(context, %{"active" => true})
+          Receives.update_receive(context, %{"active" => true})
         end
     end
   end

@@ -21,6 +21,10 @@ defmodule Grey.Breakbulks do
     Repo.all(Breakbulk)
   end
 
+  def add_all(data) do
+    Repo.insert_all(Breakbulk, data)
+  end
+
   @doc """
   Gets a single breakbulk.
 

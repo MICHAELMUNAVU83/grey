@@ -5,17 +5,20 @@ defmodule GreyWeb.BreakbulkLive.Index do
   alias Grey.Breakbulks.Breakbulk
   alias Grey.Users
   alias Grey.Status
+  alias Grey.Receives
 
   @impl true
   def mount(_params, session, socket) do
     user = Users.get_user_by_session_token(session["user_token"])
+    receives = Receives.list_receives()
 
     {:ok,
      socket
      |> assign(:heading, "BreakBulks")
      |> assign(:subheading, "This is a list of all your breakbulks")
      |> assign(:breakbulks, list_breakbulks())
-     |> assign(:user, user)}
+     |> assign(:user, user)
+     |> assign(:receives, receives)}
   end
 
   @impl true

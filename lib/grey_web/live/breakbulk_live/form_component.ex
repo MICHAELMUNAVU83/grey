@@ -75,69 +75,50 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
 
   @impl true
   def handle_event("saver", params, socket) do
-    list_quantity =
-      params["quantity"]
-      |> Enum.chunk_every(1)
-      |> Enum.map(fn [b] -> %{"quantity" => b} end)
+    IO.inspect(params)
 
-    list_uom =
-      params["uom"]
-      |> Enum.chunk_every(1)
-      |> Enum.map(fn [c] -> %{"uom" => c} end)
+    status =
+      if params["status"] == "on" do
+        true
+      else
+        false
+      end
 
-    list_code =
-      params["code"]
-      |> Enum.chunk_every(1)
-      |> Enum.map(fn [e] -> %{"code" => e} end)
+    code = SecureRandom.hex(6)
 
-    list_active =
-      params["active"]
-      |> Enum.chunk_every(1)
-      |> Enum.map(fn [f] -> %{"active" => f} end)
+    now =
+      NaiveDateTime.utc_now()
+      |> NaiveDateTime.truncate(:second)
 
-    list_description =
-      [""]
-      |> Enum.chunk_every(1)
-      |> Enum.map(fn [d] -> %{"description" => d} end)
+    [items, quantities, uom] = [params["item"], params["quantity"], params["uom"]]
 
-    IO.inspect(
-      list =
-        Enum.map(
-          for {b, c, d} <-
-                Enum.zip([list_quantity, list_uom, list_description, list_code, list_active]) do
-            Enum.concat([b, c, d])
-          end,
-          fn x ->
-            Enum.into(x, %{"active" => params["active"], "user_id" => socket.assigns.user.id})
-          end
-        )
-    )
-
-    changesets =
-      Enum.map(list, fn breakbulk ->
-        Breakbulk.changeset(%Breakbulk{}, breakbulk)
+    items_to_add =
+      Enum.zip(Enum.zip(items, quantities), uom)
+      |> Enum.map(fn {item_qty, uom_value} ->
+        {elem(item_qty, 0), elem(item_qty, 1), uom_value}
+      end)
+      |> Enum.map(fn {item, quantity, uom} ->
+        %{
+          items: item,
+          quantity: quantity,
+          uom: uom,
+          user_id: socket.assigns.user.id,
+          code: code,
+          active: status,
+          inserted_at: now,
+          updated_at: now
+        }
       end)
 
-    result =
-      changesets
-      |> Enum.with_index()
-      |> Enum.reduce(Ecto.Multi.new(), fn {changeset, index}, multi ->
-        Ecto.Multi.insert(multi, Integer.to_string(index), changeset)
-      end)
-      |> Repo.transaction()
+    Breakbulks.add_all(items_to_add)
 
-    case result do
-      {:ok, _} ->
-        {:noreply,
-         socket
-         |> put_flash(:info, "Breakbulk created successfully")}
-    end
+    {:noreply, socket}
   end
 
   @impl true
 
   def handle_event("validate_form", params, socket) do
-    IO.inspect(params["code"])
+    # IO.inspect(params["item"])
 
     {:noreply, socket}
   end

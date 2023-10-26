@@ -4,6 +4,7 @@ defmodule Grey.Breakbulks.Breakbulk do
   alias Grey.Users.User
 
   schema "breakbulks" do
+    field :items, :string
     field :code, :string
     field :description, :string
     field :quantity, :string
@@ -17,7 +18,7 @@ defmodule Grey.Breakbulks.Breakbulk do
   @doc false
   def changeset(breakbulk, attrs) do
     breakbulk
-    |> cast(attrs, [:code, :active, :description, :quantity, :uom, :user_id])
-    |> validate_required([:code, :active, :quantity, :uom, :user_id])
+    |> cast(attrs, [:code, :active, :description, :quantity, :uom, :user_id, :items])
+    |> validate_required([:code, :active, :quantity, :uom, :user_id, :items])
   end
 end
