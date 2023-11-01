@@ -1,11 +1,13 @@
 <div>
   <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
-  <p class="text-sm uppercase font-normal  text-[#ba230f]"><%= @error %></p>
+  <p class="text-sm uppercase font-normal  text-red-500"><%= @error %></p>
+  <button class = "bg-[#259BFF] px-4 py-2 rounded  shadow-sm text-white text-base" phx-hook="addform" id="addButton">add</button>
 
   <form phx-submit="saver" phx-change="validate" phx-target={@myself}>
     <div id="formdiv" class="flex-col  w-[100%] gap-2">
+   
       <div class="w-[100%] flex justify-between">
-        <div class="w-[48%] flex flex-col gap-2">
+        <div class="w-[30%] flex flex-col gap-2">
           <label for="item" class="text-xl text-[#0F52BA]">Item</label>
           <input
             type="text"
@@ -26,7 +28,7 @@
               <!-- error_tag(f, :code) %> -->
         </div>
 
-        <div class="w-[48%] flex flex-col gap-2">
+        <div class="w-[30%] flex flex-col gap-2">
           <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
           <input
             type="text"
@@ -36,26 +38,26 @@
           />
           <!-- error_tag(f, :quantity) %> -->
         </div>
-      </div>
-      <div class="w-[48%] flex flex-col gap-2">
-        <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
-        <select
-          name="uom[]"
-          id="uom"
-          class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-        >
-          <option value="" disabled selected>Select UOM</option>
-          <option value="Carton">Carton</option>
-          <option value="Pallet">Pallet</option>
-          <option value="Container">Container</option>
-          <option value="Box">Box</option>
-          <option value="Bag">Bag</option>
-          <option value="Drum">Drum</option>
-          <option value="Piece">Piece</option>
-          <option value="Roll">Roll</option>
-          <option value="Bundle">Bundle</option>
-          <option value="Other">Other</option>
-        </select>
+        <div class="w-[30%] flex flex-col gap-2">
+          <label for="uom" class="text-base text-[#0F52BA]">Unit of Measurement</label>
+          <select
+            name="uom[]"
+            id="uom"
+            class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          >
+            <option value="" disabled selected>Select UOM</option>
+            <option value="Carton">Carton</option>
+            <option value="Pallet">Pallet</option>
+            <option value="Container">Container</option>
+            <option value="Box">Box</option>
+            <option value="Bag">Bag</option>
+            <option value="Drum">Drum</option>
+            <option value="Piece">Piece</option>
+            <option value="Roll">Roll</option>
+            <option value="Bundle">Bundle</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
       </div>
       <!-- error_tag(f, :uom) %> -->
     </div>
@@ -64,6 +66,7 @@
       <label for="status" class="text-xl text-[#0F52BA]">Status</label>
       <input type="checkbox" name="status[]" id="status" />
     </div>
+    
     <div class="flex flex-col w-[100%] justify-center items-center">
       <input
         type="submit"
@@ -73,5 +76,4 @@
     </div>
   </form>
 
-  <button phx-hook="addform" id="addButton">add</button>
 </div>

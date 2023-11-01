@@ -15,7 +15,7 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
      |> assign(assigns)
      |> assign(:changeset, changeset)
      |> assign(:form_count, 1)
-    |>assign(:error, "")}
+     |> assign(:error, "")}
   end
 
   @impl true
@@ -110,7 +110,10 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:error, "there is a problem in you submission")
-        |>assign(:error, "there are some errors in you submission ..make sure you fill in all the fields with correct values")}
+         |> assign(
+           :error,
+           "there are some errors in you submission ..make sure you fill in all the fields with correct values"
+         )}
 
       _ ->
         IO.write("im here")
@@ -118,6 +121,4 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
         {:noreply, socket}
     end
   end
-
-
 end
