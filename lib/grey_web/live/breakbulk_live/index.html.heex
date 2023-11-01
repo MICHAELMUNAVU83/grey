@@ -29,7 +29,7 @@
   </div>
   <div id={"sample_sample_#{breakbulk.id}"} style="display:none">
     <table class="w-[100%] p-2">
-      <thead class="text-[#0F52BA]">
+      <thead class="text-[#188CE7]">
         <tr>
           <th>Code</th>
           <th>Status</th>
@@ -38,10 +38,10 @@
           <th>Uom</th>
 
           <th>Active</th>
-        </tr>
+        </tr>  
       </thead>
       <tbody class="text-center" id="breakbulks">
-      <%=for x <-IO.inspect Grey.Breakbulks.list_breakbulks_by_code(breakbulk.code) do %>
+      <%=for x <- Grey.Breakbulks.list_breakbulks_by_code(breakbulk.code) do %>
         <tr id={"breakbulk-#{x.id}"}>
           <td><%= x.code %></td>
           <td>
