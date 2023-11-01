@@ -24,8 +24,150 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+console.log("rtyurtyui")
 
 let Hooks = {};
+Hooks.addform={
+  mounted(){
+    console.log("it has started")
+    const form = document.getElementById('formdiv');
+    const addButton = document.getElementById('addButton');
+    
+    addButton.addEventListener('click', function() {
+      console.log("i havve been clicked!")
+      // Create a new set of form elements
+      const newFormElement = `
+        <div class="flex-col w-[100%] gap-2">
+          <div class="w-[100%] flex justify-between">
+            <div class="w-[48%] flex flex-col gap-2">
+              <label for="item" class="text-xl text-[#0F52BA]">Item</label>
+              <input
+                type="text"
+                name="item[]"
+                id="datalist"
+                list="items"
+                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+                phx-hook="datalist1"
+              />
+              <datalist id="items">
+                <!-- Add options here -->
+              </datalist>
+            </div>
+    
+            <div class="w-[48%] flex flex-col gap-2">
+              <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
+              <input
+                type="text"
+                name="quantity[]"
+                id="quantity"
+                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+              />
+            </div>
+          </div>
+    
+          <div class="w-[48%] flex flex-col gap-2">
+            <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
+            <select
+              name="uom[]"
+              id="uom"
+              class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+            >
+              <option value="" disabled selected>Select UOM</option>
+                <option value="Carton">Carton</option>
+                <option value="Pallet">Pallet</option>
+                <option value="Container">Container</option>
+                <option value="Box">Box</option>
+                <option value="Bag">Bag</option>
+                <option value="Drum">Drum</option>
+                <option value="Piece">Piece</option>
+                <option value="Roll">Roll</option>
+                <option value="Bundle">Bundle</option>
+                <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+      `;
+    
+      // Create a new div element and set its inner HTML to the newFormElement
+      const newFormDiv = document.createElement('div');
+      newFormDiv.innerHTML = newFormElement;
+    
+      // Append the new form element to the form
+      form.append(newFormDiv);
+    });
+    
+  },
+  updated(){
+    const form = document.getElementById('formdiv');
+const addButton = document.getElementById('addButton');
+
+addButton.addEventListener('click', function() {
+  console.log("i havve been clicked!")
+  // Create a new set of form elements
+  const newFormElement = `
+    <div class="flex-col w-[100%] gap-2">
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <label for="item" class="text-xl text-[#0F52BA]">Item</label>
+          <input
+            type="text"
+            name="item[]"
+            id="datalist"
+            list="items"
+            class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+            phx-hook="datalist1"
+          />
+          <datalist id="items">
+            <!-- Add options here -->
+          </datalist>
+        </div>
+
+        <div class="w-[48%] flex flex-col gap-2">
+          <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
+          <input
+            type="text"
+            name="quantity[]"
+            id="quantity"
+            class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      <div class="w-[48%] flex flex-col gap-2">
+        <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
+        <select
+          name="uom[]"
+          id="uom"
+          class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        >
+          <option value="" disabled selected>Select UOM</option>
+            <option value="Carton">Carton</option>
+            <option value="Pallet">Pallet</option>
+            <option value="Container">Container</option>
+            <option value="Box">Box</option>
+            <option value="Bag">Bag</option>
+            <option value="Drum">Drum</option>
+            <option value="Piece">Piece</option>
+            <option value="Roll">Roll</option>
+            <option value="Bundle">Bundle</option>
+            <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+  `;
+
+  // Create a new div element and set its inner HTML to the newFormElement
+  const newFormDiv = document.createElement('div');
+  newFormDiv.innerHTML = newFormElement;
+
+  // Append the new form element to the form
+  form.append(newFormDiv);
+});
+
+
+  },
+
+};
 Hooks.SideBarCollapse = {
   mounted() {
     const menu = document.querySelector(".menu-content");
@@ -97,7 +239,7 @@ mounted(){
 
 },
 updated(){
-  document.getElementById('putaway_datalist').addEventListener('input', function(e) {
+  document.getElementById('datalist').addEventListener('input', function(e) {
     var input = e.target,
         list = input.getAttribute('list'),
         options = document.querySelectorAll('#' + list + ' option'),

@@ -18,23 +18,25 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"breakbulk" => breakbulk_params}, socket) do
+  def handle_event("validate", params, socket) do
     changeset =
       socket.assigns.breakbulk
-      |> Breakbulks.change_breakbulk(breakbulk_params)
+      |> Breakbulks.change_breakbulk(params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  @impl true
-  def handle_event("add_form", params, socket) do
-    new_form_count = socket.assigns.form_count + 1
-    IO.inspect(new_form_count)
+  def handle_event("quantity_check", params, socket) do
+    # error = if params["quantity"]
+    IO.inspect(params)
+    {:noreply, socket}
+  end
 
-    {:noreply,
-     socket
-     |> assign(:form_count, new_form_count)}
+  def handle_event("quantity_recover", params, socket) do
+    # error = if params["quantity"]
+    IO.inspect(params)
+    {:noreply, socket}
   end
 
   def handle_event("save", %{"breakbulk" => breakbulk_params}, socket) do
@@ -78,7 +80,7 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
     IO.inspect(params)
 
     status =
-      if params["status"] == "on" do
+      if params["status"] == ["on"] do
         true
       else
         false
@@ -109,17 +111,21 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
           updated_at: now
         }
       end)
+      |> IO.inspect()
 
-    Breakbulks.add_all(items_to_add)
+    case Breakbulks.add_all(items_to_add) do
+      {_x, nil} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Breakbulk created successfully")
+         |> push_redirect(to: socket.assigns.return_to)}
 
-    {:noreply, socket}
+      _ ->
+        {:noreply, socket}
+    end
   end
 
-  @impl true
-
-  def handle_event("validate_form", params, socket) do
-    # IO.inspect(params["item"])
-
-    {:noreply, socket}
+  defp apply_changeset(items) do
+    Breakbulk.changeset(items, %{})
   end
 end

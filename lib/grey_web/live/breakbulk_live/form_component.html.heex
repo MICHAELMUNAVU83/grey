@@ -1,77 +1,77 @@
 <div>
   <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
-  <%= if @form_count != 0 do %>
-    <form phx-submit="saver" phx-target={@myself} phx-change="validate_form" id="formdiv">
-      <%= for _ <- 1..@form_count do %>
-        <div class="flex flex-col w-[100%] gap-2">
-          <div class="w-[100%] flex justify-between">
-            <div class="w-[48%] flex flex-col gap-2">
-              <label for="item" class="text-xl text-[#0F52BA]">Item</label>
-              <input
-                type="text"
-                name="item[]"
-                id="datalist"
-                list="items"
-                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-                phx-hook="datalist1"
-              />
-              <datalist id="items">
-                <%= for x <- @receives do %>
-                  <option data-value={"#{x.id}"}>
-                    <%= x.gtin %>(<%= x.name %>) (<%= x.batch %>)
-                  </option>
-                <% end %>
-              </datalist>
-              <input type="hidden" name="item[]" id="datalist-hidden" />
-              <!-- error_tag(f, :code) %> -->
-            </div>
 
-            <div class="w-[48%] flex flex-col gap-2">
-              <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
-              <input
-                type="text"
-                name="quantity[]"
-                id="quantity"
-                class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-              />
-              <!-- error_tag(f, :quantity) %> -->
-            </div>
-          </div>
-
-          <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
-          <select
-            name="uom[]"
-            id="uom"
+  <form phx-submit="saver" phx-change="validate" phx-target={@myself}>
+    <div id="formdiv" class="flex-col  w-[100%] gap-2">
+      <div class="w-[100%] flex justify-between">
+        <div class="w-[48%] flex flex-col gap-2">
+          <label for="item" class="text-xl text-[#0F52BA]">Item</label>
+          <input
+            type="text"
+            name="item[]"
+            id="datalist"
+            list="items"
             class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
-          >
-            <option value="" disabled selected>Select UOM</option>
-            <option value="Carton">Carton</option>
-            <option value="Pallet">Pallet</option>
-            <option value="Container">Container</option>
-            <option value="Box">Box</option>
-            <option value="Bag">Bag</option>
-            <option value="Drum">Drum</option>
-            <option value="Piece">Piece</option>
-            <option value="Roll">Roll</option>
-            <option value="Bundle">Bundle</option>
-            <option value="Other">Other</option>
-          </select>
-          <!-- error_tag(f, :uom) %> -->
+            phx-hook="datalist1"
+          />
+          <datalist id="items">
+            <%= for x <- @receives do %>
+              <option data-value={"#{x.id}"}>
+                <%= x.gtin %>(<%= x.name %>) (<%= x.batch %>)
+              </option>
+            <% end %>
+          </datalist>
+          <!-- <input type="hidden" name="item[]" id="datalist-hidden" /> -->
+              <!-- error_tag(f, :code) %> -->
         </div>
-      <% end %>
-      <div class="w-[100%] flex flex-row items-center gap-2">
-        <label for="status" class="text-xl text-[#0F52BA]">Status</label>
-        <input type="checkbox" name="status[]" id="status" />
-      </div>
-      <div class="flex flex-col w-[100%] justify-center items-center">
-        <input
-          type="submit"
-          value="Add Breakbulk"
-          class="bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
-        />
-      </div>
-    </form>
-  <% end %>
 
-  <button phx-click="add_form" phx-target={@myself}>add</button>
+        <div class="w-[48%] flex flex-col gap-2">
+          <label for="quantity" class="text-xl text-[#0F52BA]">Quantity</label>
+          <input
+            phx-change="quantity_check"
+            type="text"
+            name="quantity[]"
+            id="quantity"
+            class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+          />
+          <!-- error_tag(f, :quantity) %> -->
+        </div>
+      </div>
+      <div class="w-[48%] flex flex-col gap-2">
+        <label for="uom" class="text-xl text-[#0F52BA]">Unit of Measurement</label>
+        <select
+          name="uom[]"
+          id="uom"
+          class="w-[100%] h-[50px] border-2 my-2 border-[#259BFF] rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#259BFF] focus:border-transparent"
+        >
+          <option value="" disabled selected>Select UOM</option>
+          <option value="Carton">Carton</option>
+          <option value="Pallet">Pallet</option>
+          <option value="Container">Container</option>
+          <option value="Box">Box</option>
+          <option value="Bag">Bag</option>
+          <option value="Drum">Drum</option>
+          <option value="Piece">Piece</option>
+          <option value="Roll">Roll</option>
+          <option value="Bundle">Bundle</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <!-- error_tag(f, :uom) %> -->
+    </div>
+
+    <div class="w-[100%] flex flex-row items-center gap-2">
+      <label for="status" class="text-xl text-[#0F52BA]">Status</label>
+      <input type="checkbox" name="status[]" id="status" />
+    </div>
+    <div class="flex flex-col w-[100%] justify-center items-center">
+      <input
+        type="submit"
+        value="Add Breakbulk"
+        class="bg-[#259BFF] px-4 py-2 rounded-md shadow-[#259BFF] shadow-sm text-white text-xl"
+      />
+    </div>
+  </form>
+
+  <button phx-hook="addform" id="addButton">add</button>
 </div>
