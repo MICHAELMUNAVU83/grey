@@ -20,77 +20,100 @@
 
 <p class="bg-gradient-to-r from-[#259BFF] to-[#0F52BA] w-[100%] h-[1px]" />
 
-<table class="w-[100%] p-2">
-  <thead class="text-[#0F52BA]">
-    <tr>
-      <th>Code</th>
-      <th>Status</th>
-      <th>Description</th>
-      <th>Quantity</th>
-      <th>Uom</th>
+<%= for breakbulk <- @breakbulks do %>
+  <div class=" bg-white  flex justify-between px-6 py-6 ">
+    <p class="text-[#188CE7] font-bold">code: <%= breakbulk.code %></p>
+    <button id={"sample_#{breakbulk.id}"} class="text-[#188CE7] font-bold" onclick="toggleSampleDiv(event)">
+      +
+    </button>
+  </div>
+  <div id={"sample_sample_#{breakbulk.id}"} style="display:none">
+    <table class="w-[100%] p-2">
+      <thead class="text-[#0F52BA]">
+        <tr>
+          <th>Code</th>
+          <th>Status</th>
+          
+          <th>Quantity</th>
+          <th>Uom</th>
 
-      <th>Active</th>
-    </tr>
-  </thead>
-  <tbody class="text-center" id="breakbulks">
-    <%= for breakbulk <- @breakbulks do %>
-      <tr id={"breakbulk-#{breakbulk.id}"}>
-        <td><%= breakbulk.code %></td>
-        <td>
-          <%= if breakbulk.active == true do %>
-            <button
-              phx-click="change_status"
-              phx-value-id={breakbulk.id}
-              phx-value-schema="breakbulk"
-              class="bg-green-500 text-white rounded-md px-1 py-1"
-            >
-              active
-            </button>
-          <% else %>
-            <button
-              phx-click="change_status"
-              phx-value-id={breakbulk.id}
-              phx-value-schema="breakbulk"
-              class="bg-red-500 text-white rounded-md px-1 py-1"
-            >
-              inactive
-            </button>
-          <% end %>
-        </td>
-        <td><%= breakbulk.description %></td>
-        <td><%= breakbulk.quantity %></td>
-        <td><%= breakbulk.uom %></td>
+          <th>Active</th>
+        </tr>
+      </thead>
+      <tbody class="text-center" id="breakbulks">
+      <%=for x <-IO.inspect Grey.Breakbulks.list_breakbulks_by_code(breakbulk.code) do %>
+        <tr id={"breakbulk-#{x.id}"}>
+          <td><%= x.code %></td>
+          <td>
+            <%= if x.active == true do %>
+              <button
+                phx-click="change_status"
+                phx-value-id={x.id}
+                phx-value-schema="breakbulk"
+                class="bg-green-500 text-white rounded-md px-1 py-1"
+              >
+                active
+              </button>
+            <% else %>
+              <button
+                phx-click="change_status"
+                phx-value-id={x.id}
+                phx-value-schema="breakbulk"
+                class="bg-red-500 text-white rounded-md px-1 py-1"
+              >
+                inactive
+              </button>
+            <% end %>
+          </td>
+          
+          <td><%= x.quantity %></td>
+          <td><%= x.uom %></td>
 
-        <td class="p-2">
-          <div class="flex flex-row gap-2 justify-center items-center">
-            <div>
-              <%= live_redirect(to: Routes.breakbulk_show_path(@socket, :show, breakbulk)) do %>
-                <i class="fa fa-eye text-green-500" style="font-size: 20px" aria-hidden="true">
-                </i>
-              <% end %>
-            </div>
+          <td class="p-2">
+            <div class="flex flex-row gap-2 justify-center items-center">
+              <div>
+                <%= live_redirect(to: Routes.breakbulk_show_path(@socket, :show, x)) do %>
+                  <i class="fa fa-eye text-green-500" style="font-size: 20px" aria-hidden="true">
+                  </i>
+                <% end %>
+              </div>
 
-            <div>
-              <%= live_patch(to: Routes.breakbulk_index_path(@socket, :edit, breakbulk)) do %>
-                <i class="fa fa-pencil text-blue-500" style="font-size: 20px" aria-hidden="true">
-                </i>
-              <% end %>
-            </div>
+              <div>
+                <%= live_patch(to: Routes.breakbulk_index_path(@socket, :edit, x)) do %>
+                  <i class="fa fa-pencil text-blue-500" style="font-size: 20px" aria-hidden="true">
+                  </i>
+                <% end %>
+              </div>
 
-            <div>
-              <%= link(
+              <div>
+                <%= link(
                     to: "#",
                     phx_click: "delete",
-                    phx_value_id: breakbulk.id,
+                    phx_value_id: x.id,
                     data: [confirm: "Are you sure?"]
                   )  do %>
-                <i class="fa fa-trash text-red-500 " style="font-size: 20px" aria-hidden="true">
-                </i>
-              <% end %>
+                  <i class="fa fa-trash text-red-500 " style="font-size: 20px" aria-hidden="true">
+                  </i>
+                <% end %>
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </td>
+        </tr>
+        <%end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<script>
+    function toggleSampleDiv(event) {
+      var button = event.target;
+    var buttonId = button.id;
+  var x = 'sample_' + buttonId;
+    console.log(buttonId)
+    console.log(x)
+      var sampleDiv = document.getElementById(x);
+      console.log(sampleDiv)
+      sampleDiv.style.display = (sampleDiv.style.display === 'none') ? 'block' : 'none';
+    }
+</script>

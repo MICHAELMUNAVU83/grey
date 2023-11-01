@@ -51,6 +51,10 @@ defmodule Grey.Breakbulks do
     end
   end
 
+  def list_breakbulks_by_code(code) do
+    Repo.all(from c in Breakbulk, where: c.code == ^code)
+  end
+
   @doc """
   Gets a single breakbulk.
 

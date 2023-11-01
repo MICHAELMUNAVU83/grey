@@ -51,6 +51,12 @@ defmodule GreyWeb.BreakbulkLive.Index do
     {:noreply, assign(socket, :breakbulks, list_breakbulks())}
   end
 
+  def handle_event("toggle_display", params, socket) do
+    IO.write("im here ")
+    IO.inspect(params)
+    {:noreply, socket}
+  end
+
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     breakbulk = Breakbulks.get_breakbulk!(id)
@@ -60,6 +66,6 @@ defmodule GreyWeb.BreakbulkLive.Index do
   end
 
   defp list_breakbulks do
-    Breakbulks.list_breakbulks()
+    Breakbulks.list_breakbulks() |> Enum.reverse()
   end
 end

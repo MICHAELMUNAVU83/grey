@@ -1,0 +1,102 @@
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.breakbulk_index_path(@socket, :index)}>
+    <.live_component
+      module={GreyWeb.BreakbulkLive.FormComponent}
+      id={@breakbulk.id || :new}
+      title={@page_title}
+      action={@live_action}
+      breakbulk={@breakbulk}
+      user={@user}
+      receives={@receives}
+      return_to={Routes.breakbulk_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+<div class="flex justify-start w-[100%] p-4">
+  <%= live_patch(to: Routes.breakbulk_index_path(@socket, :new) , class: "bg-[#259BFF] text-white flex items-center gap-2 rounded-md px-2 py-4") do %>
+    Add A Breakbulk <i class="fa fa-plus " style="font-size: 20px" aria-hidden="true"></i>
+  <% end %>
+</div>
+
+<p class="bg-gradient-to-r from-[#259BFF] to-[#0F52BA] w-[100%] h-[1px]" />
+
+<table class="w-[100%] p-2">
+  <thead class="text-[#0F52BA]">
+    <tr>
+      <th>Code</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Uom</th>
+
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody class="text-center" id="breakbulks">
+    <%= for breakbulk <- @breakbulks do %>
+      <tr id={"breakbulk-#{breakbulk.id}"}>
+        <td><%= breakbulk.code %></td>
+        <td>
+          <%= if breakbulk.active == true do %>
+            <button
+              phx-click="change_status"
+              phx-value-id={breakbulk.id}
+              phx-value-schema="breakbulk"
+              class="bg-green-500 text-white rounded-md px-1 py-1"
+            >
+              active
+            </button>
+          <% else %>
+            <button
+              phx-click="change_status"
+              phx-value-id={breakbulk.id}
+              phx-value-schema="breakbulk"
+              class="bg-red-500 text-white rounded-md px-1 py-1"
+            >
+              inactive
+            </button>
+          <% end %>
+        </td>
+        <td><%= breakbulk.description %></td>
+        <td><%= breakbulk.quantity %></td>
+        <td><%= breakbulk.uom %></td>
+
+        <td class="p-2">
+          <div class="flex flex-row gap-2 justify-center items-center">
+            <div>
+              <%= live_redirect(to: Routes.breakbulk_show_path(@socket, :show, breakbulk)) do %>
+                <i class="fa fa-eye text-green-500" style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+
+            <div>
+              <%= live_patch(to: Routes.breakbulk_index_path(@socket, :edit, breakbulk)) do %>
+                <i class="fa fa-pencil text-blue-500" style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+
+            <div>
+              <%= link(
+                    to: "#",
+                    phx_click: "delete",
+                    phx_value_id: breakbulk.id,
+                    data: [confirm: "Are you sure?"]
+                  )  do %>
+                <i class="fa fa-trash text-red-500 " style="font-size: 20px" aria-hidden="true">
+                </i>
+              <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <%= for breakbulk <- @breakbulks do %>
+  <div>
+  <p class ="text-#188CE7 text-bold"><%= breakbulk.code%></p>
+  </div>
+        <% end %>

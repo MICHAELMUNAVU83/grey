@@ -1,11 +1,16 @@
 <div>
   <h2 class="text-2xl uppercase font-bold text-[#0F52BA]"><%= @title %></h2>
   <p class="text-sm uppercase font-normal  text-red-500"><%= @error %></p>
-  <button class = "bg-[#259BFF] px-4 py-2 rounded  shadow-sm text-white text-base" phx-hook="addform" id="addButton">add</button>
+  <button
+    class="bg-[#A57EFB] px-4 py-2 rounded  shadow-sm text-white text-base"
+    phx-hook="addform"
+    id="addButton"
+  >
+    add
+  </button>
 
   <form phx-submit="saver" phx-change="validate" phx-target={@myself}>
     <div id="formdiv" class="flex-col  w-[100%] gap-2">
-   
       <div class="w-[100%] flex justify-between">
         <div class="w-[30%] flex flex-col gap-2">
           <label for="item" class="text-xl text-[#0F52BA]">Item</label>
@@ -66,7 +71,7 @@
       <label for="status" class="text-xl text-[#0F52BA]">Status</label>
       <input type="checkbox" name="status[]" id="status" />
     </div>
-    
+
     <div class="flex flex-col w-[100%] justify-center items-center">
       <input
         type="submit"
@@ -75,5 +80,4 @@
       />
     </div>
   </form>
-
 </div>
