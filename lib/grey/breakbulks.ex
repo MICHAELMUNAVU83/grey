@@ -22,7 +22,33 @@ defmodule Grey.Breakbulks do
   end
 
   def add_all(data) do
-    Repo.insert_all(Breakbulk, data)
+    # IO.inspect(data)
+    # IO.write("inspecting if data is valid")
+    # IO.inspect(is_data_valid(List.first(data)))
+    value =
+      Enum.map(data, fn attrs ->
+        is_data_valid(attrs)
+      end)
+      |> Enum.reduce(true, fn x, acc ->
+        case x do
+          true -> acc
+          false -> false
+          _ -> false
+        end
+      end)
+
+    IO.inspect(value)
+
+    case value do
+      true ->
+        Repo.insert_all(Breakbulk, data)
+
+      false ->
+        {:error, "error in submitting"}
+
+      _ ->
+        IO.write("im here")
+    end
   end
 
   @doc """
@@ -57,6 +83,12 @@ defmodule Grey.Breakbulks do
     %Breakbulk{}
     |> Breakbulk.changeset(attrs)
     |> Repo.insert()
+  end
+
+  # checking if every map has valid data returns true if valid and false if not
+  def is_data_valid(attrs) do
+    changeset = Breakbulk.changeset(%Breakbulk{}, attrs)
+    changeset.valid?
   end
 
   @doc """

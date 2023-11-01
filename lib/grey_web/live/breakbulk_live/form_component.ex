@@ -14,7 +14,8 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
      socket
      |> assign(assigns)
      |> assign(:changeset, changeset)
-     |> assign(:form_count, 1)}
+     |> assign(:form_count, 1)
+    |>assign(:error, "")}
   end
 
   @impl true
@@ -25,18 +26,6 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
-  end
-
-  def handle_event("quantity_check", params, socket) do
-    # error = if params["quantity"]
-    IO.inspect(params)
-    {:noreply, socket}
-  end
-
-  def handle_event("quantity_recover", params, socket) do
-    # error = if params["quantity"]
-    IO.inspect(params)
-    {:noreply, socket}
   end
 
   def handle_event("save", %{"breakbulk" => breakbulk_params}, socket) do
@@ -57,8 +46,6 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
   end
 
   defp save_breakbulk(socket, :new, breakbulk_params) do
-    IO.inspect(breakbulk_params)
-
     new_breakbulk =
       breakbulk_params
       |> Map.put("user_id", socket.assigns.user.id)
@@ -77,8 +64,6 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
 
   @impl true
   def handle_event("saver", params, socket) do
-    IO.inspect(params)
-
     status =
       if params["status"] == ["on"] do
         true
@@ -111,7 +96,8 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
           updated_at: now
         }
       end)
-      |> IO.inspect()
+
+    # |> IO.inspect()
 
     case Breakbulks.add_all(items_to_add) do
       {_x, nil} ->
@@ -120,12 +106,18 @@ defmodule GreyWeb.BreakbulkLive.FormComponent do
          |> put_flash(:info, "Breakbulk created successfully")
          |> push_redirect(to: socket.assigns.return_to)}
 
+      {:error, "error in submitting"} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "there is a problem in you submission")
+        |>assign(:error, "there are some errors in you submission ..make sure you fill in all the fields with correct values")}
+
       _ ->
+        IO.write("im here")
+
         {:noreply, socket}
     end
   end
 
-  defp apply_changeset(items) do
-    Breakbulk.changeset(items, %{})
-  end
+
 end
